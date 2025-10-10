@@ -1,0 +1,56 @@
+:root {
+  --font-family: 'Inter', sans-serif;
+  --bg-main-color: #fbfbfb;
+  --bg-secondary-color: #f3f3f3;
+  --text-strong: #191a15;
+  --text-normal: rgba(25, 26, 21, 0.5);
+  --text-muted: #8a8a89;
+  --primary-color: #54be96;
+  --secondary-color: #36a379;
+  --icon-people: #fbc75e;
+  --icon-question: #4535af;
+  --icon-star: #fbc75e;
+  --text-price: #38cd3e;
+  --bg-avatar-review: rgba(84, 190, 150, 0.2);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+  overflow-x: hidden;
+}
+
+
+section {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
