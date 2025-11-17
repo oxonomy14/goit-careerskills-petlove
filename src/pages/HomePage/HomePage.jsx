@@ -1,9 +1,15 @@
-import Hero from '../../components/Hero/Hero.jsx';
+import Hero from "../../components/Hero/Hero";
+import HomeContainer from "../../components/Container/HomeContainer";
+
 
 const HomePage = () => {
   return (
     
-      <Hero />
+<>
+<HomeContainer>
+<Hero/>
+</HomeContainer>
+</>
   
   );
 };

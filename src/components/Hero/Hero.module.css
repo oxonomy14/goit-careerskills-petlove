@@ -1,0 +1,56 @@
+    .hero {
+  background-image: url('img/backgroundHome-mob@x1.webp');
+  background-size: contain; 
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  min-height: 402px; 
+  width: 100%;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero {
+    background-image: url('img/backgroundHome-mob@x2.webp');
+  }
+}
+
+@media only screen and (min-width: 375px) {
+    .hero {
+  background-image: url('img/backgroundHome-mob@x1.webp');
+  border-radius: 30px;
+  min-height: 402px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero {
+    background-image: url('img/backgroundHome-mob@x2.webp');
+  }
+}
+}
+
+@media only screen and (min-width: 768px) {
+   .hero {
+  background-image: url('img/backgroundHome-tab@x1.webp');
+  border-radius: 60px;
+  min-height: 496px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero {
+    background-image: url('img/backgroundHome-tab@x2.webp');
+  }
+}
+}
+
+@media only screen and (min-width: 1280px) {
+  .hero {
+  background-image: url('img/backgroundHome-desk@x1.webp');
+  min-height: 384px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero {
+    background-image: url('img/backgroundHome-desk@x2.webp');
+  }
+}
+}

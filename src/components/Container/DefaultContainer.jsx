@@ -1,5 +1,5 @@
 
-import css from './Container.module.css';
+import css from './DefaultContainer.module.css';
 
 const Container = ({ children }) => {
   return (

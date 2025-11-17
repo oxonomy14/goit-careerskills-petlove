@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 //import { psychologistsReducer } from './psychologistsSlice';
-
+import storage from 'redux-persist/lib/storage';
 
 import {
   persistStore,
-  persistReducer,
+  // persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -12,15 +12,15 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 
-const persistConfigPsychologists = {
-  key: 'psychologists',
-  version: 1,
-  storage,
-  whitelist: ['loading', 'loadingMore'], 
 
-};
+// const persistConfigPsychologists = {
+//   key: 'psychologists',
+//   version: 1,
+//   storage,
+//   whitelist: ['loading', 'loadingMore'], 
+
+// };
 
 
 // const persistFavorites = {
@@ -37,20 +37,34 @@ const persistConfigPsychologists = {
 // };
 
 export const store = configureStore({
-  reducer: {
-    //psychologistsList: persistReducer(persistConfigPsychologists, psychologistsReducer),
-    // favorites: persistReducer(persistFavorites, favoritesReducer),
-    // auth: persistReducer(persistAuth, authReducer),
-    
-  },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
+  reducer: (state = {}) => state, // тимчасовий ред’юсер
+
+ middleware: getDefaultMiddleware =>
+   getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
 
   devTools: import.meta.env.MODE === 'development',
-});
+}
+);
+
+// export const store = configureStore({
+//   reducer: {
+//     //psychologistsList: persistReducer(persistConfigPsychologists, psychologistsReducer),
+//     // favorites: persistReducer(persistFavorites, favoritesReducer),
+//     // auth: persistReducer(persistAuth, authReducer),
+    
+//   },
+//   middleware: getDefaultMiddleware =>
+//     getDefaultMiddleware({
+//       serializableCheck: {
+//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//       },
+//     }),
+
+//   devTools: import.meta.env.MODE === 'development',
+// });
 
 export let persistor = persistStore(store);

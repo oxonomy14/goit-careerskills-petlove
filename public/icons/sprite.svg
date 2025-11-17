@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+  <symbol id="icon-heart" viewBox="0 0 36 32">
+<path d="M17.87 4.583c-3.462-4.088-9.236-5.188-13.574-1.444s-4.949 10.002-1.542 14.43c2.182 2.836 7.77 8.094 11.506 11.509 1.242 1.135 1.862 1.702 2.606 1.93 0.639 0.196 1.37 0.196 2.009 0 0.744-0.228 1.364-0.795 2.606-1.93 3.736-3.414 9.324-8.673 11.506-11.509 3.407-4.427 2.871-10.726-1.542-14.43s-10.112-2.644-13.574 1.444z"></path>
+</symbol>
+<symbol id="icon-burger" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M4 16h24"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M4 8h24"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M4 24h24"></path>
+</symbol>
+<symbol id="icon-user" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M16 20c-4.227 0-7.986 2.041-10.379 5.208-0.515 0.682-0.773 1.022-0.764 1.483 0.006 0.356 0.23 0.805 0.51 1.025 0.362 0.284 0.865 0.284 1.869 0.284h17.527c1.005 0 1.507 0 1.869-0.284 0.28-0.22 0.503-0.669 0.51-1.025 0.008-0.461-0.249-0.801-0.764-1.483-2.393-3.167-6.152-5.208-10.379-5.208z"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M16 16c3.314 0 6-2.686 6-6s-2.686-6-6-6c-3.314 0-6 2.686-6 6s2.686 6 6 6z"></path>
+</symbol>
+  </defs>
+</svg>

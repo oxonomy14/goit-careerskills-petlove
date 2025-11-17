@@ -1,0 +1,29 @@
+.logoLink {
+text-decoration: none;
+}
+
+.logo span {
+font-weight: 700;
+font-size: 28px;
+line-height: 100%;
+letter-spacing: -0.04em;
+color: var(--text-strong);
+
+}
+
+.logoIcon {
+    fill: var(--primary-color);
+}
+
+.logoHome span {
+font-weight: 800;
+font-size: 28px;
+line-height: 100%;
+letter-spacing: -0.04em;
+color: var(--bg-secondary-color);
+
+}
+
+.homeLogoIcon {
+        fill: var(--bg-secondary-color);
+}

@@ -1,0 +1,48 @@
+.navList {
+display: flex;
+flex-direction: row;
+gap: 10px;
+
+margin-left: 313px;
+}
+
+.navListHome {
+    display: flex;
+flex-direction: row;
+gap: 10px;
+
+margin-left: 280px;
+}
+
+.navLinkHome {
+border: 1px solid rgba(255, 255, 255, 0.4);
+border-radius: 30px;
+padding: 15px 20px;
+width: 80px;
+height: 50px;
+
+font-weight: 500;
+font-size: 16px;
+line-height: 125%;
+letter-spacing: -0.03em;
+color: var(--bg-secondary-color);
+text-decoration: none;
+}
+
+.navLink {
+border: 1px solid rgba(38, 38, 38, 0.15);
+border-radius: 30px;
+padding: 15px 20px;
+height: 50px;    
+font-weight: 500;
+font-size: 16px;
+line-height: 125%;
+letter-spacing: -0.03em;
+color: var(--text-strong);
+white-space: nowrap;
+text-decoration: none;
+}
+
+.active {
+border: 1px solid #f6b83d;
+}

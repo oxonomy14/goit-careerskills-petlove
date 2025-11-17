@@ -1,0 +1,65 @@
+.userNavItem {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.logOutBtnHome {
+display: none;
+}
+
+.logOutBtn {
+  border-radius: 30px;
+  padding: 15px 35px;
+  width: 136px;
+  height: 50px;
+  background-color: var(--primary-color);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--bg-secondary-color);
+}
+
+.user {
+  border-radius: 100%;
+  background-color: var(--secondary-color);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 1;
+}
+
+.userName {
+    display: flex;
+    align-items: center;
+}
+
+.userNameHome {
+        display: flex;
+    align-items: center;
+}
+
+.userName p {
+font-weight: 700;
+font-size: 20px;
+line-height: 100%;
+letter-spacing: -0.03em;
+color: var(--text-strong);
+}
+
+.userNameHome p {
+font-weight: 700;
+font-size: 20px;
+line-height: 100%;
+letter-spacing: -0.03em;
+color: var(--bg-secondary-color);
+
+}
+
+.logoIcon {
+    fill: var(--primary-color);
+}

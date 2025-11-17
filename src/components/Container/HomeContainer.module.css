@@ -7,17 +7,20 @@
 @media only screen and (min-width: 375px) {
   .container {
     width: 375px;
+    padding: 0px 20px;
   }
 }
 
 @media only screen and (min-width: 768px) {
   .container {
     width: 768px;
+    padding: 0px 32px;
   }
 }
 
 @media only screen and (min-width: 1280px) {
   .container {
     width: 1280px;
+  
   }
 }
