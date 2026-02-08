@@ -6,7 +6,7 @@ import UserNav from '../UserNav/UserNav';
 import css from './HomeHeader.module.css';
 
 const Header = ({isMobile, isTablet, isDesktop}) => {
-  const isAuth = true;
+  const isAuth = false;
   return (
     <>
       <HomeContainer>

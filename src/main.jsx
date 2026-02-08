@@ -15,12 +15,12 @@ import { BrowserRouter } from 'react-router-dom';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-       {/* <Provider store={store}> */}
-        {/* <PersistGate loading={null} persistor={persistor}>  */}
+     <Provider store={store}> 
+        <PersistGate loading={null} persistor={persistor}>  
           <App />
        <Toaster position="top-right" autoClose={3000} />
-      {/* </PersistGate>
-      </Provider>  */}
+      </PersistGate>
+      </Provider>  
     </BrowserRouter>
   </StrictMode>
 )

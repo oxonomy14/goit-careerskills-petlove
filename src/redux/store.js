@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-//import { psychologistsReducer } from './psychologistsSlice';
+
 import storage from 'redux-persist/lib/storage';
+import { newsReducer } from './news/newsSlice';
 
 import {
   persistStore,
-  // persistReducer,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -13,6 +14,14 @@ import {
   REGISTER,
 } from 'redux-persist';
 
+
+const persistConfigNews = {
+  key: 'news',
+  version: 1,
+  storage,
+  whitelist: ['isLoading', 'loadingMore'], 
+
+ };
 
 // const persistConfigPsychologists = {
 //   key: 'psychologists',
@@ -37,8 +46,10 @@ import {
 // };
 
 export const store = configureStore({
-  reducer: (state = {}) => state, // тимчасовий ред’юсер
-
+ // reducer: (state = {}) => state, // тимчасовий ред’юсер
+ reducer: {
+    newsList: persistReducer(persistConfigNews, newsReducer),
+ },
  middleware: getDefaultMiddleware =>
    getDefaultMiddleware({
       serializableCheck: {
@@ -50,21 +61,6 @@ export const store = configureStore({
 }
 );
 
-// export const store = configureStore({
-//   reducer: {
-//     //psychologistsList: persistReducer(persistConfigPsychologists, psychologistsReducer),
-//     // favorites: persistReducer(persistFavorites, favoritesReducer),
-//     // auth: persistReducer(persistAuth, authReducer),
-    
-//   },
-//   middleware: getDefaultMiddleware =>
-//     getDefaultMiddleware({
-//       serializableCheck: {
-//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//       },
-//     }),
 
-//   devTools: import.meta.env.MODE === 'development',
-// });
 
 export let persistor = persistStore(store);
