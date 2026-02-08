@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchNews } from './newsOperations';
 
 const initialState = {
-  itemsByPage: {}, // кеш на запит по сторінках
-  items: [],
   page: 1,
-  totalPages: 1,
+  itemsByPage: {},
+  totalPages: 0,
   isLoading: false,
   error: null,
+  currentKeyword: '',
 };
 
 const newsSlice = createSlice({
@@ -17,6 +17,9 @@ const newsSlice = createSlice({
     setPage(state, action) {
       state.page = action.payload;
     },
+    setKeyword(state, action) {
+      state.currentKeyword = action.payload;
+    },
   },
 
   extraReducers: builder =>
@@ -25,17 +28,19 @@ const newsSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(fetchNews.fulfilled, (state, action) => {
-        state.isLoading = false;
+      
+      .addCase(fetchNews.fulfilled, (state, { payload }) => {
+        const { page, keyword, results, totalPages } = payload;
 
-        const page = action.meta.arg; 
-        const { results, totalPages } = action.payload;
+        //  якщо новий keyword — скидаємо кеш
+        if (state.currentKeyword !== keyword) {
+          state.itemsByPage = {};
+          state.currentKeyword = keyword;
+        }
 
-        // кеш по сторінках
         state.itemsByPage[page] = results;
-
-        state.page = page;
         state.totalPages = totalPages;
+        state.isLoading = false;
       })
       .addCase(fetchNews.rejected, (state, action) => {
         state.isLoading = false;
@@ -44,4 +49,4 @@ const newsSlice = createSlice({
 });
 
 export const newsReducer = newsSlice.reducer;
-export const { setPage } = newsSlice.actions;
+export const { setPage, setKeyword } = newsSlice.actions;

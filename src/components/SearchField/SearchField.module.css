@@ -22,9 +22,17 @@ color: rgba(38, 38, 38, 0.5);
   right: 14px;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
+  background: transparent;
   border: none;
   padding: 0;
+  cursor: pointer;
+}
+
+.btnClear {
+  position: absolute;
+  right: 42px;
+  background: transparent;
+  border: none;
   cursor: pointer;
 }
 

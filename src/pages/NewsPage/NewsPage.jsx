@@ -10,27 +10,33 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchNews } from '../../redux/news/newsOperations';
 import {
-  selectNews,
+  selectNewsByPage,
   selectNewsLoading,
   selectNewsError,
   selectTotalPages,
   selectPage,
+  selectKeyword
 } from '../../redux/news/newsSelectors';
-import { setPage } from '../../redux/news/newsSlice';
+import { setPage, setKeyword } from '../../redux/news/newsSlice';
+
 
 const NewsPage = () => {
   const dispatch = useDispatch();
-  const newsItem = useSelector(selectNews);
+    const page = useSelector(selectPage);
+   const keyword = useSelector(selectKeyword);
+  const newsItem = useSelector(state => selectNewsByPage(state, page));
   const isLoading = useSelector(selectNewsLoading);
   const error = useSelector(selectNewsError);
   const totalPages = useSelector(selectTotalPages);
-  const page = useSelector(selectPage);
 
 
 
- useEffect(() => {
-  dispatch(fetchNews(page));
-}, [dispatch, page]);
+
+useEffect(() => {
+    dispatch(fetchNews({ page, keyword }));
+  }, [dispatch, page, keyword]);
+
+  
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -44,7 +50,15 @@ const NewsPage = () => {
               <Title>News</Title>
             </div>
             <div>
-              <SearchField />
+              <SearchField 
+                onSubmit={q => {
+    dispatch(setPage(1));
+    dispatch(setKeyword(q));
+  }}
+  onClear={() => {
+    dispatch(setPage(1));
+    dispatch(setKeyword(''));  }}
+  />
             </div>
           </div>
           <div className={css.newslist}>
