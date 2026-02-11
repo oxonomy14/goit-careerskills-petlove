@@ -6,7 +6,7 @@ import UserNav from "../UserNav/UserNav";
 import css from "./DefaultHeader.module.css";
 
 const Header =()=> {
-    const isAuth = true;
+    const isAuth = false;
 return (
 <>
 <Container>

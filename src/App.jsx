@@ -1,9 +1,14 @@
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { useFakeLoader } from './hooks/useFakeLoader';
+
 import DefaultLayout from './components/Layout/DefaultLayout';
 import HomeLayout from './components/Layout/HomeLayout';
 import Loader from './components/Loader/Loader';
+import HeroMain from './components/HeroMain/HeroMain';
+import LogoMain from "./components/LogoMain/LogoMain";
+import LoaderMain from './components/LoaderMain/LoaderMain';
 //import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -13,7 +18,11 @@ const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 
 function App() {
+const { progress, showLogo } = useFakeLoader();
+
+  
   return (
+    <>
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route element={<HomeLayout />}>
@@ -36,6 +45,17 @@ function App() {
         </Route>
       </Routes>
     </Suspense>
+  
+{progress < 100 && (
+  <HeroMain>
+    {showLogo ? (
+      <LogoMain />
+    ) : (
+      <LoaderMain percent={progress} />
+    )}
+  </HeroMain>
+)}
+      </>
   );
 }
 

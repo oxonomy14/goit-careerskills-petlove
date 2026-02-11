@@ -1,0 +1,26 @@
+.logoMain {
+display: flex;
+align-items: center;
+justify-content: center; 
+  gap: 8.2px;     
+
+}
+
+.logoMain span {
+font-family: var(--font-family);
+font-weight: 700;
+font-size: 100px;
+line-height: 100%;
+letter-spacing: -0.04em;
+color: var(--bg-secondary-color);
+
+}
+
+.logoMainIcon {
+    fill: var(--primary-color);
+    display: block;
+     width: 82px;
+  height: 82px;
+    transform: translateY(4px);
+}
+

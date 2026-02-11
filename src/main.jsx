@@ -16,7 +16,8 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
      <Provider store={store}> 
-        <PersistGate loading={null} persistor={persistor}>  
+      {/*   <PersistGate loading={null} persistor={persistor}>   */}
+      <PersistGate persistor={persistor}> 
           <App />
        <Toaster position="top-right" autoClose={3000} />
       </PersistGate>
