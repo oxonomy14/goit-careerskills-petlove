@@ -1,5 +1,6 @@
 import css from './AuthNav.module.css';
 import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const AuthNav = ({isMobile}) => {
   const location = useLocation();
@@ -7,13 +8,13 @@ const AuthNav = ({isMobile}) => {
   return (
     <>
      {!isMobile && <div className={css.authNavItem}>
-        <button className={isHomePage ? css.logInBtnHome : css.logInBtn}>
+        <Link className={isHomePage ? css.logInBtnHome : css.logInBtn}>
           Log In
-        </button>
+        </Link>
 
-        <button className={isHomePage ? css.regBtnHome : css.regBtn}>
+        <Link to="/register" className={isHomePage ? css.regBtnHome : css.regBtn}>
           Registration
-        </button>
+        </Link>
       </div>}
      {isMobile && <div>
           <svg

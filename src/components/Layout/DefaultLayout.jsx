@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import DefaultHeader from '../Header/DefaultHeader';
+import DefaultContainer from "../Container/DefaultContainer";
 //import Loader from '../Loader/Loader';
 import { useMediaQuery } from 'react-responsive';
 
@@ -22,7 +23,7 @@ const DefaultLayout = () => {
 
   return (
     <>
-
+        <DefaultContainer>
       <header>
         <DefaultHeader/>
       </header>
@@ -32,7 +33,7 @@ const DefaultLayout = () => {
         <Outlet/>
        
       </main>
-    
+    </DefaultContainer>
     </>
   );
 };

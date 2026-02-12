@@ -13,6 +13,7 @@ import LoaderMain from './components/LoaderMain/LoaderMain';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
+const RegistrationPage = lazy(() => import('./pages/RegistrationPage/RegistrationPage'));
 // const CardPage = lazy(() => import('./pages/CardPage/CardPage'));
 // const FavoritesPage = lazy(() => import('./pages/FavoritesPage/FavoritesPage'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
@@ -30,6 +31,7 @@ const { progress, showLogo } = useFakeLoader();
         </Route>
         <Route element={<DefaultLayout />}>
           <Route path="news" element={<NewsPage />} />
+          <Route path="register" element={<RegistrationPage />} />
           {/* <Route path="cards" element={<CardsPage />} /> */}
           {/* <Route path="cards/:cardId" element={<CardPage />} />
              <Route

@@ -1,5 +1,5 @@
 import AuthNav from "../AuthNav/AuthNav";
-import Container from "../Container/DefaultContainer";
+
 import Logo from "../Logo/Logo";
 import Nav from "../Nav/Nav";
 import UserNav from "../UserNav/UserNav";
@@ -9,13 +9,13 @@ const Header =()=> {
     const isAuth = false;
 return (
 <>
-<Container>
+
     <div className={css.header}>
 <Logo/>
 <Nav/>
 {isAuth ? <UserNav/> : <AuthNav/>}
 </div>
-</Container>
+
 </>)
 };
 

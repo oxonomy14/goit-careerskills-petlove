@@ -1,6 +1,6 @@
 .logoMain {
 display: flex;
-align-items: center;
+align-items: baseline;
 justify-content: center; 
   gap: 8.2px;     
 
@@ -19,8 +19,8 @@ color: var(--bg-secondary-color);
 .logoMainIcon {
     fill: var(--primary-color);
     display: block;
-     width: 82px;
-  height: 82px;
+     width: 66px;
+  height: 58px;
     transform: translateY(4px);
 }
 
