@@ -8,11 +8,11 @@ const RegistrationPage = () => {
       <div className={css.wrapper}>
         <div>
           <PetBlock
-            petImage="img/petImageReg-desk@x1.webp"
-            petAvatar="img/avatarDog.png"
-            petName="Rich"
-            petBirthdayDate="21.09.2020"
-            petAbout="Rich would be the perfect addition to an active family that loves to play and go on walks. I bet he would love having a doggy playmate too!"
+            petImage="img/petImageReg-desk@x2.webp"
+            petAvatar="img/avatarCat.png"
+            petName="Jack"
+            petBirthdayDate="18.10.2021"
+            petAbout="Jack is a gray Persian cat with green eyes. He loves to be pampered and groomed, and enjoys playing with toys."
           />
         </div>
         <div>

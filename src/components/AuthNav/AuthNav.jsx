@@ -8,7 +8,7 @@ const AuthNav = ({isMobile}) => {
   return (
     <>
      {!isMobile && <div className={css.authNavItem}>
-        <Link className={isHomePage ? css.logInBtnHome : css.logInBtn}>
+        <Link to="/login" className={isHomePage ? css.logInBtnHome : css.logInBtn}>
           Log In
         </Link>
 
