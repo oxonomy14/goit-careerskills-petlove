@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import storage from 'redux-persist/lib/storage';
 import { newsReducer } from './news/newsSlice';
+import { authReducer } from './auth/AuthSlice';
 
 import {
   persistStore,
@@ -23,6 +24,13 @@ const persistConfigNews = {
 
  };
 
+ const persistAuth = {
+  key: 'auth',
+   version: 1,
+   storage,
+    whitelist: ['token'],
+};
+
 // const persistConfigPsychologists = {
 //   key: 'psychologists',
 //   version: 1,
@@ -39,16 +47,13 @@ const persistConfigNews = {
 // };
 
 
-// const persistAuth = {
-//   key: 'auth',
-//   version: 1,
-//   storage,
-// };
+
 
 export const store = configureStore({
  // reducer: (state = {}) => state, // тимчасовий ред’юсер
  reducer: {
     newsList: persistReducer(persistConfigNews, newsReducer),
+    auth: persistReducer(persistAuth, authReducer),
  },
  middleware: getDefaultMiddleware =>
    getDefaultMiddleware({

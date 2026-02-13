@@ -1,5 +1,8 @@
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { refreshUser } from './redux/auth/AuthOperations';
 
 import { useFakeLoader } from './hooks/useFakeLoader';
 
@@ -9,7 +12,8 @@ import Loader from './components/Loader/Loader';
 import HeroMain from './components/HeroMain/HeroMain';
 import LogoMain from "./components/LogoMain/LogoMain";
 import LoaderMain from './components/LoaderMain/LoaderMain';
-//import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import {selectToken, selectIsRefreshing} from './redux/auth/AuthSelector';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
@@ -22,6 +26,19 @@ const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 function App() {
 const { progress, showLogo } = useFakeLoader();
 
+const dispatch = useDispatch();
+const token = useSelector(selectToken);
+const isRefreshing = useSelector(selectIsRefreshing);
+
+useEffect(() => {
+  if (token) {
+    dispatch(refreshUser());
+  }
+}, [dispatch, token]);
+
+if (isRefreshing) {
+  return <Loader />;
+}
   
   return (
     <>
