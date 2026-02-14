@@ -1,11 +1,17 @@
 import css from './RegistrationForm.module.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useState } from "react";
 
 import Title from '../../components/Title/Title';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../../redux/auth/AuthOperations';
+import { selectIsLoading, selectError, selectIsLoggedIn } from '../../redux/auth/AuthSelector';
 
 const RegistrationForm = () => {
 
@@ -26,14 +32,40 @@ const RegistrationForm = () => {
             .oneOf([Yup.ref('password'), null], 'Passwords must match')
             .required('Required'),
     });
+    
+const navigate = useNavigate();
+    const dispatch = useDispatch();
+const isLoading = useSelector(selectIsLoading);
+const error = useSelector(selectError);
+const isLoggedIn = useSelector(selectIsLoggedIn);
 
     const [showPassword, setShowPassword] = useState(false);
 const [showConfirm, setShowConfirm] = useState(false);
 
-const handleSubmit=(values,actions)=> {
-  console.log({values, actions});
-  actions.resetForm();
+const handleSubmit = async (values, actions) => {
+  const { username, email, password } = values;
+
+  try {
+    await dispatch(
+      register({
+        name: username,
+        email,
+        password,
+      })
+    ).unwrap();
+
+    actions.resetForm();
+  } catch (err) {
+    console.log(err);
+  }
 };
+
+useEffect(() => {
+  if (isLoggedIn) {
+    navigate('/profile');
+  }
+    console.log('isLoggedIn:', isLoggedIn);
+}, [isLoggedIn, navigate]);
 
   return (
     <div className={css.wrap}>
@@ -182,7 +214,7 @@ const handleSubmit=(values,actions)=> {
               <div className={css.formItem}>
                    <div className={css.inputWrap}>
           <Field
-             type={showPassword ? "text" : "password"}
+             type={showConfirm ? "text" : "password"}
             name="confirmPassword"
             placeholder="Confirm Password"
             className={`${css.field} 
@@ -233,8 +265,12 @@ const handleSubmit=(values,actions)=> {
           </div>
                 <ErrorMessage name="confirmPassword" className={css.error} component="div"/>
           </div>
-          <button className={css.btnReg} type="submit">Registration</button>
+       <button className={css.btnReg} type="submit" disabled={isLoading}>
+  {isLoading ? 'Loading...' : 'Registration'}
+</button>
           <p className={css.text}>Already have an account? <Link to="/login"><span>Login</span></Link></p>
+
+          {error && <p className={css.error}>{error}</p>}
         </Form>
          )}
       </Formik>
