@@ -20,6 +20,8 @@ display: none;
   letter-spacing: -0.03em;
   text-transform: uppercase;
   color: var(--bg-secondary-color);
+  white-space: nowrap;
+
 }
 
 .user {

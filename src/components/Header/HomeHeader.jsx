@@ -5,8 +5,8 @@ import AuthNav from '../AuthNav/AuthNav';
 import UserNav from '../UserNav/UserNav';
 import css from './HomeHeader.module.css';
 
-const Header = ({isMobile, isTablet, isDesktop}) => {
-  const isAuth = false;
+const Header = ({isMobile, isTablet, isDesktop, isLoggedIn}) => {
+
   return (
     <>
       <HomeContainer>
@@ -15,7 +15,7 @@ const Header = ({isMobile, isTablet, isDesktop}) => {
           <div className={css.navigation}>
             <Logo />
            {isDesktop && <Nav /> }
-            {isAuth ? <UserNav isTablet={isTablet} isMobile={isMobile}/> : <AuthNav isTablet={isTablet} isMobile={isMobile}/>}
+            {isLoggedIn ? <UserNav isTablet={isTablet} isMobile={isMobile}/> : <AuthNav isTablet={isTablet} isMobile={isMobile}/>}
           </div>
 
           <div className={css.headline}>

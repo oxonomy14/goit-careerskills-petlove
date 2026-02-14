@@ -5,15 +5,15 @@ import Nav from "../Nav/Nav";
 import UserNav from "../UserNav/UserNav";
 import css from "./DefaultHeader.module.css";
 
-const Header =()=> {
-    const isAuth = false;
+const Header =({isLoggedIn})=> {
+    
 return (
 <>
 
     <div className={css.header}>
 <Logo/>
 <Nav/>
-{isAuth ? <UserNav/> : <AuthNav/>}
+{isLoggedIn ? <UserNav/> : <AuthNav/>}
 </div>
 
 </>)
