@@ -29,15 +29,19 @@ const dispatch = useDispatch();
 const token = useSelector(selectToken);
 const isRefreshing = useSelector(selectIsRefreshing);
 
+
 useEffect(() => {
   if (token) {
     dispatch(refreshUser());
   }
+
 }, [dispatch, token]);
 
 if (isRefreshing) {
   return <Loader />;
 }
+
+
   
   return (
     <>

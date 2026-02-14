@@ -64,7 +64,7 @@ useEffect(() => {
   if (isLoggedIn) {
     navigate('/profile');
   }
-    console.log('isLoggedIn:', isLoggedIn);
+
 }, [isLoggedIn, navigate]);
 
   return (

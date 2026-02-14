@@ -24,6 +24,8 @@ const DefaultLayout = () => {
 
 }, [location.pathname]);
 
+  console.log('isLoggedIn', isLoggedIn);
+
   return (
     <>
         <DefaultContainer>
