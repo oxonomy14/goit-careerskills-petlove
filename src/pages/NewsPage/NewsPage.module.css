@@ -1,4 +1,9 @@
-
+section {
+    padding-top: 96px;
+    padding-left: 64px;
+    padding-right: 64px;
+    padding-bottom: 80px;
+}
 
 .rowTitle {
     display: flex;

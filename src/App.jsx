@@ -62,16 +62,7 @@ if (isRefreshing) {
               </PrivateRoute>
             }
           />
-          {/* <Route path="cards" element={<CardsPage />} /> */}
-          {/* <Route path="cards/:cardId" element={<CardPage />} />
-             <Route
-            path="favorites"
-            element={
-              <PrivateRoute>
-                <FavoritesPage />
-              </PrivateRoute>
-            }
-          /> */}
+       
 
           <Route path="*" element={<NotFound />} />
         </Route>

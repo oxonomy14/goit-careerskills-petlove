@@ -3,23 +3,17 @@ import css from './NotFound.module.css';
 import { Link } from 'react-router-dom';
 import Container from '../../components/Container/DefaultContainer';
 
-
 const NotFound = () => {
   return (
-    <section>
-         <Container>
-      <div className={css.wrapper}>
-      <div>
-        <h3 className={css.subTitle}>Such page does not exist</h3>
-        </div>
-        <div className={css.btnGoBack}>
-          <Link className={css.btnText} to="/catalog">
-            Go To Catalog Page
-          </Link>
-        </div>
-      </div>
-      </Container>
-    </section>
+    <Container>
+      <section>
+        <div className={css.wrapper}>
+          <div className={css.error}>4 <div className={css.imgWrapper}><img src="img/404.png" alt="404 error" /></div> 4</div>
+          <p className={css.text}>Ooops! This page not found :(</p>
+          <Link className={css.link} to="/">To home page</Link>
+          </div>
+      </section>
+    </Container>
   );
 };
 

@@ -1,52 +1,67 @@
+section {
+  padding: 32px;
+}
+
 .wrapper {
-display: flex;
-flex-direction: column;
-gap: 12px;
-justify-content: center;
-align-items: center;
-padding: 260px 0px;  
-  } 
-
-.subTitle {
-font-family: var(--font-family);
-font-weight: 600;
-font-size: 48px;
-line-height: 67%;
-color: var(--text);
-text-transform: capitalize;
-margin-bottom: 44px;
-
-  }
-
-.btnGoBack {
-border-radius: 200px;
-padding: 16px 60px;
-width: 274px;
-height: 56px;
-background-color: var(--button);
+  border-radius: 60px;
+  width: 100%;
+  height: 654px;
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.btnText {
-font-family: var(--font-family);
-font-weight: 500;
-font-size: 16px;
-line-height: 150%;
-letter-spacing: -0.01em;
-color: var(--white);
-text-decoration: none;
-display: flex;
+.error {
+  font-family: var(--font-family);
+  font-weight: 800;
+  font-size: 300px;
+  line-height: 100%;
+  color: var(--bg-secondary-color);
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media only screen and (min-width: 768px) {
-  .container {
-    min-width: 497px;
-  }
-  
+.imgWrapper {
+  border-radius: 1000px;
+  width: 280px;
+  height: 280px;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media only screen and (min-width: 1440px) {
-  .container {
-    min-width: 514px;
-  }
- 
+.imgWrapper img {
+  width: 280px;
+  height: 280px;
+}
+
+.text {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 117%;
+  letter-spacing: -0.03em;
+  color: var(--bg-secondary-color);
+  margin-bottom: 20px;
+}
+
+.link {
+  border-radius: 30px;
+  padding: 14px 30px;
+  width: 162px;
+  height: 48px;
+  background-color: var(--secondary-color);
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.03em;
+  color: var(--primary-color);
+  white-space: nowrap;
+  text-decoration: none;
 }
