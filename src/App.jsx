@@ -21,6 +21,7 @@ const RegistrationPage = lazy(() => import('./pages/RegistrationPage/Registratio
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage/ProfilePage'));
+const OurFriendsPage = lazy(() => import ('./pages/OurFriendsPage/OurFriendsPage'));
 
 function App() {
 const { progress, showLogo } = useFakeLoader();
@@ -51,7 +52,8 @@ if (isRefreshing) {
           <Route path="/" element={<HomePage />} />
         </Route>
         <Route element={<DefaultLayout />}>
-          <Route path="news" element={<NewsPage />} />
+          <Route path="friends" element={<OurFriendsPage />} />
+             <Route path="news" element={<NewsPage />} />
           <Route path="register" element={<RegistrationPage />} />
            <Route path="login" element={<LoginPage />} />
               <Route

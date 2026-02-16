@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { newsReducer } from './news/newsSlice';
 import { authReducer } from './auth/AuthSlice';
+import {friendsReducer} from './friends/friendsSlice'
 
 import {
   persistStore,
@@ -20,9 +21,16 @@ const persistConfigNews = {
   key: 'news',
   version: 1,
   storage,
-  whitelist: ['isLoading', 'loadingMore'], 
-
  };
+
+
+
+ const persistFriends = {
+  key: 'friends',
+  version: 1,
+  storage,
+  whitelist: ['items'],
+};
 
  const persistAuth = {
   key: 'auth',
@@ -30,21 +38,6 @@ const persistConfigNews = {
    storage,
     whitelist: ['token'],
 };
-
-// const persistConfigPsychologists = {
-//   key: 'psychologists',
-//   version: 1,
-//   storage,
-//   whitelist: ['loading', 'loadingMore'], 
-
-// };
-
-
-// const persistFavorites = {
-//   key: 'favorites',
-//   version: 1,
-//   storage,
-// };
 
 
 
@@ -54,6 +47,7 @@ export const store = configureStore({
  reducer: {
     newsList: persistReducer(persistConfigNews, newsReducer),
     auth: persistReducer(persistAuth, authReducer),
+    friendsList: persistReducer(persistFriends, friendsReducer),
  },
  middleware: getDefaultMiddleware =>
    getDefaultMiddleware({
