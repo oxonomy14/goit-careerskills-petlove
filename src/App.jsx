@@ -10,77 +10,74 @@ import DefaultLayout from './components/Layout/DefaultLayout';
 import HomeLayout from './components/Layout/HomeLayout';
 import Loader from './components/Loader/Loader';
 import HeroMain from './components/HeroMain/HeroMain';
-import LogoMain from "./components/LogoMain/LogoMain";
+import LogoMain from './components/LogoMain/LogoMain';
 import LoaderMain from './components/LoaderMain/LoaderMain';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import {selectToken, selectIsRefreshing} from './redux/auth/AuthSelector';
+import { selectToken, selectIsRefreshing } from './redux/auth/AuthSelector';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
-const RegistrationPage = lazy(() => import('./pages/RegistrationPage/RegistrationPage'));
+const RegistrationPage = lazy(
+  () => import('./pages/RegistrationPage/RegistrationPage'),
+);
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage/ProfilePage'));
-const OurFriendsPage = lazy(() => import ('./pages/OurFriendsPage/OurFriendsPage'));
+const OurFriendsPage = lazy(
+  () => import('./pages/OurFriendsPage/OurFriendsPage'),
+);
+const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
 
 function App() {
-const { progress, showLogo } = useFakeLoader();
+  const { progress, showLogo } = useFakeLoader();
 
-const dispatch = useDispatch();
-const token = useSelector(selectToken);
-const isRefreshing = useSelector(selectIsRefreshing);
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
+  useEffect(() => {
+    if (token) {
+      dispatch(refreshUser());
+    }
+  }, [dispatch, token]);
 
-useEffect(() => {
-  if (token) {
-    dispatch(refreshUser());
+  if (isRefreshing) {
+    return <Loader />;
   }
 
-}, [dispatch, token]);
-
-if (isRefreshing) {
-  return <Loader />;
-}
-
-
-  
   return (
     <>
-    <Suspense fallback={<Loader />}>
-      <Routes>
-        <Route element={<HomeLayout />}>
-          <Route path="/" element={<HomePage />} />
-        </Route>
-        <Route element={<DefaultLayout />}>
-          <Route path="friends" element={<OurFriendsPage />} />
-             <Route path="news" element={<NewsPage />} />
-          <Route path="register" element={<RegistrationPage />} />
-           <Route path="login" element={<LoginPage />} />
-              <Route
-            path="profile"
-            element={
-              <PrivateRoute>
-                <ProfilePage />
-              </PrivateRoute>
-            }
-          />
-       
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route element={<HomeLayout />}>
+            <Route path="/" element={<HomePage />} />
+          </Route>
+          <Route element={<DefaultLayout />}>
+            <Route path="friends" element={<OurFriendsPage />} />
+            <Route path="news" element={<NewsPage />} />
+            <Route path="notices" element={<NoticesPage />} />
+            <Route path="register" element={<RegistrationPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route
+              path="profile"
+              element={
+                <PrivateRoute>
+                  <ProfilePage />
+                </PrivateRoute>
+              }
+            />
 
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </Suspense>
-  
-{progress < 100 && (
-  <HeroMain>
-    {showLogo ? (
-      <LogoMain />
-    ) : (
-      <LoaderMain percent={progress} />
-    )}
-  </HeroMain>
-)}
-      </>
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </Suspense>
+
+      {progress < 100 && (
+        <HeroMain>
+          {showLogo ? <LogoMain /> : <LoaderMain percent={progress} />}
+        </HeroMain>
+      )}
+    </>
   );
 }
 

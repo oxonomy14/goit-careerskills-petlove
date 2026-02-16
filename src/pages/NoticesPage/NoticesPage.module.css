@@ -1,0 +1,19 @@
+.section {
+    padding-top: 96px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 80px;
+}
+
+.title {
+    padding-left: 32px;
+    margin-bottom: 40px;
+}
+
+.noticesFilters {
+   margin-bottom: 40px; 
+}
+
+.noticesList {
+    margin-bottom: 60px;
+}

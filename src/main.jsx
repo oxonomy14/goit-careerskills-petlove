@@ -1,7 +1,7 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App.jsx';
 import '@fontsource/manrope/400.css'; // Regular
 import '@fontsource/manrope/500.css'; // Medium
 import '@fontsource/manrope/800.css'; // ExtraBold
@@ -15,13 +15,12 @@ import { BrowserRouter } from 'react-router-dom';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-     <Provider store={store}> 
-      {/*   <PersistGate loading={null} persistor={persistor}>   */}
-      <PersistGate persistor={persistor}> 
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
           <App />
-       <Toaster position="top-right" autoClose={3000} />
-      </PersistGate>
-      </Provider>  
+          <Toaster position="top-right" autoClose={3000} />
+        </PersistGate>
+      </Provider>
     </BrowserRouter>
-  </StrictMode>
-)
+  </StrictMode>,
+);
