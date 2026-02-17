@@ -32,7 +32,9 @@ const NoticesPage = () => {
     dispatch(fetchNotices({ page, keyword }));
   }, [dispatch, page, keyword]);
 
+  useEffect(() => {
   console.log('notices', notices);
+}, [notices]);
 
   {
     isLoading && <p>Loading...</p>;

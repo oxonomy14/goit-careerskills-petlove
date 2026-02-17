@@ -1,3 +1,146 @@
 .item {
-    width: calc((100% - 64px) / 3);
+  width: calc((100% - 64px) / 3);
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  padding: 32px;
+
+  background-color: var(--bg-secondary-color);
+}
+
+.image {
+  border-radius: 16px;
+
+  height: 178px;
+  object-fit: cover;
+
+  object-position: 5% 20%;
+  margin-bottom: 24px;
+}
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  align-items: baseline;
+}
+
+.title {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 133%;
+  color: var(--text-strong);
+}
+
+.reviews {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.iconStar {
+  fill: var(--primary-color);
+  stroke: none;
+}
+
+.popularity {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 143%;
+  color: var(--text-strong);
+}
+
+.categoryList {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.category {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 140%;
+  letter-spacing: -0.02em;
+  color: rgba(38, 38, 38, 0.5);
+  margin-bottom: 2px;
+}
+
+.categoryInfo {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 117%;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+}
+
+.comment {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+  margin-bottom: 24px;
+}
+
+.price {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 133%;
+  color: var(--text-strong);
+  margin-bottom: 12px;
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.03em;
+  color: var(--bg-secondary-color);
+  border-radius: 30px;
+  padding: 14px 89px;
+  width: 257px;
+  height: 48px;
+  background-color: var(--primary-color);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btnIcon {
+  border-radius: 30px;
+  padding: 15px;
+  width: 48px;
+  height: 48px;
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  cursor: pointer;
+}
+
+.btnIcon:hover {
+  background-color: #fbe7c1;
+  border-color: #fbe7c1;
+}
+
+.btnIcon:focus {
+  background-color: #fbe7c1;
+  border-color: #fbe7c1;
+}
+
+.heartIcon {
+  width: 18px;
+  height: 16px;
+  stroke: var(--primary-color);
+  fill: none;
+  stroke-width: 1.5px;
 }
