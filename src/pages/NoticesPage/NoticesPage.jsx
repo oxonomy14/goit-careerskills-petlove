@@ -4,8 +4,41 @@ import NoticesFilters from '../../components/NoticesFilters/NoticesFilters';
 import NoticesList from '../../components/NoticesList/NoticesList';
 import NoticesListItem from '../../components/NoticesItem/NoticesItem';
 import Pagination from '../../components/Pagination/Pagination';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchNotices } from '../../redux/notices/noticesOperations';
+import {
+  selectNotices,
+  selectNoticesError,
+  selectNoticesLoading,
+  selectTotalPages,
+  selectPage,
+  selectKeyword,
+} from '../../redux/notices/noticesSelectors';
+import { setPage, setKeyword } from '../../redux/notices/noticesSlice';
 
 const NoticesPage = () => {
+  const dispatch = useDispatch();
+  const notices = useSelector(selectNotices);
+  const isLoading = useSelector(selectNoticesLoading);
+  const error = useSelector(selectNoticesError);
+  const page = useSelector(selectPage);
+  const keyword = useSelector(selectKeyword);
+  const totalPages = useSelector(selectTotalPages);
+  //  const state = useSelector(state => state.noticesList);
+  //console.log('state', state);
+
+  useEffect(() => {
+    dispatch(fetchNotices({ page, keyword }));
+  }, [dispatch, page, keyword]);
+
+  console.log('notices', notices);
+
+  {
+    isLoading && <p>Loading...</p>;
+  }
+  if (error) return <p>Error: {error}</p>;
+
   return (
     <>
       <section className={css.section}>
@@ -17,11 +50,17 @@ const NoticesPage = () => {
         </div>
         <div className={css.noticesList}>
           <NoticesList>
-            <NoticesListItem />
+            {notices.map(notice => (
+              <NoticesListItem key={notice._id} notice={notice} />
+            ))}
           </NoticesList>
         </div>
         <div>
-            <Pagination/>
+          <Pagination
+            page={page}
+            totalPages={totalPages}
+            onChange={p => dispatch(setPage(p))}
+          />
         </div>
       </section>
     </>
