@@ -28,11 +28,11 @@ const Pagination = ({ page, totalPages, onChange }) => {
 
   return (
     <div className={css.pagination}>
-      <button onClick={() => onChange(1)} disabled={page === 1}>
+      <button className={css.btnPagination} onClick={() => onChange(1)} disabled={page === 1}>
         «
       </button>
 
-      <button onClick={() => onChange(page - 1)} disabled={page === 1}>
+      <button className={css.btnPagination} onClick={() => onChange(page - 1)} disabled={page === 1}>
         ‹
       </button>
 
@@ -42,7 +42,7 @@ const Pagination = ({ page, totalPages, onChange }) => {
   ) : (
     <button
       key={`page-${p}-${index}`}
-      className={p === page ? css.active : ''}
+      className={`${css.btnPagination} ${p === page ? css.active : ''}`}
       onClick={() => onChange(p)}
     >
       {p}
@@ -55,6 +55,7 @@ const Pagination = ({ page, totalPages, onChange }) => {
       <button
         onClick={() => onChange(page + 1)}
         disabled={page === totalPages}
+        className={css.btnPagination}
       >
         ›
       </button>
@@ -62,6 +63,7 @@ const Pagination = ({ page, totalPages, onChange }) => {
       <button
         onClick={() => onChange(totalPages)}
         disabled={page === totalPages}
+        className={css.btnPagination}
       >
         »
       </button>

@@ -1,8 +1,10 @@
 import css from './NoticesItem.module.css';
-import { Link } from 'react-router-dom';
 
-const NoticesItem = ({ notice }) => {
+
+const NoticesItem = ({ notice, setIsOpen }) => {
+
   return (
+    
     <li className={css.item}>
       <img className={css.image} src={notice.imgURL} alt={notice.title} />
       <div className={css.titleRow}>
@@ -44,9 +46,9 @@ const NoticesItem = ({ notice }) => {
         </li>
       </ul>
       <p className={css.comment}>{notice.comment}</p>
-      <p className={css.price}>$123</p>
+      <p className={css.price}>${notice.price}</p>
       <div className={css.btnWrapper}>
-        <Link className={css.link}>Learn more</Link>
+        <button className={css.btnLearnMore} onClick={() => setIsOpen(true)}>Learn more</button>
         <button className={css.btnIcon}>
         <svg className={css.heartIcon}>
           <use href={`/icons/sprite.svg?v=${Date.now()}#icon-heart`} />
@@ -54,6 +56,8 @@ const NoticesItem = ({ notice }) => {
         </button>
       </div>
     </li>
+     
+     
   );
 };
 

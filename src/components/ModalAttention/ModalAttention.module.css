@@ -1,0 +1,166 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+
+  animation: fadeIn 200ms ease forwards;
+}
+
+.modal {
+  border-radius: 30px;
+  width: 466px;
+  height: 434px;
+  background: var(--bg-secondary-color);
+
+  position: relative;
+
+  overflow: visible;
+
+  animation: scaleIn 200ms ease forwards;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 26px;
+  right: 26px;
+
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 22px;
+}
+
+.xIcon {
+  stroke: var(--text-strong);
+  width: 12px;
+  height: 12px;
+}
+
+.content {
+  width: 100%;
+  position: absolute;
+  top: 60px;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imgWrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  background-color: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.img {
+  width: 44px;
+  height: 44px;
+}
+
+.title {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 117%;
+  letter-spacing: -0.03em;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.text {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--text-strong);
+  margin-bottom: 28px;
+}
+
+.btnWrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.btnLogIn {
+  border-radius: 30px;
+  padding: 14px 48px;
+  width: 140px;
+  height: 48px;
+  background-color: var(--primary-color);
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.03em;
+  color: var(--bg-secondary-color);
+  text-decoration: none;
+}
+
+.btnLogIn:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.btnLogIn:focus {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.btnReg {
+  border-radius: 30px;
+  padding: 14px 24px;
+  width: 140px;
+  height: 48px;
+  background-color: var(--secondary-color);
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.03em;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.btnReg:hover {
+  background-color: #fbe7c1;
+}
+
+.btnReg:focus {
+  background-color: #fbe7c1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

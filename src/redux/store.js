@@ -6,6 +6,7 @@ import { authReducer } from './auth/AuthSlice';
 import {friendsReducer} from './friends/friendsSlice';
 import { noticesReducer } from './notices/noticesSlice';
 
+
 import {
   persistStore,
   persistReducer,
@@ -53,6 +54,7 @@ const persistConfigNews = {
 export const store = configureStore({
  // reducer: (state = {}) => state, // тимчасовий ред’юсер
  reducer: {
+    
     newsList: persistReducer(persistConfigNews, newsReducer),
     auth: persistReducer(persistAuth, authReducer),
     friendsList: persistReducer(persistConfigFriends, friendsReducer),

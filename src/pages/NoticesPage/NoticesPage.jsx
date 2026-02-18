@@ -4,6 +4,9 @@ import NoticesFilters from '../../components/NoticesFilters/NoticesFilters';
 import NoticesList from '../../components/NoticesList/NoticesList';
 import NoticesListItem from '../../components/NoticesItem/NoticesItem';
 import Pagination from '../../components/Pagination/Pagination';
+import ModalAttention from '../../components/ModalAttention/ModalAttention';
+import ModalNotice from '../../components/ModalNotice/ModalNotice';
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchNotices } from '../../redux/notices/noticesOperations';
@@ -14,8 +17,12 @@ import {
   selectTotalPages,
   selectPage,
   selectKeyword,
+  
 } from '../../redux/notices/noticesSelectors';
+import { selectIsLoggedIn } from '../../redux/auth/AuthSelector';
 import { setPage, setKeyword } from '../../redux/notices/noticesSlice';
+
+
 
 const NoticesPage = () => {
   const dispatch = useDispatch();
@@ -25,16 +32,19 @@ const NoticesPage = () => {
   const page = useSelector(selectPage);
   const keyword = useSelector(selectKeyword);
   const totalPages = useSelector(selectTotalPages);
+  const isLoggedIn = useSelector(selectIsLoggedIn); 
   //  const state = useSelector(state => state.noticesList);
   //console.log('state', state);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     dispatch(fetchNotices({ page, keyword }));
   }, [dispatch, page, keyword]);
 
   useEffect(() => {
-  console.log('notices', notices);
-}, [notices]);
+    console.log('notices', notices);
+  }, [notices]);
 
   {
     isLoading && <p>Loading...</p>;
@@ -53,7 +63,11 @@ const NoticesPage = () => {
         <div className={css.noticesList}>
           <NoticesList>
             {notices.map(notice => (
-              <NoticesListItem key={notice._id} notice={notice} />
+              <NoticesListItem
+                key={notice._id}
+                notice={notice}
+                setIsOpen={setIsOpen}
+              />
             ))}
           </NoticesList>
         </div>
@@ -64,6 +78,18 @@ const NoticesPage = () => {
             onChange={p => dispatch(setPage(p))}
           />
         </div>
+        <ModalAttention
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+       
+          
+        />
+             <ModalNotice
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+       
+          
+        />
       </section>
     </>
   );

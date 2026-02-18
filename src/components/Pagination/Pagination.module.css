@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-button {
+.btnPagination{
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -15,11 +15,11 @@ button {
   font-weight: 500;
 }
 
-button:hover:not(:disabled) {
+.btnPagination:hover:not(:disabled) {
   background: #f5f5f5;
 }
 
-button:disabled {
+.btnPagination:disabled {
   opacity: 0.4;
   cursor: default;
 }
