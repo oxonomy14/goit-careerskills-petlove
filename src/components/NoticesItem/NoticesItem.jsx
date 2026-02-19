@@ -1,7 +1,7 @@
 import css from './NoticesItem.module.css';
 
 
-const NoticesItem = ({ notice, setIsOpen }) => {
+const NoticesItem = ({ notice, onOpen }) => {
 
   return (
     
@@ -26,7 +26,11 @@ const NoticesItem = ({ notice, setIsOpen }) => {
           {' '}
           <h4 className={css.category}>Birthday</h4>
           <p className={css.categoryInfo}>
-            {notice.birthday?.replace(/-/g, '.') || ''}
+           {
+  notice.birthday
+    ? new Date(notice.birthday).toLocaleDateString('uk-UA')
+    : ''
+}
           </p>
         </li>
         <li>
@@ -48,8 +52,8 @@ const NoticesItem = ({ notice, setIsOpen }) => {
       <p className={css.comment}>{notice.comment}</p>
       <p className={css.price}>${notice.price}</p>
       <div className={css.btnWrapper}>
-        <button className={css.btnLearnMore} onClick={() => setIsOpen(true)}>Learn more</button>
-        <button className={css.btnIcon}>
+        <button className={css.btnLearnMore} onClick={onOpen}>Learn more</button>
+        <button className={css.btnIcon} onClick={()=>{alert('This function is not yet implemented');}}>
         <svg className={css.heartIcon}>
           <use href={`/icons/sprite.svg?v=${Date.now()}#icon-heart`} />
         </svg>

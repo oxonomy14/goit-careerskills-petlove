@@ -8,7 +8,8 @@ const modalRoot = document.body;
 const ModalNotice = ({
   isOpen,
   onClose,
-
+  notice,
+  notices,
   showCloseBtn = true,
   closeOnBackdrop = true,
   closeOnEsc = true,
@@ -31,15 +32,27 @@ const ModalNotice = ({
       document.removeEventListener('keydown', handleEsc);
       document.body.style.overflow = '';
     };
-  }, [isOpen, onClose, closeOnEsc]);
+  }, [isOpen, onClose, closeOnEsc, notice]);
 
-  if (!isOpen) return null;
+  if (!isOpen || !notice) return null;
 
   const handleBackdropClick = e => {
     if (closeOnBackdrop && e.target === e.currentTarget) {
       onClose();
     }
   };
+
+  const formattedCategory =
+    notice.category.charAt(0).toUpperCase() + notice.category.slice(1);
+
+      const formattedSex =
+    notice.sex.charAt(0).toUpperCase() + notice.sex.slice(1);
+
+      const formattedSpecies =
+    notice.species.charAt(0).toUpperCase() + notice.species.slice(1);
+
+  const maxPopularity = Math.max(...notices.map(item => item.popularity));
+  const stars = Math.round((notice.popularity / maxPopularity) * 5);
 
   return createPortal(
     <div className={css.backdrop} onClick={handleBackdropClick}>
@@ -53,17 +66,67 @@ const ModalNotice = ({
         )}
 
         <div className={css.content}>
-          <div className={css.imgWrapper}><img className={css.img} src="img/attention.png" alt="Attention" /></div>
-          <h2 className={css.title}>Notice</h2>
-          <p className={css.text}>
-            We would like to remind you that certain functionality is available
-            only to authorized users.If you have an account, please log in with
-            your credentials. If you do not already have an account, you must
-            register to access these features.
-          </p>
+          <div className={css.imgWrapper}>
+            <img className={css.img} src={notice.imgURL} alt={notice.title} />
+            <div className={css.imgCategory}>
+              <span>{formattedCategory}</span>
+            </div>
+          </div>
+          <h2 className={css.title}>{notice.title}</h2>
+          <div className={css.popular}>
+            <ul className={css.popularList}>
+              <li className={css.popularItem}>
+                {[1, 2, 3, 4, 5].map(star => (
+                  <svg
+                    key={star}
+                    className={
+                      star <= stars ? css.starkIconColor : css.starkIconNotColor
+                    }
+                  >
+                    <use href={`/icons/sprite.svg?v=${Date.now()}#icon-star`} />
+                  </svg>
+                ))}
+              </li>
+            </ul>
+            <span className={css.popularNumder}>{notice.popularity}</span>
+          </div>
+          <ul className={css.categoryList}>
+            <li>
+              <h4 className={css.category}>Name</h4>
+              <p className={css.categoryInfo}>{notice.name}</p>
+            </li>
+            <li>
+              <h4 className={css.category}>Birthday</h4>
+              <p className={css.categoryInfo}>
+               {
+  notice.birthday
+    ? new Date(notice.birthday).toLocaleDateString('uk-UA')
+    : ''
+}
+              </p>
+            </li>
+            <li>
+              <h4 className={css.category}>Sex</h4>
+              <p className={css.categoryInfo}>{formattedSex}</p>
+            </li>
+            <li>
+              <h4 className={css.category}>Species</h4>
+              <p className={css.categoryInfo}>{formattedSpecies}</p>
+            </li>
+          </ul>
+          <p className={css.text}>{notice.comment}</p>
+          <p className={css.price}>${notice.price}</p>
           <div className={css.btnWrapper}>
-            <Link className={css.btnLogIn} to="/login">Log In</Link>
-            <Link className={css.btnReg}>Registration</Link>
+            <button className={css.btnAdd} onClick={()=>{alert('This function is not yet implemented');}}>
+              <span>Add to</span>
+                <svg className={css.heartIcon}>
+          <use href={`/icons/sprite.svg?v=${Date.now()}#icon-heart`} />
+
+        </svg>
+            </button>
+            <Link className={css.btnContact} to="/register">
+              Contact
+            </Link>
           </div>
         </div>
       </div>

@@ -17,12 +17,9 @@ import {
   selectTotalPages,
   selectPage,
   selectKeyword,
-  
 } from '../../redux/notices/noticesSelectors';
 import { selectIsLoggedIn } from '../../redux/auth/AuthSelector';
 import { setPage, setKeyword } from '../../redux/notices/noticesSlice';
-
-
 
 const NoticesPage = () => {
   const dispatch = useDispatch();
@@ -32,11 +29,12 @@ const NoticesPage = () => {
   const page = useSelector(selectPage);
   const keyword = useSelector(selectKeyword);
   const totalPages = useSelector(selectTotalPages);
-  const isLoggedIn = useSelector(selectIsLoggedIn); 
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   //  const state = useSelector(state => state.noticesList);
   //console.log('state', state);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedNotice, setSelectedNotice] = useState(null);
 
   useEffect(() => {
     dispatch(fetchNotices({ page, keyword }));
@@ -66,7 +64,11 @@ const NoticesPage = () => {
               <NoticesListItem
                 key={notice._id}
                 notice={notice}
-                setIsOpen={setIsOpen}
+                 
+                onOpen={() => {
+                  setSelectedNotice(notice);
+                  setIsOpen(true);
+                }}
               />
             ))}
           </NoticesList>
@@ -78,18 +80,19 @@ const NoticesPage = () => {
             onChange={p => dispatch(setPage(p))}
           />
         </div>
-        <ModalAttention
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-       
-          
-        />
-             <ModalNotice
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-       
-          
-        />
+        {isLoggedIn ? (
+          <ModalNotice
+            isOpen={isOpen}
+            onClose={() => {
+              setIsOpen(false);
+              setSelectedNotice(null);
+            }}
+            notice={selectedNotice}
+            notices={notices}
+          />
+        ) : (
+          <ModalAttention isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        )}
       </section>
     </>
   );

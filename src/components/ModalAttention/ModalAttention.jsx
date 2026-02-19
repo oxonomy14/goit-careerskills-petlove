@@ -63,7 +63,7 @@ const ModalAttention = ({
           </p>
           <div className={css.btnWrapper}>
             <Link className={css.btnLogIn} to="/login">Log In</Link>
-            <Link className={css.btnReg}>Registration</Link>
+            <Link className={css.btnReg} to="/register">Registration</Link>
           </div>
         </div>
       </div>
