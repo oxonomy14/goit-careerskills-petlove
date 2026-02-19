@@ -2,7 +2,7 @@ import css from './OurFriendsPage.module.css';
 import Title from '../../components/Title/Title';
 import FriendsList from '../../components/FriendsList/FriendsList';
 import FriendsItem from '../../components/FriendsItem/FriendsItem';
-
+import Loader from '../../components/Loader/Loader';
 import {fetchFriends} from '../../redux/friends/friendsOperations';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,13 +23,14 @@ useEffect(() => {
 
   
 
-  if (isLoading) return <p>Loading...</p>;
+
   if (error) return <p>Error: {error}</p>;
 
 console.log('friendItems', friendItems);
 
 
     return (<>
+     {isLoading ? <Loader /> :
     <section>
         <div className={css.title}>
 <Title>Our friends</Title>
@@ -43,6 +44,7 @@ console.log('friendItems', friendItems);
 </FriendsList>
 </div>
     </section>
+}
     </>);
 };
 

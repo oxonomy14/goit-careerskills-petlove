@@ -6,6 +6,7 @@ import NoticesListItem from '../../components/NoticesItem/NoticesItem';
 import Pagination from '../../components/Pagination/Pagination';
 import ModalAttention from '../../components/ModalAttention/ModalAttention';
 import ModalNotice from '../../components/ModalNotice/ModalNotice';
+import Loader from '../../components/Loader/Loader';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -44,13 +45,16 @@ const NoticesPage = () => {
     console.log('notices', notices);
   }, [notices]);
 
-  {
-    isLoading && <p>Loading...</p>;
-  }
+console.log('isLoading', isLoading);
+
+ 
+
+
   if (error) return <p>Error: {error}</p>;
 
   return (
     <>
+   {isLoading ? <Loader /> :
       <section className={css.section}>
         <div className={css.title}>
           <Title>Find your favorite pet</Title>
@@ -94,6 +98,7 @@ const NoticesPage = () => {
           <ModalAttention isOpen={isOpen} onClose={() => setIsOpen(false)} />
         )}
       </section>
+}
     </>
   );
 };

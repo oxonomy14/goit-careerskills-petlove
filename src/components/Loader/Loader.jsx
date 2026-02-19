@@ -3,12 +3,12 @@ import { PropagateLoader } from 'react-spinners';
 
 import css from './Loader.module.css';
 
-const Loader = ({loading}) => {
+const Loader = () => {
   return (
-    <div className={`${css.loaderBackdrop} ${loading ? css.active : ""}`}>
+    <div className={css.loaderBackdrop}>
      
       <PropagateLoader  
-      color="var(--secondary-color)"
+      color="#f6b83d"
         loading
         size={20}
         aria-label="Loading Spinner"

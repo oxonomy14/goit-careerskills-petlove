@@ -5,7 +5,7 @@ import NewsList from '../../components/NewsList/NewsList';
 import NewsItem from '../../components/NewsItem/NewsItem';
 import SearchField from '../../components/SearchField/SearchField';
 import Pagination from '../../components/Pagination/Pagination';
-
+import Loader from '../../components/Loader/Loader';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchNews } from '../../redux/news/newsOperations';
@@ -38,12 +38,14 @@ useEffect(() => {
 
   
 
-  if (isLoading) return <p>Loading...</p>;
+
   if (error) return <p>Error: {error}</p>;
 
   return (
     <>
+        {isLoading ? <Loader /> :
       <Container>
+    
         <section>
           <div className={css.rowTitle}>
             <div>
@@ -77,6 +79,7 @@ useEffect(() => {
           </div>
         </section>
       </Container>
+}
     </>
   );
 };
