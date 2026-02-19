@@ -31,8 +31,6 @@ const NoticesPage = () => {
   const keyword = useSelector(selectKeyword);
   const totalPages = useSelector(selectTotalPages);
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  //  const state = useSelector(state => state.noticesList);
-  //console.log('state', state);
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedNotice, setSelectedNotice] = useState(null);
@@ -45,60 +43,60 @@ const NoticesPage = () => {
     console.log('notices', notices);
   }, [notices]);
 
-console.log('isLoading', isLoading);
-
- 
-
-
   if (error) return <p>Error: {error}</p>;
 
   return (
     <>
-   {isLoading ? <Loader /> :
-      <section className={css.section}>
-        <div className={css.title}>
-          <Title>Find your favorite pet</Title>
-        </div>
-        <div className={css.noticesFilters}>
-          <NoticesFilters />
-        </div>
-        <div className={css.noticesList}>
-          <NoticesList>
-            {notices.map(notice => (
-              <NoticesListItem
-                key={notice._id}
-                notice={notice}
-                 
-                onOpen={() => {
-                  setSelectedNotice(notice);
-                  setIsOpen(true);
-                }}
-              />
-            ))}
-          </NoticesList>
-        </div>
-        <div>
-          <Pagination
-            page={page}
-            totalPages={totalPages}
-            onChange={p => dispatch(setPage(p))}
-          />
-        </div>
-        {isLoggedIn ? (
-          <ModalNotice
-            isOpen={isOpen}
-            onClose={() => {
-              setIsOpen(false);
-              setSelectedNotice(null);
-            }}
-            notice={selectedNotice}
-            notices={notices}
-          />
-        ) : (
-          <ModalAttention isOpen={isOpen} onClose={() => setIsOpen(false)} />
-        )}
-      </section>
-}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <section className={css.section}>
+          <div className={css.title}>
+            <Title>Find your favorite pet</Title>
+          </div>
+          <div className={css.noticesFilters}>
+            <NoticesFilters 
+            setKeyword={setKeyword}
+            setPage={setPage}
+
+            />
+          </div>
+          <div className={css.noticesList}>
+            <NoticesList>
+              {notices.map(notice => (
+                <NoticesListItem
+                  key={notice._id}
+                  notice={notice}
+                  onOpen={() => {
+                    setSelectedNotice(notice);
+                    setIsOpen(true);
+                  }}
+                />
+              ))}
+            </NoticesList>
+          </div>
+          <div>
+            <Pagination
+              page={page}
+              totalPages={totalPages}
+              onChange={p => dispatch(setPage(p))}
+            />
+          </div>
+          {isLoggedIn ? (
+            <ModalNotice
+              isOpen={isOpen}
+              onClose={() => {
+                setIsOpen(false);
+                setSelectedNotice(null);
+              }}
+              notice={selectedNotice}
+              notices={notices}
+            />
+          ) : (
+            <ModalAttention isOpen={isOpen} onClose={() => setIsOpen(false)} />
+          )}
+        </section>
+      )}
     </>
   );
 };

@@ -51,7 +51,7 @@ useEffect(() => {
             <div>
               <Title>News</Title>
             </div>
-            <div>
+            <div className={css.searchFieldWrapper}>
               <SearchField 
                 onSubmit={q => {
     dispatch(setPage(1));

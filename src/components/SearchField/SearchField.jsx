@@ -21,12 +21,15 @@ const SearchField = ({
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit}>
+    <>
+
+    <form className={css.formSearchField} onSubmit={handleSubmit}>
       <input
         type="text"
         value={query}
         placeholder={placeholder}
         onChange={e => setQuery(e.target.value)}
+        className={css.inputSearchField}
       />
 
       {query && (
@@ -36,16 +39,19 @@ const SearchField = ({
           onClick={handleClear}
           aria-label="Clear search"
         >
-          ✕
+        <svg  className={css.iconX}>
+          <use href="/icons/sprite.svg#icon-x" />
+        </svg>
         </button>
       )}
 
       <button type="submit" className={css.btnSearch} aria-label="Search">
-        <svg width={18} height={18} className={css.icon}>
+        <svg  className={css.iconSearch}>
           <use href="/icons/sprite.svg#icon-search" />
         </svg>
       </button>
     </form>
+    </>
   );
 };
 

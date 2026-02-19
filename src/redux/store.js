@@ -23,6 +23,7 @@ const persistConfigNews = {
   key: 'news',
   version: 1,
   storage,
+    whitelist: ['items', 'page', 'totalPages'],
  };
 
 
@@ -38,7 +39,8 @@ const persistConfigNews = {
   key: 'notices',
   version: 1,
   storage,
-  whitelist: ['items', 'page', 'totalPages', 'currentKeyword'],
+  whitelist: ['items', 'page', 'totalPages'],
+
 };
 
  const persistAuth = {
@@ -47,6 +49,7 @@ const persistConfigNews = {
    storage,
     whitelist: ['token'],
 };
+
 
 
 

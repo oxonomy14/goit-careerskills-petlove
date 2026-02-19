@@ -12,6 +12,12 @@ section {
     margin-bottom: 60px;
 }
 
+.searchFieldWrapper {
+    width: 230px;
+    height: 48px;
+     position: relative;
+}
+
 .newslist {
     margin-bottom: 60px;
 }

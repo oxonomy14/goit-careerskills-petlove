@@ -26,7 +26,7 @@ useEffect(() => {
 
   if (error) return <p>Error: {error}</p>;
 
-console.log('friendItems', friendItems);
+
 
 
     return (<>
@@ -39,7 +39,7 @@ console.log('friendItems', friendItems);
 
 <FriendsList >
         {friendItems.map(friend => (
-    <FriendsItem friend={friend} key={friend.id}/>
+    <FriendsItem friend={friend} key={friend._id}/>
         ))}
 </FriendsList>
 </div>

@@ -1,0 +1,20 @@
+.filtersWrapper {
+  border-radius: 30px;
+  width: 1216px;
+  height: 216px;
+  background-color: var(--secondary-color);
+  padding: 40px;
+}
+
+.filters {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(38, 38, 38, 0.1);
+}
+
+.searchFieldWrapper {
+  width: 265px;
+  height: 48px;
+  position: relative;
+}
