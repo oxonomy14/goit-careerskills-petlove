@@ -1,0 +1,19 @@
+.logOutBtn {
+    border-radius: 30px;
+padding: 15px 35px;
+width: 136px;
+height: 50px;
+background-color: var(--secondary-color);
+font-family: var(--font-family);
+font-weight: 700;
+font-size: 16px;
+line-height: 125%;
+letter-spacing: -0.03em;
+text-transform: uppercase;
+color: var(--primary-color);
+}
+
+.logOutBtn:hover, .logOutBtn:focus {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}  
