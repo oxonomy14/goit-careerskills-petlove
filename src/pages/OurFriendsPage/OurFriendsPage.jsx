@@ -31,7 +31,7 @@ useEffect(() => {
 
     return (<>
      {isLoading ? <Loader /> :
-    <section>
+    <section className={css.sectionOurFriendsPage}>
         <div className={css.title}>
 <Title>Our friends</Title>
 </div>

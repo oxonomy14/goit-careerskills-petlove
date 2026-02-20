@@ -4,7 +4,7 @@ import PetBlock from '../../components/PetBlock/PetBlock';
 
 const LoginPage = () => {
   return (
-    <section>
+    <section className={css.sectionLoginPage}>
       <div className={css.wrapper}>
         <div>
           <PetBlock

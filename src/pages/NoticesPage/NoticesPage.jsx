@@ -50,7 +50,7 @@ const NoticesPage = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <section className={css.section}>
+        <section className={css.sectionNoticesPage}>
           <div className={css.title}>
             <Title>Find your favorite pet</Title>
           </div>

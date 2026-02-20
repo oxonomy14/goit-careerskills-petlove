@@ -46,7 +46,7 @@ useEffect(() => {
         {isLoading ? <Loader /> :
       <Container>
     
-        <section>
+        <section className={css.sectionNewsPage}>
           <div className={css.rowTitle}>
             <div>
               <Title>News</Title>
