@@ -5,7 +5,7 @@
 }
 
 .logOutBtnHome {
-display: none;
+  display: none;
 }
 
 .logOutBtn {
@@ -21,7 +21,6 @@ display: none;
   text-transform: uppercase;
   color: var(--bg-secondary-color);
   white-space: nowrap;
-
 }
 
 .user {
@@ -36,32 +35,27 @@ display: none;
 }
 
 .userName {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: var(--text-strong);
+  text-decoration: none;
 }
 
 .userNameHome {
-        display: flex;
-    align-items: center;
-}
-
-.userName p {
-font-weight: 700;
-font-size: 20px;
-line-height: 100%;
-letter-spacing: -0.03em;
-color: var(--text-strong);
-}
-
-.userNameHome p {
-font-weight: 700;
-font-size: 20px;
-line-height: 100%;
-letter-spacing: -0.03em;
-color: var(--bg-secondary-color);
-
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: var(--bg-secondary-color);
+  text-decoration: none;
 }
 
 .logoIcon {
-    fill: var(--primary-color);
+  fill: var(--primary-color);
 }

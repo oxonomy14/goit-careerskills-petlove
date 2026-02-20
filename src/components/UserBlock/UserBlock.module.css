@@ -1,0 +1,105 @@
+.userBlock {
+  display: flex;
+  margin-bottom: 20px;
+
+}
+
+.userWrap {
+  border-radius: 30px;
+  padding: 10px 14px;
+  width: 80px;
+  height: 38px;
+  background-color: var(--primary-color);
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.userWrap span {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  color: var(--white-color);
+}
+
+.userIcon {
+  width: 18px;
+  height: 18px;
+  fill: var(--icon-color-white);
+}
+
+.userImageEmpty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     margin-left: 85px;
+}
+
+.userImageWrap {
+  border-radius: 100px;
+  padding: 10px;
+  width: 110px;
+  height: 110px;
+  background-color: var(--secondary-color);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userImageIcon {
+  width: 50px;
+  height: 50px;
+  fill: var(--icon-color-orange);
+}
+
+.uploadPhotoLink {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--text-strong);
+  
+}
+
+.editUserBtnWrap {
+  margin-left: auto;
+}
+
+.userInformation {
+
+}
+
+.userInformationTitle {
+    font-family: var(--font-family);
+font-weight: 700;
+font-size: 18px;
+line-height: 133%;
+color: var(--text-strong);
+margin-bottom: 20px;
+}
+
+.userInformationList {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.userInformationItem {
+  border: 1px solid var(--primary-color);
+border-radius: 30px;
+padding: 16px 386px 16px 16px;
+width: 440px;
+height: 52px;
+font-family: var(--font-family);
+font-weight: 500;
+font-size: 16px;
+line-height: 125%;
+letter-spacing: -0.03em;
+color: var(--text-strong);
+}

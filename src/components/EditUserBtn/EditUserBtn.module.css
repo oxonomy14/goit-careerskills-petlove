@@ -1,0 +1,15 @@
+.editUserBtn {
+    border-radius: 30px;
+padding: 10px;
+width: 38px;
+height: 38px;
+background-color: var(--secondary-color);
+}
+
+.editIcon {
+    stroke-width: 1.50px;
+stroke: var(--icon-color-orange);
+fill: none;
+width: 17px;
+height: 17px;
+}

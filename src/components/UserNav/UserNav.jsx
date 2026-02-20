@@ -1,5 +1,5 @@
 import css from './UserNav.module.css';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/AuthSelector';
 import { useDispatch } from 'react-redux';
@@ -32,7 +32,7 @@ const handleLogout = () => {
           <use href={`/icons/sprite.svg?v=${Date.now()}#icon-user`}></use>
         </svg>
         </div>
-        <div className={isHomePage ? css.userNameHome : css.userName}><p >{user.name || 'User'}</p></div>
+       <Link className={isHomePage ? css.userNameHome : css.userName} to="/profile">{user.name || 'User'}</Link>
       </div>
     </>
   );
