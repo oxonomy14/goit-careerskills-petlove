@@ -1,9 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchNotices } from './noticesOperations';
+import { fetchNotices} from './noticesOperations';
+
 
 const initialState = {
   page: 1,
-  items: [],         
+  items: [],
+
+     
   totalPages: 0,
 
   isLoading: false,
@@ -32,6 +35,7 @@ const noticesSlice = createSlice({
       })
 
       .addCase(fetchNotices.fulfilled, (state, { payload }) => {
+        //console.log(payload.results);
         state.items = payload.results;     
         state.totalPages = payload.totalPages;
         state.page = payload.page;
@@ -43,7 +47,10 @@ const noticesSlice = createSlice({
       .addCase(fetchNotices.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-      }),
+      })
+ 
+      
+
 });
 
 export const { setPage, setKeyword } = noticesSlice.actions;

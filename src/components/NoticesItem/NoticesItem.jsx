@@ -1,11 +1,40 @@
 import css from './NoticesItem.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from '../../redux/notices/noticesOperations';
+import {selectFavoriteIds} from '../../redux/auth/authSelector';
+
+import { openNoticeModal } from '../../redux/modal/modalSlice';
 
 
-const NoticesItem = ({ notice, onOpen }) => {
+const NoticesItem = ({ notice, variant = 'default' }) => {
+  const dispatch = useDispatch();
+
+const favoriteIds = useSelector(selectFavoriteIds);
+
+const isFavorite = favoriteIds.includes(notice._id);
+
+
+
+  const isFavoritesPage = variant === 'favorites';
+
+  const handleToggleFavorite = () => {
+    if (isFavorite) {
+      dispatch(removeFromFavorites(notice._id));
+    } else {
+      dispatch(addToFavorites(notice._id));
+    }
+  };
+
+  const handleLearnMore = () => {
+
+  dispatch(openNoticeModal(notice));
+};
 
   return (
-    
-    <li className={css.item}>
+    <li className={isFavoritesPage ? css.favoritesItem : css.item}>
       <img className={css.image} src={notice.imgURL} alt={notice.title} />
       <div className={css.titleRow}>
         <h3> {notice.title}</h3>
@@ -17,7 +46,11 @@ const NoticesItem = ({ notice, onOpen }) => {
           <span className={css.popularity}>{notice.popularity}</span>
         </div>
       </div>
-      <ul className={css.categoryList}>
+      <ul
+        className={
+          isFavoritesPage ? css.favoritesCategoryList : css.categoryList
+        }
+      >
         <li>
           <h4 className={css.category}>Name</h4>
           <p className={css.categoryInfo}>{notice.name}</p>
@@ -26,25 +59,20 @@ const NoticesItem = ({ notice, onOpen }) => {
           {' '}
           <h4 className={css.category}>Birthday</h4>
           <p className={css.categoryInfo}>
-           {
-  notice.birthday
-    ? new Date(notice.birthday).toLocaleDateString('uk-UA')
-    : ''
-}
+            {notice.birthday
+              ? new Date(notice.birthday).toLocaleDateString('uk-UA')
+              : ''}
           </p>
         </li>
         <li>
-          {' '}
           <h4 className={css.category}>Sex</h4>
           <p className={css.categoryInfo}>{notice.sex}</p>
         </li>
         <li>
-          {' '}
           <h4 className={css.category}>Species</h4>
           <p className={css.categoryInfo}>{notice.species}</p>
         </li>
         <li>
-          {' '}
           <h4 className={css.category}>Category</h4>
           <p className={css.categoryInfo}>{notice.category}</p>
         </li>
@@ -52,16 +80,24 @@ const NoticesItem = ({ notice, onOpen }) => {
       <p className={css.comment}>{notice.comment}</p>
       <p className={css.price}>${notice.price}</p>
       <div className={css.btnWrapper}>
-        <button className={css.btnLearnMore} onClick={onOpen}>Learn more</button>
-        <button className={css.btnIcon} onClick={()=>{alert('This function is not yet implemented');}}>
-        <svg className={css.heartIcon}>
-          <use href={`/icons/sprite.svg?v=${Date.now()}#icon-heart`} />
-        </svg>
+        <button
+          className={
+            isFavoritesPage ? css.favoritesBtnLearnMore : css.btnLearnMore
+          }
+           onClick={handleLearnMore}
+          
+        >
+          Learn more
+        </button>
+        <button className={css.btnfavorites} onClick={handleToggleFavorite}>
+          <svg className={css.favoritesIcon}>
+            <use
+              href={`/icons/sprite.svg?v=${Date.now()}#${isFavorite ? 'icon-trash' : 'icon-heart'}`}
+            />
+          </svg>
         </button>
       </div>
     </li>
-     
-     
   );
 };
 

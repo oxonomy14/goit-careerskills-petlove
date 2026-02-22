@@ -2,9 +2,10 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import storage from 'redux-persist/lib/storage';
 import { newsReducer } from './news/newsSlice';
-import { authReducer } from './auth/AuthSlice';
+import { authReducer } from './auth/authSlice';
 import {friendsReducer} from './friends/friendsSlice';
 import { noticesReducer } from './notices/noticesSlice';
+import { modalReducer } from './modal/modalSlice';
 
 
 import {
@@ -39,7 +40,7 @@ const persistConfigNews = {
   key: 'notices',
   version: 1,
   storage,
-  whitelist: ['items', 'page', 'totalPages'],
+  whitelist: ['items', 'page', 'totalPages', 'favorites'],
 
 };
 
@@ -62,6 +63,7 @@ export const store = configureStore({
     auth: persistReducer(persistAuth, authReducer),
     friendsList: persistReducer(persistConfigFriends, friendsReducer),
     noticesList: persistReducer(persistConfigNotices, noticesReducer),
+     modal: modalReducer, 
  },
  middleware: getDefaultMiddleware =>
    getDefaultMiddleware({

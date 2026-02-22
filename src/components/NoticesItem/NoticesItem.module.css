@@ -8,6 +8,19 @@
   background-color: var(--bg-secondary-color);
 }
 
+.favoritesItem {
+  /* width: calc((100% - 24px) / 2); */
+  flex: 0 0 calc((100% - 24px) / 2);
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  padding-top: 14px;
+  padding-left: 14px;
+  padding-right: 14px;
+  padding-bottom: 24px;
+  background-color: var(--bg-secondary-color);
+}
+
 .image {
   border-radius: 16px;
 
@@ -58,6 +71,12 @@
   margin-bottom: 16px;
 }
 
+.favoritesCategoryList {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
 .category {
   font-family: var(--font-family);
   font-weight: 500;
@@ -99,11 +118,10 @@
 
 .btnWrapper {
   display: flex;
-gap: 10px;
-   
+  gap: 10px;
 }
 
-.btnLearnMore{
+.btnLearnMore {
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
@@ -120,7 +138,24 @@ gap: 10px;
   outline: none;
 }
 
-.btnIcon {
+.favoritesBtnLearnMore {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.03em;
+  color: var(--bg-secondary-color);
+  border-radius: 30px;
+  padding: 12px 79px;
+  width: 238px;
+  height: 48px;
+  background-color: var(--primary-color);
+  text-decoration: none;
+  white-space: nowrap;
+  outline: none;
+}
+
+.btnfavorites {
   border-radius: 30px;
   padding: 15px;
   width: 48px;
@@ -130,19 +165,22 @@ gap: 10px;
   cursor: pointer;
 }
 
-.btnIcon:hover {
+.btnfavorites:hover {
   background-color: #fbe7c1;
- 
 }
 
-.btnIcon:focus {
+.btnfavorites:focus {
   background-color: #fbe7c1;
-  
 }
 
-.heartIcon {
+.favoritesBtnLearnMore:hover,
+.favoritesBtnLearnMore:focus {
+  background-color: #fbe7c1;
+}
+
+.favoritesIcon {
   width: 18px;
-  height: 16px;
+  height: 18px;
   stroke: var(--primary-color);
   fill: none;
   stroke-width: 1.5px;

@@ -24,6 +24,8 @@
   color: var(--white-color);
 }
 
+
+
 .userIcon {
   width: 18px;
   height: 18px;
@@ -47,6 +49,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.userAvatar {
+  border-radius: 100px;
+padding: 10px;
+width: 110px;
+height: 110px;
 }
 
 .userImageIcon {
@@ -93,7 +102,7 @@ margin-bottom: 20px;
 .userInformationItem {
   border: 1px solid var(--primary-color);
 border-radius: 30px;
-padding: 16px 386px 16px 16px;
+padding: 16px 16px 16px 16px;
 width: 440px;
 height: 52px;
 font-family: var(--font-family);

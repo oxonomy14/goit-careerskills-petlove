@@ -3,10 +3,11 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 
+
 const modalRoot = document.body;
 
 const ModalNotice = ({
-  isOpen,
+ 
   onClose,
   notice,
   notices,
@@ -15,7 +16,7 @@ const ModalNotice = ({
   closeOnEsc = true,
 }) => {
   useEffect(() => {
-    if (!isOpen) return;
+    
 
     const handleEsc = e => {
       if (closeOnEsc && e.key === 'Escape') {
@@ -32,9 +33,9 @@ const ModalNotice = ({
       document.removeEventListener('keydown', handleEsc);
       document.body.style.overflow = '';
     };
-  }, [isOpen, onClose, closeOnEsc, notice]);
+  }, [onClose, closeOnEsc, notice]);
 
-  if (!isOpen || !notice) return null;
+
 
   const handleBackdropClick = e => {
     if (closeOnBackdrop && e.target === e.currentTarget) {

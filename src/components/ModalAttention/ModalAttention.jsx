@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const modalRoot = document.body;
 
 const ModalAttention = ({
-  isOpen,
+  
   onClose,
 
   showCloseBtn = true,
@@ -14,7 +14,7 @@ const ModalAttention = ({
   closeOnEsc = true,
 }) => {
   useEffect(() => {
-    if (!isOpen) return;
+    
 
     const handleEsc = e => {
       if (closeOnEsc && e.key === 'Escape') {
@@ -31,9 +31,9 @@ const ModalAttention = ({
       document.removeEventListener('keydown', handleEsc);
       document.body.style.overflow = '';
     };
-  }, [isOpen, onClose, closeOnEsc]);
+  }, [ onClose, closeOnEsc]);
 
-  if (!isOpen) return null;
+
 
   const handleBackdropClick = e => {
     if (closeOnBackdrop && e.target === e.currentTarget) {
@@ -41,11 +41,18 @@ const ModalAttention = ({
     }
   };
 
+ 
+
   return createPortal(
     <div className={css.backdrop} onClick={handleBackdropClick}>
       <div className={css.modal}>
         {showCloseBtn && (
-          <button className={css.closeBtn} onClick={onClose}>
+          <button className={css.closeBtn} 
+          onClick={onClose} 
+        
+  
+          
+          >
             <svg className={css.xIcon}>
               <use href={`/icons/sprite.svg?v=${Date.now()}#icon-x`} />
             </svg>

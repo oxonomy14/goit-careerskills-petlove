@@ -72,3 +72,15 @@ export const logoutUser = createAsyncThunk(
     }
   }
 );
+
+export const fetchUserFull = createAsyncThunk(
+  'auth/fetchUserFull',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('/users/current/full');
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

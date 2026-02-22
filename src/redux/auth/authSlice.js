@@ -1,5 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, refreshUser, login, logoutUser } from './AuthOperations';
+import {
+  register,
+  refreshUser,
+  login,
+  logoutUser,
+  fetchUserFull,
+} from './authOperations';
+import { addToFavorites, removeFromFavorites } 
+  from '../notices/noticesOperations';
 
 const initialState = {
   user: {
@@ -11,6 +19,9 @@ const initialState = {
   isLoading: false,
   error: null,
   isRefreshing: false,
+  favorites: [],
+  viewed: [],
+  pets: [],
 };
 
 const authSlice = createSlice({
@@ -26,10 +37,10 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
-    state.user = {
-    name: action.payload.name,
-    email: action.payload.email,
-  };
+        state.user = {
+          name: action.payload.name,
+          email: action.payload.email,
+        };
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
@@ -38,20 +49,23 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
 
-
       .addCase(refreshUser.pending, state => {
         state.isLoading = true;
+        state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload;
+        state.user.email = action.payload.email;
+        state.user.name = action.payload.name;
         state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, state => {
         state.isLoading = false;
         state.user = { email: null, name: null };
         state.token = null;
         state.isLoggedIn = false;
+        state.isRefreshing = false;
       })
       .addCase(login.pending, state => {
         state.isLoading = true;
@@ -59,10 +73,10 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
-      state.user = {
-    name: action.payload.name,
-    email: action.payload.email,
-  };
+        state.user = {
+          name: action.payload.name,
+          email: action.payload.email,
+        };
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
@@ -81,7 +95,29 @@ const authSlice = createSlice({
       })
       .addCase(logoutUser.rejected, state => {
         state.isLoading = false;
-      }),
+      })
+      .addCase(fetchUserFull.fulfilled, (state, action) => {
+        console.log('fetchUserFull fulfilled:', action.payload);
+
+     /*    state.user.email = action.payload.email;
+        state.user.name = action.payload.name; */
+        state.user = action.payload;
+
+      
+        state.favorites =
+  action.payload.noticesFavorites?.map(item => item._id) || [];
+        state.viewed = action.payload.noticesViewed || [];
+        state.pets = action.payload.pets || [];
+      })
+    .addCase(addToFavorites.fulfilled, (state, action) => {
+        console.log('ADD', action.payload);
+  state.favorites.push(action.meta.arg);
+})
+.addCase(removeFromFavorites.fulfilled, (state, action) => {
+  state.favorites = state.favorites.filter(
+    id => id !== action.meta.arg
+  );
+})
 });
 
 export const authReducer = authSlice.reducer;

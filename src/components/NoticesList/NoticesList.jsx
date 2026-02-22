@@ -1,8 +1,8 @@
 import css from './NoticesList.module.css';
 
 
-const NoticesList = ({children}) => {
-    return (<ul className={css.list}>{children}</ul>);
+const NoticesList = ({children, variant = 'default' }) => {
+    return (<ul className={variant === 'favorites' ? css.favoritesList : css.list}>{children}</ul>);
 };
 
 export default NoticesList;

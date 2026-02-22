@@ -1,9 +1,10 @@
 .userCard {
   border-radius: 60px;
   width: 520px;
-  height: 100%;
+  
   background-color: var(--white-color);
   padding: 40px;
+
 }
 
 .userBlockWrap {

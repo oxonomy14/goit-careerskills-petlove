@@ -1,5 +1,5 @@
 import css from "./NewsList.module.css";
-const NewsList = ({ children }) => {
+const NewsList = ({ children}) => {
   return <ul className={css.list}>{children}</ul>;
 };
 
