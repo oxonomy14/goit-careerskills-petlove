@@ -84,3 +84,17 @@ export const fetchUserFull = createAsyncThunk(
     }
   }
 );
+
+export const updateUser = createAsyncThunk(
+  'auth/updateUser',
+  async (data, thunkAPI) => {
+    try {
+      const response = await axios.patch('/users/current/edit', data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || 'Update failed'
+      );
+    }
+  }
+);

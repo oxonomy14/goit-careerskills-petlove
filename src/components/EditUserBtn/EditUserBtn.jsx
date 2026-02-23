@@ -5,12 +5,12 @@ import css from './EditUserBtn.module.css';
 
 
 
-const EditUserBtn = () => {
+const EditUserBtn = ({openModal}) => {
 
 
     return (
         <>
-        <button className={css.editUserBtn} onClick={()=>alert("Button does not work yet")}>
+        <button className={css.editUserBtn} onClick={openModal}>
               <svg className={css.editIcon}>
                       <use href={`/icons/sprite.svg?v=${Date.now()}#icon-edit`} />
                     </svg>

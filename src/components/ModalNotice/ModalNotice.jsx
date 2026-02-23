@@ -2,6 +2,12 @@ import css from './ModalNotice.module.css';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from '../../redux/notices/noticesOperations';
+import {selectFavoriteIds} from '../../redux/auth/authSelector';
 
 
 const modalRoot = document.body;
@@ -14,7 +20,26 @@ const ModalNotice = ({
   showCloseBtn = true,
   closeOnBackdrop = true,
   closeOnEsc = true,
+  
 }) => {
+ const dispatch = useDispatch();
+const favoriteIds = useSelector(selectFavoriteIds);
+
+const isFavorite = favoriteIds.includes(notice._id);
+
+
+
+  
+
+  const handleToggleFavorite = () => {
+    if (isFavorite) {
+      dispatch(removeFromFavorites(notice._id));
+    } else {
+      dispatch(addToFavorites(notice._id));
+    }
+  };
+
+
   useEffect(() => {
     
 
@@ -118,10 +143,10 @@ const ModalNotice = ({
           <p className={css.text}>{notice.comment}</p>
           <p className={css.price}>${notice.price}</p>
           <div className={css.btnWrapper}>
-            <button className={css.btnAdd} onClick={()=>{alert('This function is not yet implemented');}}>
+            <button className={css.btnAdd} onClick={handleToggleFavorite}>
               <span>Add to</span>
-                <svg className={css.heartIcon}>
-          <use href={`/icons/sprite.svg?v=${Date.now()}#icon-heart`} />
+                <svg className={css.favoritesIcon}>
+          <use href={`/icons/sprite.svg?v=${Date.now()}#${isFavorite ? 'icon-trash' : 'icon-heart'}`} />
 
         </svg>
             </button>

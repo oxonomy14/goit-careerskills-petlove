@@ -4,6 +4,7 @@ padding: 10px;
 width: 38px;
 height: 38px;
 background-color: var(--secondary-color);
+outline: none;
 }
 
 .editIcon {

@@ -14,9 +14,12 @@
 }
 
 .modal {
+   max-height: 90vh;
+  display: flex;
+  flex-direction: column;
   border-radius: 30px;
   width: 473px;
-  height: 510px;
+
   background: var(--bg-secondary-color);
 
   position: relative;
@@ -45,14 +48,13 @@
 
 .content {
   width: 100%;
-  position: absolute;
-  top: 40px;
-  padding-left: 71px;
-  padding-right: 72px;
+  padding: 60px 71px 40px 72px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  overflow-y: auto;
 }
 
 .imgWrapper {
@@ -210,7 +212,7 @@ letter-spacing: -0.03em;
   gap: 8px;
 }
 
-.btnAdd:hover {
+/* .btnAdd:hover {
   background-color: var(--secondary-color);
   color: var(--primary-color);
 }
@@ -218,9 +220,17 @@ letter-spacing: -0.03em;
 .btnAdd:focus {
   background-color: var(--secondary-color);
   color: var(--primary-color);
-}
+} */
 
 .heartIcon {
+    width: 18px;
+    height: 16px;
+    stroke-width: 1.50px;
+stroke: var(--bg-secondary-color);
+fill: none;
+}
+
+.favoritesIcon {
     width: 18px;
     height: 16px;
     stroke-width: 1.50px;
@@ -245,13 +255,13 @@ letter-spacing: -0.03em;
     text-align: center;
 }
 
-.btnContact:hover {
+ .btnContact:hover {
   background-color: #fbe7c1;
 }
 
 .btnContact:focus {
   background-color: #fbe7c1;
-}
+} 
 
 @keyframes fadeIn {
   from {

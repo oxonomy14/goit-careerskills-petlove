@@ -3,13 +3,25 @@ import { Link } from 'react-router-dom';
 import EditUserBtn from '../EditUserBtn/EditUserBtn';
 import {selectUser} from '../../redux/auth/authSelector';
 import { useSelector } from 'react-redux';
+import ModalEditUser from '../ModalEditUser/ModalEditUser';
+import { useState } from 'react';
 
 
 const UserBlock = () => {
 
+  const [isEditOpen, setIsEditOpen] = useState(false);
+
+  const openModal = () => {
+    setIsEditOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsEditOpen(false);
+  };    
+
 const user = useSelector(selectUser);
 
-console.log('user',user);
+
 
 
     return (
@@ -34,7 +46,7 @@ console.log('user',user);
         <Link className={css.uploadPhotoLink}>Upload photo</Link>
             </div>
             <div className={css.editUserBtnWrap}>
-                <EditUserBtn/>
+                <EditUserBtn openModal={openModal}/>
             </div>
 
         </div>
@@ -55,6 +67,9 @@ console.log('user',user);
             </ul>
 
         </div>
+          {isEditOpen && (
+        <ModalEditUser onClose={closeModal} />
+      )}
         </>
     );
 };
