@@ -159,7 +159,6 @@
 
 .btnfavorites {
   border-radius: 30px;
-  padding: 15px;
   width: 44px;
   height: 44px;
   background-color: var(--secondary-color);
@@ -187,5 +186,5 @@
   height: 18px;
   stroke: var(--primary-color);
   fill: none;
-  stroke-width: 1.5px;
+
 }

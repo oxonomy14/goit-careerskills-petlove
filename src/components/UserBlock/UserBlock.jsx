@@ -38,12 +38,12 @@ const user = useSelector(selectUser);
             <div className={css.userImageEmpty}>
             <div className={css.userImageWrap}>
 
-                {user.avatar ? (<img className={css.userAvatar} src={user.avatar} alt={user.name} />) :
+                {user.avatar ? (<img className={css.userImageAvatar} src={user.avatar} alt={user.name} />) :
          (<svg className={css.userImageIcon}>
           <use href={`/icons/sprite.svg?v=${Date.now()}#icon-user`} />
         </svg>)}
         </div>
-        <Link className={css.uploadPhotoLink}>Upload photo</Link>
+        <Link className={css.uploadPhotoLink} onClick={openModal}>Upload photo</Link>
             </div>
             <div className={css.editUserBtnWrap}>
                 <EditUserBtn openModal={openModal}/>

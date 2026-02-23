@@ -41,7 +41,7 @@
 
 .userImageWrap {
   border-radius: 100px;
-  padding: 10px;
+  
   width: 110px;
   height: 110px;
   background-color: var(--secondary-color);
@@ -51,9 +51,9 @@
   justify-content: center;
 }
 
-.userAvatar {
+.userImageAvatar {
   border-radius: 100px;
-padding: 10px;
+
 width: 110px;
 height: 110px;
 }

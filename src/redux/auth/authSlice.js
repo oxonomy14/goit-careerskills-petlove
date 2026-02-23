@@ -116,8 +116,16 @@ const authSlice = createSlice({
       .addCase(removeFromFavorites.fulfilled, (state, action) => {
         state.favorites = state.favorites.filter(id => id !== action.meta.arg);
       })
+      .addCase(updateUser.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.user = action.payload;
+      })
+       .addCase(updateUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       }),
 });
 

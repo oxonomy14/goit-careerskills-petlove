@@ -1,9 +1,9 @@
 import css from './UserNav.module.css';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../../redux/auth/AuthSelector';
+import { selectUser } from '../../redux/auth/authSelector';
 import { useDispatch } from 'react-redux';
-import { logoutUser } from '../../redux/auth/AuthOperations';
+import { logoutUser } from '../../redux/auth/authOperations';
 
 const UserNav = () => {
   const location = useLocation();
@@ -24,13 +24,14 @@ const handleLogout = () => {
           Log out
         </button>
         <div className={css.user}>
-        <svg
+  {user.avatar ? (<img className={css.userImageAvatar} src={user.avatar} alt={user.name} />) : 
+        (<svg
           width={24}
           height={24}
-          className={css.logoIcon}
+          className={css.userIcon}
         >
           <use href={`/icons/sprite.svg?v=${Date.now()}#icon-user`}></use>
-        </svg>
+        </svg>)}
         </div>
        <Link className={isHomePage ? css.userNameHome : css.userName} to="/profile">{user.name || 'User'}</Link>
       </div>

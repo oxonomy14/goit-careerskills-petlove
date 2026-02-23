@@ -1,7 +1,7 @@
 import css from './ModalEditUser.module.css';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import {selectUser} from '../../redux/auth/authSelector';
+import {selectUser, selectIsLoading} from '../../redux/auth/authSelector';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -46,6 +46,7 @@ const ModalEditUser = ({
   };
 
   const user = useSelector(selectUser);
+  const isLoading = useSelector(selectIsLoading);
 
     const {
     register,
@@ -86,7 +87,7 @@ const ModalEditUser = ({
      <div className={css.userImageEmpty}>
             <div className={css.userImageWrap}>
 
-                {user.avatar ? (<img className={css.userAvatar} src={user.avatar} alt={user.name} />) :
+                {user.avatar ? (<img className={css.userImageAvatar} src={user.avatar} alt={user.name} />) :
          (<svg className={css.userImageIcon}>
           <use href={`/icons/sprite.svg?v=${Date.now()}#icon-user`} />
         </svg>)}
@@ -94,33 +95,45 @@ const ModalEditUser = ({
       
             </div>
   <form onSubmit={handleSubmit(onSubmit)}>
-
-        <input
+<div className={css.urlAvatarWraper}>
+    <div>        <input
           {...register('avatar')}
           placeholder="Avatar URL"
+          className={css.editUserInputUrl}
         />
-        {errors.avatar && <p className={css.error}>{errors.avatar.message}</p>}
+        {errors.avatar && <p className={css.error}>{errors.avatar.message}</p>}</div>
+        <div className={css.uploadFileWraper}>
+            <p>Upload  photo</p>
+ <svg className={css.uploadIcon}>
+              <use href={`/icons/sprite.svg?v=${Date.now()}#icon-upload-cloud`} />
+            </svg>
+        </div>
+</div>
+
 
         <input
           {...register('name')}
           placeholder="Name"
+          className={css.editUserInput}
         />
         {errors.name && <p className={css.error}>{errors.name.message}</p>}
 
         <input
           {...register('email')}
           placeholder="Email"
+          className={css.editUserInput}
         />
         {errors.email && <p className={css.error}>{errors.email.message}</p>}
 
         <input
           {...register('phone')}
           placeholder="+380XXXXXXXXX"
+          className={css.editUserInput}
         />
         {errors.phone && <p className={css.error}>{errors.phone.message}</p>}
 
-        <button type="submit" disabled={isSubmitting}>
-          Save
+        <button type="submit" disabled={isSubmitting} className={css.editUserBtn}>
+         {isLoading ? (<span>...</span>) : ("Save")} 
         </button>
 
       </form>
