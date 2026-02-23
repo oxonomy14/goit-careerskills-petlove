@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from './redux/auth/authOperations';
 
@@ -17,7 +18,8 @@ import Viewed from './components/Viewed/Viewed';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import NoticeModalManager from './components/NoticeModalManager/NoticeModalManager';
 import { selectToken, selectIsRefreshing } from './redux/auth/authSelector.js';
-import { fetchUserFull } from './redux/auth/authOperations';
+import { fetchUserFull,logoutUser } from './redux/auth/authOperations';
+import ModalApproveAction from './components/ModalApproveAction/ModalApproveAction.jsx'
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
@@ -39,6 +41,8 @@ function App() {
   const token = useSelector(selectToken);
   const isRefreshing = useSelector(selectIsRefreshing);
 
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+
 useEffect(() => {
   if (!token) return;
 
@@ -58,6 +62,16 @@ useEffect(() => {
     return <Loader />;
   }
 
+
+
+const openLogoutModal = () => setIsLogoutModalOpen(true);
+const closeLogoutModal = () => setIsLogoutModalOpen(false);
+
+const handleLogout = () => {
+  dispatch(logoutUser());
+  closeLogoutModal();
+};
+
   return (
     <>
       <Suspense fallback={<Loader />}>
@@ -65,7 +79,7 @@ useEffect(() => {
           <Route element={<HomeLayout />}>
             <Route path="/" element={<HomePage />} />
           </Route>
-          <Route element={<DefaultLayout />}>
+          <Route element={<DefaultLayout onLogoutClick={openLogoutModal}/>}>
             <Route path="/friends" element={<OurFriendsPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/notices" element={<NoticesPage />} />
@@ -75,7 +89,7 @@ useEffect(() => {
               path="/profile"
               element={
                 <PrivateRoute>
-                  <ProfilePage />
+                  <ProfilePage onLogoutClick={openLogoutModal}/>
                 </PrivateRoute>
               }
             >
@@ -89,6 +103,11 @@ useEffect(() => {
         </Routes>
       </Suspense>
  <NoticeModalManager />
+ <ModalApproveAction
+  isOpen={isLogoutModalOpen}
+  onConfirm={handleLogout}
+  onClose={closeLogoutModal}
+/>
       {progress < 100 && (
         <HeroMain>
           {showLogo ? <LogoMain /> : <LoaderMain percent={progress} />}

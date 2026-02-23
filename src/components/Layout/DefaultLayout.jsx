@@ -4,7 +4,7 @@ import DefaultHeader from '../Header/DefaultHeader';
 import DefaultContainer from "../Container/DefaultContainer";
 //import Loader from '../Loader/Loader';
 import { useMediaQuery } from 'react-responsive';
-import {selectIsLoggedIn} from '../../redux/auth/AuthSelector';
+import {selectIsLoggedIn} from '../../redux/auth/authSelector';
 import { useSelector } from 'react-redux';
 
 

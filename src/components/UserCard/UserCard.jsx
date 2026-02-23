@@ -3,7 +3,7 @@ import UserBlock from '../UserBlock/UserBlock';
 import PetsBlock from '../PetsBlock/PetsBlock';
 import LogOutBtn from '../LogOutBtn/LogOutBtn';
 
-const UserCard = () => {
+const UserCard = ({onLogoutClick}) => {
     return (
         
         <>
@@ -12,7 +12,7 @@ const UserCard = () => {
         <UserBlock/>
         </div>
         <div className={css.petBlockWrap}><PetsBlock/></div>
-        <div className={css.userCardBottom}><LogOutBtn/></div>
+        <div className={css.userCardBottom}><LogOutBtn onLogoutClick={onLogoutClick}/></div>
         </div>
         </>
     );

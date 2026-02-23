@@ -1,18 +1,13 @@
 import css from './LogOutBtn.module.css';
-import { useDispatch } from 'react-redux';
-import { logoutUser } from '../../redux/auth/AuthOperations';
 
 
-const LogOutBtn = () => {
 
-    const dispatch = useDispatch();
+const LogOutBtn = ({onLogoutClick}) => {
 
-    const handleLogout = () => {
-  dispatch(logoutUser());
-};
+
 
     return (<>
-        <button className={css.logOutBtn} onClick={handleLogout}>Log out</button>
+        <button className={css.logOutBtn} onClick={onLogoutClick}>Log out</button>
     </>);
 };
 

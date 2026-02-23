@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/authSelector';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../redux/auth/authOperations';
+import {LogOutBtn} from '../LogOutBtn/LogOutBtn';
 
 const UserNav = () => {
   const location = useLocation();
