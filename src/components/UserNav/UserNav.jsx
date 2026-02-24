@@ -2,28 +2,21 @@ import css from './UserNav.module.css';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/authSelector';
-import { useDispatch } from 'react-redux';
-import { logoutUser } from '../../redux/auth/authOperations';
-import {LogOutBtn} from '../LogOutBtn/LogOutBtn';
+import LogOutBtn from '../LogOutBtn/LogOutBtn';
 
-const UserNav = () => {
+const UserNav = ({onLogoutClick}) => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
 const user = useSelector(selectUser);
 
-const dispatch = useDispatch();
 
-const handleLogout = () => {
-  dispatch(logoutUser());
-};
 
   return (
     <>
       <div className={css.userNavItem}>
-        <button className={isHomePage ? css.logOutBtnHome : css.logOutBtn}  onClick={handleLogout}>
-          Log out
-        </button>
+   
+        <LogOutBtn onLogoutClick={onLogoutClick} variant = 'userNav'/>
         <div className={css.user}>
   {user.avatar ? (<img className={css.userImageAvatar} src={user.avatar} alt={user.name} />) : 
         (<svg

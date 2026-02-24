@@ -1,13 +1,17 @@
 import css from './LogOutBtn.module.css';
+import { useLocation } from 'react-router-dom';
 
 
+const LogOutBtn = ({onLogoutClick, variant = 'default'}) => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
-const LogOutBtn = ({onLogoutClick}) => {
-
-
+  const isUserNav = variant === 'userNav';
 
     return (<>
-        <button className={css.logOutBtn} onClick={onLogoutClick}>Log out</button>
+    {isHomePage ?  (<button className={ css.logOutBtnHome}>Log out</button>) : 
+       ( <button className={isUserNav ? css.logOutBtnUserNav : css.logOutBtn} onClick={onLogoutClick}>Log out</button>)
+    }
     </>);
 };
 

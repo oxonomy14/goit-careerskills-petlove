@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 
 
 
-const DefaultLayout = () => {
+const DefaultLayout = ({onLogoutClick}) => {
 //const loading = false;
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const location = useLocation();
@@ -32,6 +32,7 @@ const DefaultLayout = () => {
       <header>
         <DefaultHeader
             isLoggedIn={isLoggedIn}
+            onLogoutClick={onLogoutClick}
         />
       </header>
 

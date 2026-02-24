@@ -5,7 +5,7 @@ import Nav from "../Nav/Nav";
 import UserNav from "../UserNav/UserNav";
 import css from "./DefaultHeader.module.css";
 
-const Header =({isLoggedIn})=> {
+const Header =({isLoggedIn, onLogoutClick})=> {
     
 return (
 <>
@@ -13,7 +13,7 @@ return (
     <div className={css.header}>
 <Logo/>
 <Nav/>
-{isLoggedIn ? <UserNav/> : <AuthNav/>}
+{isLoggedIn ? <UserNav onLogoutClick={onLogoutClick}/> : <AuthNav/>}
 </div>
 
 </>)
