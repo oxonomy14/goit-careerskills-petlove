@@ -29,10 +29,12 @@ const RegistrationPage = lazy(
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage/ProfilePage'));
+
 const OurFriendsPage = lazy(
   () => import('./pages/OurFriendsPage/OurFriendsPage'),
 );
 const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
+const AddPetPage = lazy(()=> import('./pages/AddPetPage/AddPetPage'));
 
 function App() {
   const { progress, showLogo } = useFakeLoader();
@@ -90,6 +92,7 @@ const handleLogout = () => {
               element={
                 <PrivateRoute>
                   <ProfilePage onLogoutClick={openLogoutModal}/>
+                  <AddPetPage/>
                 </PrivateRoute>
               }
             >
@@ -97,6 +100,15 @@ const handleLogout = () => {
               <Route path="favorites" element={<Favorites />} />
               <Route path="viewed" element={<Viewed />} />
             </Route>
+             <Route
+              path="/add-pet"
+              element={
+                <PrivateRoute>
+             
+                  <AddPetPage/>
+                </PrivateRoute>
+              }
+            />
 
             <Route path="*" element={<NotFound />} />
           </Route>

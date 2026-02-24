@@ -1,0 +1,8 @@
+.sectionAddPetPage {
+    padding: 32px;
+}
+
+.AddPetPageWrapper {
+    display: flex;
+    gap:32px;
+}

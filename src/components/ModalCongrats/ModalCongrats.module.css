@@ -1,0 +1,116 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+
+  animation: fadeIn 200ms ease forwards;
+}
+
+.modal {
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  width: 480px;
+
+  background: var(--bg-secondary-color);
+
+  position: relative;
+
+  overflow: visible;
+
+  animation: scaleIn 200ms ease forwards;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 26px;
+  right: 26px;
+
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 22px;
+}
+
+.xIcon {
+  stroke: var(--text-strong);
+  width: 12px;
+  height: 12px;
+}
+
+.content {
+  width: 100%;
+  padding: 80px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  overflow-y: auto;
+
+
+}
+
+.imageIconWrap {
+  border-radius: 100%;
+  background-color: var(--secondary-color);
+  margin-bottom: 20px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageIcon {
+  width: 44px;
+  height: 44px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 117%;
+  letter-spacing: -0.03em;
+  color: var(--text-strong);
+  margin-bottom: 28px;
+}
+
+.btnWrap {
+    display: flex;
+    gap: 8px;
+}
+
+.yesBtn {
+    border-radius: 30px;
+padding: 14px 57px;
+width: 140px;
+height: 48px;
+background-color: var(--primary-color);
+font-family: var(--font-family);
+font-weight: 700;
+font-size: 16px;
+line-height: 125%;
+letter-spacing: -0.03em;
+color: var(--white-color);
+cursor: pointer;
+outline: none;
+}
+
+.cancelBtn {
+    border-radius: 30px;
+padding: 14px 44px;
+width: 140px;
+height: 48px;
+background: rgba(38, 38, 38, 0.05);
+cursor: pointer;
+outline: none;
+}

@@ -6,7 +6,7 @@ const PetBlock = ({ petImage, petAvatar, petName, petBirthdayDate, petAbout }) =
       <div className={css.petImage}>
         <img src={petImage} alt="pet image" />
       </div>
-      <div className={css.petInfo}>
+      {petAvatar && petName && petBirthdayDate && petAbout &&  (<div className={css.petInfo}>
         <div className={css.avatar}>
           <img src={petAvatar} alt="pet avatar" />
         </div>
@@ -19,7 +19,7 @@ const PetBlock = ({ petImage, petAvatar, petName, petBirthdayDate, petAbout }) =
           </div>
           <p className={css.petAbout}>{petAbout}</p>
         </div>
-      </div>
+      </div>)}
     </div>
   );
 };
