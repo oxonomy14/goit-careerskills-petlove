@@ -103,11 +103,11 @@ const authSlice = createSlice({
       .addCase(fetchUserFull.fulfilled, (state, action) => {
         console.log('fetchUserFull fulfilled:', action.payload);
 
-       /*  state.user = action.payload; */
-       state.user = {
+        state.user = action.payload; 
+/*        state.user = {
   name: action.payload.name,
   email: action.payload.email,
-};
+}; */
 
         state.favorites =
           action.payload.noticesFavorites?.map(item => item._id) || [];
