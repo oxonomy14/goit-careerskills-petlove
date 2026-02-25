@@ -1,0 +1,74 @@
+.petItemWrapper {
+    border: 1px solid rgba(38, 38, 38, 0.1);
+border-radius: 20px;
+width: 440px;
+height: 130px;
+padding: 20px;
+display: flex;
+justify-content: space-between;
+}
+
+.petImage{
+border-radius: 100px;
+padding: 10px;
+width: 90px;
+height: 90px;
+object-fit: cover;
+}
+
+.petDetails {
+    display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.title {
+
+font-weight: 700;
+font-size: 14px;
+line-height: 129%;
+color: var(--text-strong);
+margin-bottom: 12px;
+}
+
+.petInfoList {
+    display: flex;
+    gap: 30px;
+}
+
+.petInfoItem {}
+
+.petInfoItemTitle {
+
+font-weight: 500;
+font-size: 10px;
+line-height: 140%;
+letter-spacing: -0.02em;
+color: rgba(38, 38, 38, 0.5);
+margin-bottom: 4px;
+}
+
+.petInfoItemDesc {
+
+font-weight: 500;
+font-size: 12px;
+line-height: 117%;
+letter-spacing: -0.02em;
+color: var(--text-strong);
+}
+
+.btnTrash {
+border-radius: 30px;
+padding: 10px;
+width: 38px;
+height: 38px;
+background-color: var( --secondary-color);
+outline: none;
+}
+
+.trashIcon {
+    width: 18px;
+    height: 18px;
+stroke: var(--primary-color);
+fill: none;
+}

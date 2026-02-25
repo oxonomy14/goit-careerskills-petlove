@@ -1,6 +1,7 @@
 import css from './ModalCongrats.module.css';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -60,11 +61,12 @@ isOpen,
             <div className={css.imageIconWrap}>
                 <img src="img/leaving.png" alt="avatar" className={css.imageIcon}/>
             </div>
-<h2 className={css.title}>Already leaving?</h2>
-<div className={css.btnWrap}>
-    <button className={css.yesBtn} >Yes</button>
-    <button className={css.cancelBtn} >Cancel</button>
-</div>
+<h2 className={css.title}>Congrats</h2>
+<p className={css.text}>The first fluff in the favorites! May your friendship be the happiest and filled with fun.</p>
+
+    <Link to="/profile" className={css.ModalCongratsBtn} >Go to profile</Link>
+  
+
 
 
 

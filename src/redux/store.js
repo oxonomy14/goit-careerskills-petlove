@@ -8,6 +8,7 @@ import { noticesReducer } from './notices/noticesSlice';
 import { modalReducer } from './modal/modalSlice';
 
 
+
 import {
   persistStore,
   persistReducer,
@@ -55,6 +56,8 @@ const persistConfigNews = {
 
 
 
+
+
 export const store = configureStore({
  // reducer: (state = {}) => state, // тимчасовий ред’юсер
  reducer: {
@@ -64,6 +67,7 @@ export const store = configureStore({
     friendsList: persistReducer(persistConfigFriends, friendsReducer),
     noticesList: persistReducer(persistConfigNotices, noticesReducer),
      modal: modalReducer, 
+
  },
  middleware: getDefaultMiddleware =>
    getDefaultMiddleware({

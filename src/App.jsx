@@ -92,7 +92,7 @@ const handleLogout = () => {
               element={
                 <PrivateRoute>
                   <ProfilePage onLogoutClick={openLogoutModal}/>
-                  <AddPetPage/>
+                 
                 </PrivateRoute>
               }
             >

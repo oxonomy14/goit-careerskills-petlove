@@ -98,3 +98,36 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+
+// Додати тварину
+export const addPet = createAsyncThunk(
+  'auth/addPet',
+  async (petData, thunkAPI) => {
+    try {
+      const { data } = await axios.post(
+        'users/current/pets/add',
+        petData
+      );
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || error.message
+      );
+    }
+  }
+);
+
+// Видалити тварину
+export const removePet = createAsyncThunk(
+  'auth/removePet',
+  async (id, thunkAPI) => {
+    try {
+      await axios.delete(`users/current/pets/remove/${id}`);
+      return id;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || error.message
+      );
+    }
+  }
+);
