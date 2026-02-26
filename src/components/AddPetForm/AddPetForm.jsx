@@ -8,6 +8,9 @@ import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import { Controller } from 'react-hook-form';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { forwardRef } from "react";
 
 const AddPetForm = ({ onSuccess }) => {
   const dispatch = useDispatch();
@@ -15,7 +18,7 @@ const AddPetForm = ({ onSuccess }) => {
   const {
     register,
     handleSubmit,
-     control,  
+    control,
     formState: { errors, isSubmitting },
     reset,
   } = useForm({
@@ -30,23 +33,39 @@ const AddPetForm = ({ onSuccess }) => {
     },
   });
 
-  const speciesOptions = [
-  { value: 'dog', label: 'Dog' },
-  { value: 'cat', label: 'Cat' },
-  { value: 'monkey', label: 'Monkey' },
-  { value: 'bird', label: 'Bird' },
-  { value: 'snake', label: 'Snake' },
-  { value: 'turtle', label: 'Turtle' },
-  { value: 'lizard', label: 'Lizard' },
-  { value: 'frog', label: 'Frog' },
-  { value: 'fish', label: 'Fish' },
-  { value: 'ants', label: 'Ants' },
-  { value: 'bees', label: 'Bees' },
-  { value: 'butterfly', label: 'Butterfly' },
-  { value: 'spider', label: 'Spider' },
-  { value: 'scorpion', label: 'Scorpion' },
-];
+  const CustomDateInput = forwardRef(({ value, onClick, placeholder }, ref) => {
+  return (
+    <div className={css.dateWrapper} onClick={onClick}>
+      <input
+        ref={ref}
+        value={value || ""}
+        placeholder={placeholder}
+        readOnly
+        className={css.inputBirthday}
+      />
+      <svg className={css.calendarIcon}>
+        <use href={`/icons/sprite.svg#icon-calendar`} />
+      </svg>
+    </div>
+  );
+});
 
+  const speciesOptions = [
+    { value: 'dog', label: 'Dog' },
+    { value: 'cat', label: 'Cat' },
+    { value: 'monkey', label: 'Monkey' },
+    { value: 'bird', label: 'Bird' },
+    { value: 'snake', label: 'Snake' },
+    { value: 'turtle', label: 'Turtle' },
+    { value: 'lizard', label: 'Lizard' },
+    { value: 'frog', label: 'Frog' },
+    { value: 'fish', label: 'Fish' },
+    { value: 'ants', label: 'Ants' },
+    { value: 'bees', label: 'Bees' },
+    { value: 'butterfly', label: 'Butterfly' },
+    { value: 'spider', label: 'Spider' },
+    { value: 'scorpion', label: 'Scorpion' },
+  ];
 
   const onSubmit = async values => {
     try {
@@ -114,34 +133,35 @@ const AddPetForm = ({ onSuccess }) => {
           {errors.sex && <p className={css.error}>{errors.sex.message}</p>}
         </div>
 
-          <div className={css.petImageEmpty}>
-                    <div className={css.petImageWrap}>
-        
-                      
-                 <svg className={css.footImageIcon}>
-                  <use href={`/icons/sprite.svg?v=${Date.now()}#icon-foot`} />
-                </svg>
-                </div>
-              
-                    </div>
-
-
-<div className={css.urlphotoPetWraper}>
-    <div>        <input
-          {...register('imgURL')}
-          placeholder="Enter photo URL"
-          className={css.photoPetInputUrl}
-        />
-        {errors.imgURL && <p className={css.error}>{errors.imgURL.message}</p>}</div>
-        <div className={css.uploadFileWraper}>
-            <p>Upload  photo</p>
- <svg className={css.uploadIcon}>
-              <use href={`/icons/sprite.svg?v=${Date.now()}#icon-upload-cloud`} />
+        <div className={css.petImageEmpty}>
+          <div className={css.petImageWrap}>
+            <svg className={css.footImageIcon}>
+              <use href={`/icons/sprite.svg?v=${Date.now()}#icon-foot`} />
             </svg>
+          </div>
         </div>
-</div>
 
-
+        <div className={css.urlphotoPetWraper}>
+          <div>
+            {' '}
+            <input
+              {...register('imgURL')}
+              placeholder="Enter photo URL"
+              className={css.photoPetInputUrl}
+            />
+            {errors.imgURL && (
+              <p className={css.error}>{errors.imgURL.message}</p>
+            )}
+          </div>
+          <div className={css.uploadFileWraper}>
+            <p>Upload photo</p>
+            <svg className={css.uploadIcon}>
+              <use
+                href={`/icons/sprite.svg?v=${Date.now()}#icon-upload-cloud`}
+              />
+            </svg>
+          </div>
+        </div>
 
         {/* Title */}
         <input
@@ -159,103 +179,128 @@ const AddPetForm = ({ onSuccess }) => {
         />
         {errors.name && <p className={css.error}>{errors.name.message}</p>}
 
-<div className={css.inputBirthdaySpecies}>
-        {/* Birthday */}
-        <input
-          type="date"
-          {...register('birthday')}
-          className={css.inputBirthday}
-        />
-        {errors.birthday && (
-          <p className={css.error}>{errors.birthday.message}</p>
-        )}
-
- {/* Species */}
-    {/*   <select
-  {...register('species')}
-  className={css.selectSpecies}
->
-  <option value="">Type of pet</option>
-
-  <option value="dog">Dog</option>
-  <option value="cat">Cat</option>
-  <option value="monkey">Monkey</option>
-  <option value="bird">Bird</option>
-  <option value="snake">Snake</option>
-  <option value="turtle">Turtle</option>
-  <option value="lizard">Lizard</option>
-  <option value="frog">Frog</option>
-  <option value="fish">Fish</option>
-  <option value="ants">Ants</option>
-  <option value="bees">Bees</option>
-  <option value="butterfly">Butterfly</option>
-  <option value="spider">Spider</option>
-  <option value="scorpion">Scorpion</option>
-</select>
-
-{errors.species && (
-  <p className={css.error}>{errors.species.message}</p>
-)} */}
-
-<Controller
-  name="species"
+        <div className={css.inputBirthdaySpecies}>
+            
+          {/* Birthday */}
+        {/*   <input
+            type="date"
+            {...register('birthday')}
+            className={css.inputBirthday}
+          /> */}
+    <Controller
+  name="birthday"
   control={control}
   render={({ field }) => (
-    <Select
-      {...field}
-      options={speciesOptions}
-      placeholder="Select species"
-      onChange={option => field.onChange(option.value)}
-      value={speciesOptions.find(
-        option => option.value === field.value
-      )}
-       styles={{
-    control: (base, state) => ({
-      ...base,
-      borderRadius: '12px',
-      borderColor: state.isFocused ? '#f59256' : '#ccc',
-      boxShadow: 'none',
-      padding: '4px',
-      '&:hover': {
-        borderColor: '#f59256',
-      },
-    }),
-    menu: base => ({
-      ...base,
-      borderRadius: '12px',
-      overflow: 'hidden',
-    }),
-    option: (base, state) => ({
-      ...base,
-      backgroundColor: state.isSelected
-        ? '#f59256'
-        : state.isFocused
-        ? '#fff4ec'
-        : 'white',
-      color: state.isSelected ? 'white' : '#111',
-      cursor: 'pointer',
-    }),
-  }}
+    <DatePicker
+      selected={field.value}
+      onChange={(date) => field.onChange(date)}
+      dateFormat="dd.MM.yyyy"
+      placeholderText="00.00.0000"
+      customInput={<CustomDateInput />}
     />
   )}
 />
+          {errors.birthday && (
+            <p className={css.error}>{errors.birthday.message}</p>
+          )}
 
-{errors.species && (
-  <p className={css.error}>{errors.species.message}</p>
-)}
-</div>
+          <Controller
+            name="species"
+            control={control}
+            render={({ field }) => (
+              <Select
+                className={css.select}
+                 components={{ IndicatorSeparator: () => null }}
+                {...field}
+                options={speciesOptions}
+                placeholder="Select species"
+                onChange={option => field.onChange(option.value)}
+                value={speciesOptions.find(
+                  option => option.value === field.value,
+                )}
+                styles={{
+                  control: (base, state) => ({
+                    ...base,
+                    borderRadius: '30px',
+                    borderColor: state.isFocused
+                      ? 'var(--primary-color)'
+                      : 'rgba(38, 38, 38, 0.15)',
+                         
+                    boxShadow: 'transparent',
+                    padding: '0 16px',
+                    '&:hover': {
+                      borderColor: 'transparent',
+                    },
+                  }),
+                  valueContainer: base => ({
+                    ...base,
+                    padding: '0', // прибираємо внутрішній паддінг
+                     height: '52px',
+                  }),
+                  indicatorsContainer: base => ({
+                    ...base,
+                    height: '52px',
+                    
+                  }),
 
+                  input: base => ({
+                    ...base,
+                    margin: '0',
+                    padding: '0',
+                  }),
 
-       
+                  singleValue: base => ({
+                    ...base,
+                    color: 'rgba(38, 38, 38, 0.6)', // колір вибраного тексту
+                    fontSize: '16px',
+                    margin: '0',
+                  }),
 
+                  placeholder: base => ({
+                    ...base,
+                    color: 'rgba(38, 38, 38, 0.6)', // колір плейсхолдера
+                     fontSize: '16px',
+                         margin: '0',
+                  }),
+                  menu: base => ({
+                    ...base,
+                    borderRadius: '12px',
+                    overflow: 'hidden',
+                  }),
+                  option: (base, state) => ({
+                    ...base,
 
+                    backgroundColor: state.isSelected
+                      ? 'var(--primary-color)'
+                      : state.isFocused
+                        ? 'var(--primary-color)'
+                        : 'transparent',
+                    color: state.isSelected
+                      ? 'rgba(38, 38, 38, 0.6)'
+                      : 'rgba(38, 38, 38, 0.6)',
+                    cursor: 'pointer',
+                  }),
+                }}
+              />
+            )}
+          />
 
-       
+          {errors.species && (
+            <p className={css.error}>{errors.species.message}</p>
+          )}
+        </div>
+
         <div className={css.btnWrapper}>
-        <Link to="/profile" className={css.cancelBtn}>Back</Link>
-        <button type="submit" disabled={isSubmitting} className={css.submitBtn}>
-          Submit
-        </button>
+          <Link to="/profile" className={css.cancelBtn}>
+            Back
+          </Link>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={css.submitBtn}
+          >
+            Submit
+          </button>
         </div>
       </form>
     </div>

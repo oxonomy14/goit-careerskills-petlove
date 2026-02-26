@@ -246,6 +246,30 @@ letter-spacing: -0.03em;
 color: rgba(38, 38, 38, 0.5);
 }
 
+
+
+.inputBirthday:focus {
+  outline: none;
+  border-color: rgba(38, 38, 38, 0.3);
+}
+
+.dateWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.calendarIcon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  width: 20px;
+  height: 20px;
+  stroke: var(--text-strong);
+  fill: none;
+}
+
 .selectSpecies {
 border: 1px solid rgba(38, 38, 38, 0.15);
 border-radius: 30px;
@@ -260,6 +284,11 @@ font-size: 16px;
 line-height: 125%;
 letter-spacing: -0.03em;
 color: rgba(38, 38, 38, 0.5);
+}
+
+.select {
+    width: 210px;
+height: 52px;
 }
 
 .btnWrapper {
