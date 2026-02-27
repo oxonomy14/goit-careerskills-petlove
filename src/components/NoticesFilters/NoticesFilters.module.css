@@ -18,3 +18,9 @@
   height: 48px;
   position: relative;
 }
+
+
+.categoryFieldWrapper {
+    width: 200px;
+  height: 48px;
+}

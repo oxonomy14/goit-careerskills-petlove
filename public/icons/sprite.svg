@@ -72,5 +72,11 @@
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.88" d="M10.667 2.667v5.333"></path>
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.88" d="M4 13.333h24"></path>
 </symbol>
+<symbol id="icon-selectDown" viewBox="0 0 50 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="9.1429" d="M4.571 4.571l20.571 20.571 20.571-20.571"></path>
+</symbol>
+<symbol id="icon-selectUp" viewBox="0 0 50 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="9.1429" d="M4.571 25.143l20.571-20.571 20.571 20.571"></path>
+</symbol>
   </defs>
 </svg>

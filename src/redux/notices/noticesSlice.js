@@ -1,17 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchNotices} from './noticesOperations';
-
+import { fetchNotices } from './noticesOperations';
+import { fetchCategories } from './noticesOperations';
 
 const initialState = {
   page: 1,
   items: [],
-
-     
+  categories: [],
   totalPages: 0,
 
-  isLoading: false,
+  isNoticesLoading: false,
+  isCategoriesLoading: false,
   error: null,
   currentKeyword: '',
+  selectedCategory: '',
 };
 
 const noticesSlice = createSlice({
@@ -25,33 +26,44 @@ const noticesSlice = createSlice({
       state.currentKeyword = action.payload;
       state.page = 1;
     },
+    setCategory(state, action) {
+      state.selectedCategory = action.payload;
+      state.page = 1;
+    },
   },
 
   extraReducers: builder =>
     builder
       .addCase(fetchNotices.pending, state => {
-        state.isLoading = true;
+        state.isNoticesLoading = true;
         state.error = null;
       })
 
       .addCase(fetchNotices.fulfilled, (state, { payload }) => {
-        //console.log(payload.results);
-        state.items = payload.results;     
+        state.items = payload.results;
         state.totalPages = payload.totalPages;
-        state.page = payload.page;
-        state.currentKeyword = payload.keyword;
 
-        state.isLoading = false;
+        state.isNoticesLoading = false;
       })
 
       .addCase(fetchNotices.rejected, (state, action) => {
-        state.isLoading = false;
+        state.isNoticesLoading = false;
         state.error = action.payload;
       })
- 
-      
 
+      .addCase(fetchCategories.pending, state => {
+        state.iisCategoriesLoading = true;
+      })
+      .addCase(fetchCategories.fulfilled, (state, action) => {
+        state.isCategoriesLoading = false;
+        state.categories = action.payload;
+      })
+      .addCase(fetchCategories.rejected, (state, action) => {
+        state.isCategoriesLoading = false;
+        state.error = action.payload;
+      }),
 });
 
+export const { setCategory } = noticesSlice.actions;
 export const { setPage, setKeyword } = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;

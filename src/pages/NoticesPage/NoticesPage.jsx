@@ -18,6 +18,7 @@ import {
   selectTotalPages,
   selectPage,
   selectKeyword,
+  selectSelectedCategory,
 } from '../../redux/notices/noticesSelectors';
 
 import { setPage, setKeyword } from '../../redux/notices/noticesSlice';
@@ -30,10 +31,11 @@ const NoticesPage = () => {
   const page = useSelector(selectPage);
   const keyword = useSelector(selectKeyword);
   const totalPages = useSelector(selectTotalPages);
+  const selectedCategory = useSelector(selectSelectedCategory)
 
   useEffect(() => {
-    dispatch(fetchNotices({ page, keyword }));
-  }, [dispatch, page, keyword]);
+    dispatch(fetchNotices());
+  }, [dispatch, page, keyword, selectedCategory]);
 
   useEffect(() => {
     console.log('notices', notices);

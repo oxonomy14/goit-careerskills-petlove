@@ -1,0 +1,78 @@
+.wrapper {
+  position: relative;
+  width: 200px;
+}
+
+.control {
+  height: 48px;
+  padding: 14px;
+  border-radius: 30px;
+  background-color: var(--bg-secondary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
+font-size: 16px;
+line-height: 125%;
+letter-spacing: -0.03em;
+color: var(--text-strong);
+
+  -webkit-tap-highlight-color: transparent;
+
+    border: 1px solid transparent; 
+
+}
+
+.control:focus {
+  border-color:  var(--primary-color);
+  
+   outline: none;
+}
+
+
+
+.selectIcon {
+  position: absolute;
+  right: 18.5px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* щоб select клікався */
+  width: 11px;
+  height: 7px;
+  stroke: var(--text-strong);
+  fill:none;
+}
+
+
+
+.menu {
+  position: absolute;
+  top: 110%;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  list-style: none;
+  padding: 14px 14px;
+  z-index: 100;
+}
+
+.menu li {
+  margin-bottom: 8px;
+  cursor: pointer;
+
+font-weight: 500;
+font-size: 16px;
+line-height: 125%;
+letter-spacing: -0.03em;
+color: rgba(38, 38, 38, 0.6);
+}
+
+.menu li:hover {
+  background: #f3f3f3;
+}
+
+.menu li:first-child {
+    color: var(--primary-color);
+}

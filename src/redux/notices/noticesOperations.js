@@ -5,17 +5,25 @@ axios.defaults.baseURL = 'https://petlove.b.goit.study/api';
 
 export const fetchNotices = createAsyncThunk(
   'notices/fetchNotices',
-  async ({ page = 1, keyword = '' }, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
+      const state = thunkAPI.getState().noticesList;
+
+      const { page, currentKeyword, selectedCategory } = state;
+
       const { data } = await axios.get('/notices', {
-        params: { page, keyword },
+        params: {
+          page,
+          keyword: currentKeyword,
+          category: selectedCategory, 
+        },
       });
 
-      return { ...data, page, keyword };
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  },
+  }
 );
 
 export const addToFavorites = createAsyncThunk(
@@ -65,3 +73,14 @@ export const removeFromFavorites = createAsyncThunk(
 );
 
 
+export const fetchCategories = createAsyncThunk(
+  'categories/fetchAll',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('/notices/categories');
+      return data; 
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

@@ -1,4 +1,5 @@
 import SearchField from '../SearchField/SearchField';
+import CategoryField from '../CategoryField/CategoryField';
 import css from './NoticesFilters.module.css';
 import { useDispatch } from 'react-redux';
 
@@ -16,8 +17,24 @@ onSubmit={q => {
     dispatch(setPage(1));
     dispatch(setKeyword(''));  }}
     /></div>
+
+<div className={css.categoryFieldWrapper}><CategoryField/></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
-    <div></div>
+    <div>нижняя строка</div>
     
     </div>
     </>);
