@@ -1,27 +1,36 @@
 import { useDispatch, useSelector } from 'react-redux';
 import ModalNotice from '../ModalNotice/ModalNotice';
 import ModalAttention from '../ModalAttention/ModalAttention';
-import { closeNoticeModal } from '../../redux/modal/modalSlice';
-import { selectIsLoggedIn } from '../../redux/auth/authSelector';
+import {
+  closeNoticeModal,
+  closeAttentionModal,
+} from '../../redux/modal/modalSlice';
 import { selectNotices } from '../../redux/notices/noticesSelectors';
 
 const NoticeModalManager = () => {
   const notices = useSelector(selectNotices);
   const dispatch = useDispatch();
 
-  const { isOpen, notice } = useSelector(state => state.modal);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { isNoticeOpen, isAttentionOpen, notice } = useSelector(
+    state => state.modal
+  );
 
-  if (!isOpen) return null;
+  return (
+    <>
+      {isNoticeOpen && (
+        <ModalNotice
+          notice={notice}
+          notices={notices}
+          onClose={() => dispatch(closeNoticeModal())}
+        />
+      )}
 
-  const handleClose = () => {
-    dispatch(closeNoticeModal());
-  };
-  
-  return isLoggedIn ? (
-    <ModalNotice notice={notice} notices={notices} onClose={handleClose} />
-  ) : (
-    <ModalAttention onClose={handleClose} />
+      {isAttentionOpen && (
+        <ModalAttention
+          onClose={() => dispatch(closeAttentionModal())}
+        />
+      )}
+    </>
   );
 };
 

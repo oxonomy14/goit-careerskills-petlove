@@ -5,6 +5,8 @@ import {
   removeFromFavorites,
 } from '../../redux/notices/noticesOperations';
 import {selectFavoriteIds} from '../../redux/auth/authSelector';
+import { openAttentionModal } from '../../redux/modal/modalSlice';
+import { selectIsLoggedIn } from '../../redux/auth/authSelector';
 
 import { openNoticeModal } from '../../redux/modal/modalSlice';
 
@@ -12,25 +14,40 @@ import { openNoticeModal } from '../../redux/modal/modalSlice';
 const NoticesItem = ({ notice, variant = 'default' }) => {
   const dispatch = useDispatch();
 
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
 const favoriteIds = useSelector(selectFavoriteIds);
 
-const isFavorite = favoriteIds.includes(notice._id);
+
+const isFavorite = Array.isArray(favoriteIds) && favoriteIds.includes(notice._id);
 
 
 
   const isFavoritesPage = variant === 'favorites';
 
-  const handleToggleFavorite = () => {
-    if (isFavorite) {
-      dispatch(removeFromFavorites(notice._id));
-    } else {
-      dispatch(addToFavorites(notice._id));
-    }
-  };
+
+const handleToggleFavorite = () => {
+
+  if (!isLoggedIn) {
+    dispatch(openAttentionModal());
+    return;
+  }
+
+  if (isFavorite) {
+    dispatch(removeFromFavorites(notice._id));
+  } else {
+    dispatch(addToFavorites(notice._id));
+  }
+};
 
   const handleLearnMore = () => {
 
+    if (!isLoggedIn) {
+    dispatch(openAttentionModal());
+    return;
+  } else {
   dispatch(openNoticeModal(notice));
+  }
 };
 
   return (

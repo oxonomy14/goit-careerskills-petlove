@@ -21,6 +21,7 @@ import { selectToken, selectIsRefreshing } from './redux/auth/authSelector.js';
 import { fetchUserFull,logoutUser } from './redux/auth/authOperations';
 import ModalApproveAction from './components/ModalApproveAction/ModalApproveAction.jsx'
 
+
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
 const RegistrationPage = lazy(
@@ -45,6 +46,7 @@ function App() {
 
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
+
 useEffect(() => {
   if (!token) return;
 
@@ -54,11 +56,10 @@ useEffect(() => {
       dispatch(fetchUserFull());
     })
     .catch(() => {
-      // якщо refresh не пройшов — нічого не робимо
+     
     });
-
 }, [dispatch, token]);
-  
+
 
   if (isRefreshing) {
     return <Loader />;
@@ -114,7 +115,8 @@ const handleLogout = () => {
           </Route>
         </Routes>
       </Suspense>
- <NoticeModalManager />
+ <NoticeModalManager /> 
+
  <ModalApproveAction
   isOpen={isLogoutModalOpen}
   onConfirm={handleLogout}

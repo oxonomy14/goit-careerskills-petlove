@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  isOpen: false,
+  isNoticeOpen: false,
   notice: null,
+  isAttentionOpen: false,
 };
 
 const modalSlice = createSlice({
@@ -10,15 +11,27 @@ const modalSlice = createSlice({
   initialState,
   reducers: {
     openNoticeModal: (state, action) => {
-      state.isOpen = true;
+      state.isNoticeOpen = true;
       state.notice = action.payload;
     },
     closeNoticeModal: state => {
-      state.isOpen = false;
+      state.isNoticeOpen = false;
       state.notice = null;
+    },
+
+    openAttentionModal: state => {
+      state.isAttentionOpen = true;
+    },
+    closeAttentionModal: state => {
+      state.isAttentionOpen = false;
     },
   },
 });
 
-export const { openNoticeModal, closeNoticeModal } = modalSlice.actions;
+export const {
+  openNoticeModal,
+  closeNoticeModal,
+  openAttentionModal,
+  closeAttentionModal,
+} = modalSlice.actions;
 export const modalReducer = modalSlice.reducer;

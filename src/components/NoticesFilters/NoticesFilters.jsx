@@ -1,5 +1,6 @@
 import SearchField from '../SearchField/SearchField';
 import CategoryField from '../CategoryField/CategoryField';
+import ByGenderField from '../ByGenderField/ByGenderField';
 import css from './NoticesFilters.module.css';
 import { useDispatch } from 'react-redux';
 
@@ -19,6 +20,7 @@ onSubmit={q => {
     /></div>
 
 <div className={css.categoryFieldWrapper}><CategoryField/></div>
+<div><ByGenderField/></div>
 
 
 
