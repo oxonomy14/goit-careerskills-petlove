@@ -1,18 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchNotices } from './noticesOperations';
-import { fetchCategories } from './noticesOperations';
+import { fetchCategories, fetchByGender } from './noticesOperations';
 
 const initialState = {
   page: 1,
   items: [],
   categories: [],
+  gender:[],
   totalPages: 0,
 
   isNoticesLoading: false,
   isCategoriesLoading: false,
+  isGenderLoading:false,
   error: null,
   currentKeyword: '',
   selectedCategory: '',
+  selectedGender: ''
 };
 
 const noticesSlice = createSlice({
@@ -28,6 +31,10 @@ const noticesSlice = createSlice({
     },
     setCategory(state, action) {
       state.selectedCategory = action.payload;
+      state.page = 1;
+    },
+      setGender(state, action) {
+      state.selectedGender = action.payload;
       state.page = 1;
     },
   },
@@ -52,7 +59,7 @@ const noticesSlice = createSlice({
       })
 
       .addCase(fetchCategories.pending, state => {
-        state.iisCategoriesLoading = true;
+        state.isCategoriesLoading = true;
       })
       .addCase(fetchCategories.fulfilled, (state, action) => {
         state.isCategoriesLoading = false;
@@ -61,9 +68,20 @@ const noticesSlice = createSlice({
       .addCase(fetchCategories.rejected, (state, action) => {
         state.isCategoriesLoading = false;
         state.error = action.payload;
+      })
+        .addCase(fetchByGender.pending, state => {
+        state.isGenderLoading = true;
+      })
+      .addCase(fetchByGender.fulfilled, (state, action) => {
+        state.isGenderLoading = false;
+        state.gender = action.payload;
+      })
+      .addCase(fetchByGender.rejected, (state, action) => {
+        state.isGenderLoading = false;
+        state.error = action.payload;
       }),
 });
 
-export const { setCategory } = noticesSlice.actions;
+export const { setCategory, setGender } = noticesSlice.actions;
 export const { setPage, setKeyword } = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;

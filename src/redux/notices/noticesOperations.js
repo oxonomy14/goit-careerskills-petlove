@@ -9,13 +9,15 @@ export const fetchNotices = createAsyncThunk(
     try {
       const state = thunkAPI.getState().noticesList;
 
-      const { page, currentKeyword, selectedCategory } = state;
-
+      const { page, currentKeyword, selectedCategory, selectedGender } = state;
+console.log('gender from state:', selectedGender);
       const { data } = await axios.get('/notices', {
+        
         params: {
           page,
           keyword: currentKeyword,
           category: selectedCategory, 
+          sex: selectedGender,
         },
       });
 
@@ -78,6 +80,18 @@ export const fetchCategories = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get('/notices/categories');
+      return data; 
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchByGender = createAsyncThunk(
+  'gender/fetchAll',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('/notices/sex');
       return data; 
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

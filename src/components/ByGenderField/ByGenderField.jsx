@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import css from './ByGenderField.module.css';
 
-import { fetchCategories } from '../../redux/notices/noticesOperations';
-import { setCategory } from '../../redux/notices/noticesSlice';
+import { fetchByGender } from '../../redux/notices/noticesOperations';
+import { setGender } from '../../redux/notices/noticesSlice';
 
 import {
-  selectCategories,
-  selectSelectedCategory,
+  selectGender,
+  selectSelectedGender,
 } from '../../redux/notices/noticesSelectors';
 import { useState } from 'react';
 
@@ -15,16 +15,16 @@ const ByGenderField = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const dispatch = useDispatch();
-  const categories = useSelector(selectCategories);
-  const selectedCategory = useSelector(selectSelectedCategory);
+  const gender = useSelector(selectGender);
+  const selectedGender = useSelector(selectSelectedGender);
 
   useEffect(() => {
-    dispatch(fetchCategories());
+    dispatch(fetchByGender());
   }, [dispatch]);
 
 
   const handleSelect = value => {
-    dispatch(setCategory(value));
+    dispatch(setGender(value));
     setIsOpen(false);
   };
 
@@ -35,7 +35,7 @@ const ByGenderField = () => {
         tabIndex={0}
         onClick={() => setIsOpen(prev => !prev)}
       >
-        {selectedCategory || 'Category'}
+        {selectedGender || 'By gender'}
         <svg className={css.selectIcon}>
           <use
             href={`/icons/sprite.svg#${
@@ -48,7 +48,7 @@ const ByGenderField = () => {
       {isOpen && (
         <ul className={css.menu}>
           <li onClick={() => handleSelect('')}>Show all</li>
-          {categories.map(cat => (
+          {gender.map(cat => (
             <li key={cat} onClick={() => handleSelect(cat)}>
               {cat}
             </li>

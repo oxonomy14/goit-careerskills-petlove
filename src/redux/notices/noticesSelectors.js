@@ -8,4 +8,8 @@ export const selectCategories = state => state.noticesList.categories;
 export const selectSelectedCategory = state =>
   state.noticesList.selectedCategory;
 
+export const selectGender = state => state.noticesList.gender;
+export const selectSelectedGender = state =>
+  state.noticesList.selectedGender;
+
 
