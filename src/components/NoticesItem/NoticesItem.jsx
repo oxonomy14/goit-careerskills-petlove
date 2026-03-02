@@ -10,6 +10,8 @@ import { selectIsLoggedIn } from '../../redux/auth/authSelector';
 
 import { openNoticeModal } from '../../redux/modal/modalSlice';
 
+import { addViewedToStorage } from '../../utils/viewedStorage';
+
 
 const NoticesItem = ({ notice, variant = 'default' }) => {
   const dispatch = useDispatch();
@@ -24,6 +26,7 @@ const isFavorite = Array.isArray(favoriteIds) && favoriteIds.includes(notice._id
 
 
   const isFavoritesPage = variant === 'favorites';
+    const isViewedPage = variant === 'viewed';
 
 
 const handleToggleFavorite = () => {
@@ -46,12 +49,13 @@ const handleToggleFavorite = () => {
     dispatch(openAttentionModal());
     return;
   } else {
+     addViewedToStorage(notice._id);
   dispatch(openNoticeModal(notice));
   }
 };
 
   return (
-    <li className={isFavoritesPage ? css.favoritesItem : css.item}>
+    <li className={isFavoritesPage || isViewedPage ? css.tabItem : css.item}>
       <img className={css.image} src={notice.imgURL} alt={notice.title} />
       <div className={css.titleRow}>
         <h3> {notice.title}</h3>
@@ -65,7 +69,7 @@ const handleToggleFavorite = () => {
       </div>
       <ul
         className={
-          isFavoritesPage ? css.favoritesCategoryList : css.categoryList
+          isFavoritesPage || isViewedPage ? css.tabCategoryList : css.categoryList
         }
       >
         <li>
@@ -99,7 +103,7 @@ const handleToggleFavorite = () => {
       <div className={css.btnWrapper}>
         <button
           className={
-            isFavoritesPage ? css.favoritesBtnLearnMore : css.btnLearnMore
+            isFavoritesPage || isViewedPage ? css.tabBtnLearnMore : css.btnLearnMore
           }
            onClick={handleLearnMore}
           

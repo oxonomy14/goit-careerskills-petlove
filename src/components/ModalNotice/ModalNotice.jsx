@@ -8,6 +8,7 @@ import {
   removeFromFavorites,
 } from '../../redux/notices/noticesOperations';
 import {selectFavoriteIds} from '../../redux/auth/authSelector';
+import { toast } from 'react-hot-toast';
 
 
 const modalRoot = document.body;
@@ -28,7 +29,9 @@ const favoriteIds = useSelector(selectFavoriteIds);
 const isFavorite = favoriteIds.includes(notice._id);
 
 
-
+const handleContact = () => {
+  toast("Owner contact information is not available");
+};
   
 
   const handleToggleFavorite = () => {
@@ -150,9 +153,9 @@ const isFavorite = favoriteIds.includes(notice._id);
 
         </svg>
             </button>
-            <Link className={css.btnContact} to="/register">
+            <button type='button' className={css.btnContact} onClick={handleContact}>
               Contact
-            </Link>
+            </button>
           </div>
         </div>
       </div>

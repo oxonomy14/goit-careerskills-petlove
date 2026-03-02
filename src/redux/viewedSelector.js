@@ -1,0 +1,1 @@
+export const selectViewedIds = state => state.viewed.ids;

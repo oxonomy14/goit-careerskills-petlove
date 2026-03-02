@@ -3,12 +3,10 @@ import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { newsReducer } from './news/newsSlice';
 import { authReducer } from './auth/authSlice';
-import {friendsReducer} from './friends/friendsSlice';
+import { friendsReducer } from './friends/friendsSlice';
 import { noticesReducer } from './notices/noticesSlice';
 import { modalReducer } from './modal/modalSlice';
-
-
-
+import viewedReducer from './viewedSlice';
 
 import {
   persistStore,
@@ -21,69 +19,52 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-
 const persistConfigNews = {
   key: 'news',
   version: 1,
   storage,
-    whitelist: ['items', 'page', 'totalPages'],
- };
+  whitelist: ['items', 'page', 'totalPages'],
+};
 
-
-
- const persistConfigFriends = {
+const persistConfigFriends = {
   key: 'friends',
   version: 1,
   storage,
   whitelist: ['items'],
 };
 
- const persistConfigNotices = {
+const persistConfigNotices = {
   key: 'notices',
   version: 1,
   storage,
   whitelist: ['items', 'page', 'totalPages', 'favorites'],
-
 };
 
-
-
- const persistAuth = {
+const persistAuth = {
   key: 'auth',
-   version: 1,
-   storage,
-    whitelist: ['token'],
+  version: 1,
+  storage,
+  whitelist: ['token'],
 };
-
-
-
-
-
-
 
 export const store = configureStore({
- // reducer: (state = {}) => state, // тимчасовий ред’юсер
- reducer: {
-    
+  // reducer: (state = {}) => state, // тимчасовий ред’юсер
+  reducer: {
     newsList: persistReducer(persistConfigNews, newsReducer),
     auth: persistReducer(persistAuth, authReducer),
     friendsList: persistReducer(persistConfigFriends, friendsReducer),
     noticesList: persistReducer(persistConfigNotices, noticesReducer),
-     modal: modalReducer, 
-   
-
- },
- middleware: getDefaultMiddleware =>
-   getDefaultMiddleware({
+    modal: modalReducer,
+    viewed: viewedReducer,
+  },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
 
   devTools: import.meta.env.MODE === 'development',
-}
-);
-
-
+});
 
 export let persistor = persistStore(store);
