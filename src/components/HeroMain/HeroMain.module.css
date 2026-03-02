@@ -1,5 +1,5 @@
 .heroMain {
-  background-image: url('img/heroMain-desk@x1.webp');
+  background-image: url('/img/heroMain-desk@x1.webp');
  position: fixed;
   inset: 0;
   background-size: cover;
@@ -12,7 +12,7 @@
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .heroMain {
-    background-image: url('img/heroMain-desk@x2.webp');
+    background-image: url('/img/heroMain-desk@x2.webp');
    
   }
 }

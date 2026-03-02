@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import HomeHeader from '../Header/HomeHeader';
 //import Loader from '../Loader/Loader';
 import { useMediaQuery } from 'react-responsive';
-import {selectIsLoggedIn} from '../../redux/auth/AuthSelector';
+import {selectIsLoggedIn} from '../../redux/auth/authSelector';
 import { useSelector } from 'react-redux';
 
 

@@ -74,6 +74,9 @@ const LocationSelect = ({ value, onChange }) => {
       borderRadius: 30,
       border: state.isFocused ? '1px solid #F6B83D' : '1px solid transparent',
       boxShadow: 'none',
+       '&:hover': {
+    border: '1px solid transparent',
+  },
       paddingLeft: 14,
       backgroundColor: 'var(--bg-secondary-color)',
     }),
@@ -88,7 +91,7 @@ const LocationSelect = ({ value, onChange }) => {
 
     option: (base, state) => ({
       ...base,
-      backgroundColor: state.isFocused ? 'var(--bg-secondary-color)' : 'transparent',
+      backgroundColor: state.isFocused  ? 'var(--bg-secondary-color)' : 'transparent',
       color: 'var(--text-strong)',
       borderRadius: 12,
       padding: '10px 14px',
