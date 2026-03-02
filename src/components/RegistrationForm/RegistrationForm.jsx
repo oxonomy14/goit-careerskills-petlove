@@ -10,8 +10,8 @@ import { useState } from "react";
 import Title from '../../components/Title/Title';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../redux/auth/AuthOperations';
-import { selectIsLoading, selectError, selectIsLoggedIn } from '../../redux/auth/AuthSelector';
+import { register } from '../../redux/auth/authOperations';
+import { selectIsLoading, selectError, selectIsLoggedIn } from '../../redux/auth/authSelector';
 
 const RegistrationForm = () => {
 
