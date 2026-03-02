@@ -143,7 +143,7 @@ const AddPetForm = ({ onSuccess }) => {
 
         <div className={css.urlphotoPetWraper}>
           <div>
-            {' '}
+       
             <input
               {...register('imgURL')}
               placeholder="Enter photo URL"
