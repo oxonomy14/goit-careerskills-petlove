@@ -4,12 +4,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../redux/auth/AuthOperations';
+import { login } from '../../redux/auth/authOperations';
 import {
   selectIsLoading,
   selectError,
   selectIsLoggedIn,
-} from '../../redux/auth/AuthSelector';
+} from '../../redux/auth/authSelector';
 
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
