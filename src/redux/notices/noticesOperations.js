@@ -9,8 +9,34 @@ export const fetchNotices = createAsyncThunk(
     try {
       const state = thunkAPI.getState().noticesList;
 
-      const { page, currentKeyword, selectedCategory, selectedGender } = state;
-console.log('gender from state:', selectedGender);
+      const { page, sortBy, currentKeyword, selectedCategory, selectedGender, selectedSpecies, selectedLocation } = state;
+
+  let sortField = '';
+      let sortOrder = '';
+
+      switch (sortBy) {
+        case 'popular':
+          sortField = 'popularity';
+          sortOrder = 'desc';
+          break;
+        case 'unpopular':
+          sortField = 'popularity';
+          sortOrder = 'asc';
+          break;
+        case 'price_asc':
+          sortField = 'price';
+          sortOrder = 'asc';
+          break;
+        case 'price_desc':
+          sortField = 'price';
+          sortOrder = 'desc';
+          break;
+        default:
+          break;
+      }
+
+      
+
       const { data } = await axios.get('/notices', {
         
         params: {
@@ -18,6 +44,10 @@ console.log('gender from state:', selectedGender);
           keyword: currentKeyword,
           category: selectedCategory, 
           sex: selectedGender,
+          species: selectedSpecies,
+           sortBy: sortField,
+          sortOrder,
+          locationId: selectedLocation,
         },
       });
 
@@ -93,6 +123,31 @@ export const fetchByGender = createAsyncThunk(
     try {
       const { data } = await axios.get('/notices/sex');
       return data; 
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchByType = createAsyncThunk(
+  'species/fetchAll',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('/notices/species');
+      return data; 
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+
+export const fetchLocations = createAsyncThunk(
+  'locations/fetchAll',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('/cities/locations');
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -9,6 +9,7 @@ import { modalReducer } from './modal/modalSlice';
 
 
 
+
 import {
   persistStore,
   persistReducer,
@@ -45,6 +46,8 @@ const persistConfigNews = {
 
 };
 
+
+
  const persistAuth = {
   key: 'auth',
    version: 1,
@@ -67,6 +70,7 @@ export const store = configureStore({
     friendsList: persistReducer(persistConfigFriends, friendsReducer),
     noticesList: persistReducer(persistConfigNotices, noticesReducer),
      modal: modalReducer, 
+   
 
  },
  middleware: getDefaultMiddleware =>

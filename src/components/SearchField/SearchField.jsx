@@ -6,6 +6,7 @@ const SearchField = ({
   onSubmit,
   onClear,
   placeholder = "Search",
+  variant = 'default'
 }) => {
   const [query, setQuery] = useState(value);
 
@@ -20,6 +21,8 @@ const SearchField = ({
     onClear?.();
   };
 
+   const isNoticesFilter = variant === 'noticesFilter';
+
   return (
     <>
 
@@ -29,7 +32,7 @@ const SearchField = ({
         value={query}
         placeholder={placeholder}
         onChange={e => setQuery(e.target.value)}
-        className={css.inputSearchField}
+        className={isNoticesFilter ? css.inputSearchFieldNoticesFilter : css.inputSearchField}
       />
 
       {query && (

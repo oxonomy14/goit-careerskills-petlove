@@ -182,11 +182,7 @@ const AddPetForm = ({ onSuccess }) => {
         <div className={css.inputBirthdaySpecies}>
             
           {/* Birthday */}
-        {/*   <input
-            type="date"
-            {...register('birthday')}
-            className={css.inputBirthday}
-          /> */}
+  
     <Controller
   name="birthday"
   control={control}

@@ -20,6 +20,8 @@ import {
   selectKeyword,
   selectSelectedCategory,
   selectSelectedGender,
+  selectSelectedSpecies,
+
   
 } from '../../redux/notices/noticesSelectors';
 
@@ -35,14 +37,33 @@ const NoticesPage = () => {
   const totalPages = useSelector(selectTotalPages);
   const selectedCategory = useSelector(selectSelectedCategory);
   const gender = useSelector(selectSelectedGender);
+  const species = useSelector(selectSelectedSpecies);
+  const sortBy = useSelector(state => state.noticesList.sortBy);
+const selectedLocation = useSelector(
+  state => state.noticesList.selectedLocation
+);
 
   useEffect(() => {
     dispatch(fetchNotices());
-  }, [dispatch, page, keyword, selectedCategory, gender]);
+  }, [dispatch, page, keyword, selectedCategory, gender, species, sortBy, selectedLocation]);
+
+ useEffect(() => {
+    console.log('notices', notices);
+  }, [notices]); 
 
   useEffect(() => {
-    console.log('notices', notices);
-  }, [notices]);
+  console.log('selectedLocation:', selectedLocation);
+}, [selectedLocation]);
+
+/*   useEffect(() => {
+  console.log(
+    notices.map(n => ({
+      title: n.title,
+      popularity: n.popularity,
+      price: n.price,
+    }))
+  );
+}, [notices]); */
 
   if (error) return <p>Error: {error}</p>;
 

@@ -1,7 +1,7 @@
 .filtersWrapper {
   border-radius: 30px;
-  width: 1216px;
-  height: 216px;
+  width: 100%;
+
   background-color: var(--secondary-color);
   padding: 40px;
 }
@@ -23,4 +23,9 @@
 .categoryFieldWrapper {
     width: 200px;
   height: 48px;
+}
+
+.SortbyNoticesdWrapper {
+  padding-top: 34px;
+  
 }

@@ -13,3 +13,8 @@ export const selectSelectedGender = state =>
   state.noticesList.selectedGender;
 
 
+export const selectSpecies = state => state.noticesList.species;
+export const selectSelectedSpecies = state =>
+  state.noticesList.selectedSpecies;
+
+export const selectLocations = state => state.noticesList.locations;

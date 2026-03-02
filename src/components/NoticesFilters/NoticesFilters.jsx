@@ -1,45 +1,73 @@
 import SearchField from '../SearchField/SearchField';
 import CategoryField from '../CategoryField/CategoryField';
 import ByGenderField from '../ByGenderField/ByGenderField';
+import ByTypeField from '../ByTypeField/ByTypeField';
+import LocationSelect from '../LocationSelect/LocationSelect';
+
+
+import SortbyNotices from '../SortbyNotices/SortbyNotices';
 import css from './NoticesFilters.module.css';
 import { useDispatch } from 'react-redux';
 
-const NoticesFilters = ({setPage, setKeyword}) => {
-    const dispatch = useDispatch();
-    return (<>
-    <div className={css.filtersWrapper}>
-    <div className={css.filters}>
-<div className={css.searchFieldWrapper}><SearchField 
-onSubmit={q => {
-    dispatch(setPage(1));
-    dispatch(setKeyword(q));
+import { useSelector } from 'react-redux';
+
+import { setSortBy, setLocation, setPage} from '../../redux/notices/noticesSlice';
+
+
+/* const NoticesFilters = ({ setPage, setKeyword }) => { */
+const NoticesFilters = ({ setKeyword }) => {
+  const dispatch = useDispatch();
+
+const sortBy = useSelector(state => state.noticesList.sortBy);
+
+
+
+
+  return (
+    <>
+      <div className={css.filtersWrapper}>
+        <div className={css.filters}>
+          <div className={css.searchFieldWrapper}>
+            <SearchField
+              onSubmit={q => {
+                dispatch(setPage(1));
+                dispatch(setKeyword(q));
+              }}
+              onClear={() => {
+                dispatch(setPage(1));
+                dispatch(setKeyword(''));
+              }}
+              variant = 'noticesFilter'
+            />
+          </div>
+
+          <div className={css.categoryFieldWrapper}>
+            <CategoryField />
+          </div>
+          <div>
+            <ByGenderField />
+          </div>
+          <div>
+            <ByTypeField />
+          </div>
+          <div>
+         <LocationSelect
+   onChange={(locationId) => {
+    dispatch(setLocation(locationId));
   }}
-  onClear={() => {
+/>
+          </div>
+        </div>
+        <div className={css.SortbyNoticesdWrapper}>
+          <SortbyNotices   value={sortBy}
+  onChange={value => {
+    dispatch(setSortBy(value));
     dispatch(setPage(1));
-    dispatch(setKeyword(''));  }}
-    /></div>
-
-<div className={css.categoryFieldWrapper}><CategoryField/></div>
-<div><ByGenderField/></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
-    <div>нижняя строка</div>
-    
-    </div>
-    </>);
+  }} />
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default NoticesFilters;
