@@ -19,11 +19,11 @@ const Header = ({isMobile, isTablet, isDesktop, isLoggedIn}) => {
           </div>
 
           <div className={css.headline}>
-            <div>
-              <h1 className={css.title}>
-                Take good <span>care</span> of your small pets
-              </h1>
-            </div>
+            
+          <h1 className={css.title}>Take good <span className={css.titleCare}>care</span> of
+ your small pets</h1> 
+
+         
             <div className={css.headlineItem}>
               <p className={css.text}>
                 Choosing a pet for your home is a choice that is meant to enrich
