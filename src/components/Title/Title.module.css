@@ -1,8 +1,31 @@
 .title {
-font-family: var(--font-family);
+
 font-weight: 700;
-font-size: 54px;
+font-size: 28px;
 line-height: 100%;
 letter-spacing: -0.03em;
-color: --text-strong; 
+color: var(--text-strong); 
+}
+
+@media only screen and (min-width: 375px) {
+
+
+}
+
+
+@media only screen and (min-width: 768px) {
+ 
+    .title {
+
+font-size: 54px;
+
+}
+
+}
+
+
+@media only screen and (min-width: 1280px) {
+
+
+
 }
