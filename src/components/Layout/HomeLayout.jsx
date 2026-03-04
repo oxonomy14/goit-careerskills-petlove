@@ -11,7 +11,7 @@ const HomeLayout = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const location = useLocation();
   const isMobile = useMediaQuery({ maxWidth: 767 });
-  const isTablet = useMediaQuery({ minWidth: 768 });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesktop = useMediaQuery({ minWidth: 1280 });
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const HomeLayout = () => {
       </header>
 
       <main>
-        {/* <Loader loading={loading} /> */}
+
         <Outlet />
       </main>
     </>

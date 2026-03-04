@@ -13,8 +13,9 @@ const DefaultLayout = ({onLogoutClick}) => {
 //const loading = false;
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const location = useLocation();
-  const isMobile = useMediaQuery({ maxWidth: 1023 });
-  const isTablet = useMediaQuery({ minWidth: 1024 });
+ const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
 
   useEffect(() => {
 
@@ -31,13 +32,16 @@ const DefaultLayout = ({onLogoutClick}) => {
         <DefaultContainer>
       <header>
         <DefaultHeader
+         isMobile={isMobile}
+          isDesktop={isDesktop}
+          isTablet={isTablet}
             isLoggedIn={isLoggedIn}
             onLogoutClick={onLogoutClick}
         />
       </header>
 
       <main>
-        {/* <Loader loading={loading} /> */}
+       
         <Outlet/>
        
       </main>

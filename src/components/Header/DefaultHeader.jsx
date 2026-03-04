@@ -5,15 +5,15 @@ import Nav from "../Nav/Nav";
 import UserNav from "../UserNav/UserNav";
 import css from "./DefaultHeader.module.css";
 
-const Header =({isLoggedIn, onLogoutClick})=> {
+const Header =({isMobile, isTablet, isDesktop, isLoggedIn, onLogoutClick})=> {
     
 return (
 <>
 
-    <div className={css.header}>
+<div className={css.header}>
 <Logo/>
-<Nav/>
-{isLoggedIn ? <UserNav onLogoutClick={onLogoutClick}/> : <AuthNav/>}
+ {isDesktop && <Nav /> }
+{isLoggedIn ? <UserNav onLogoutClick={onLogoutClick} isTablet={isTablet} isMobile={isMobile} isDesktop={isDesktop}/> : <AuthNav isTablet={isTablet} isMobile={isMobile} isDesktop={isDesktop}/>}
 </div>
 
 </>)

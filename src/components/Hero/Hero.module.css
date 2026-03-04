@@ -15,6 +15,29 @@
   }
 }
 
+@media only screen and (min-width: 375px) { 
+
+
+    .hero {
+  background-image: url('/img/backgroundHome-mob@x1.webp');
+  background-size: contain; 
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  min-height: 402px; 
+  width: 100%;
+ 
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero {
+    background-image: url('/img/backgroundHome-mob@x2.webp');
+  }
+}
+
+
+
+}
 
 
 @media only screen and (min-width: 768px) {

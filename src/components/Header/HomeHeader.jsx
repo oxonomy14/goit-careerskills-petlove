@@ -15,7 +15,7 @@ const Header = ({isMobile, isTablet, isDesktop, isLoggedIn}) => {
           <div className={css.navigation}>
             <Logo />
            {isDesktop && <Nav /> }
-            {isLoggedIn ? <UserNav isTablet={isTablet} isMobile={isMobile}/> : <AuthNav isTablet={isTablet} isMobile={isMobile}/>}
+            {isLoggedIn ? <UserNav isTablet={isTablet} isMobile={isMobile} isDesktop={isDesktop}/> : <AuthNav isTablet={isTablet} isMobile={isMobile} isDesktop={isDesktop}/>}
           </div>
 
           <div className={css.headline}>

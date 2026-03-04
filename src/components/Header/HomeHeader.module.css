@@ -11,6 +11,7 @@
   align-items: center;
   height: 50px;
   margin-bottom: 60px;
+  justify-content: space-between;
 }
 
 .headline {
@@ -39,6 +40,11 @@
   letter-spacing: -0.02em;
   color: var(--bg-secondary-color);
    max-width: 295px;
+}
+
+@media only screen and (min-width: 375px) {
+
+
 }
 
 @media only screen and (min-width: 768px) {
