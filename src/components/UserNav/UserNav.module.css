@@ -1,11 +1,37 @@
-.userNavItem {
+
+.userNav {
   display: flex;
-  gap: 8px;
+
   margin-left: auto;
   align-items: center;
 }
 
+.burgerWrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
 
+.burgerIconHome {
+  stroke: var(--icon-color-white);
+  fill: none;
+}
+
+.burgerIcon {
+  stroke: var(--icon-color-black);
+  fill: none;
+}
+
+
+@media only screen and (min-width: 375px) {
+
+
+
+.userNavItem {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
 
 .user {
   border-radius: 100%;
@@ -50,12 +76,20 @@ height: 50px;
   fill: var(--primary-color);
 }
 
-.burgerIconHome {
-  stroke: var(--icon-color-white);
-  fill: none;
+
+
 }
 
-.burgerIcon {
-  stroke: var(--icon-color-black);
-  fill: none;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
