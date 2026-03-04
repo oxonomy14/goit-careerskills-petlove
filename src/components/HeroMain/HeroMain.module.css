@@ -1,4 +1,53 @@
 .heroMain {
+  background-image: url('/img/heroMain-mob@x1.webp');
+ position: fixed;
+  inset: 0;
+  background-size: cover;
+   background-position: center;
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .heroMain {
+    background-image: url('/img/heroMain-mob@x2.webp');
+   
+  }
+}
+
+
+
+@media only screen and (min-width: 375px) {}
+
+@media only screen and (min-width: 768px) {
+
+ .heroMain {
+  background-image: url('/img/heroMain-tab@x1.webp');
+ position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .heroMain {
+    background-image: url('/img/heroMain-tab@x2.webp');
+   
+  }
+} 
+
+}
+
+@media only screen and (min-width: 1280px) {
+
+
+.heroMain {
   background-image: url('/img/heroMain-desk@x1.webp');
  position: fixed;
   inset: 0;
@@ -15,4 +64,7 @@
     background-image: url('/img/heroMain-desk@x2.webp');
    
   }
+}
+
+
 }
