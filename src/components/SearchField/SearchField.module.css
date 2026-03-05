@@ -1,18 +1,15 @@
-
-
 .inputSearchField {
-border: 1px solid rgba(38, 38, 38, 0.15);
-border-radius: 30px;
-padding: 14px 36px 14px 14px;
-font-family: var(--font-family);
-font-weight: 500;
-font-size: 16px;
-line-height: 125%;
-letter-spacing: -0.03em;
-color: rgba(38, 38, 38, 0.5);
-width: 100%;
-outline: none;
-
+  border: 1px solid rgba(38, 38, 38, 0.15);
+  border-radius: 30px;
+  padding: 12px 36px 12px 12px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: rgba(38, 38, 38, 0.5);
+  width: 100%;
+  outline: none;
 }
 
 .inputSearchField:hover {
@@ -22,30 +19,27 @@ outline: none;
 .inputSearchFieldNoticesFilter {
   border: none;
   border-radius: 30px;
-padding: 14px 36px 14px 14px;
-font-family: var(--font-family);
-font-weight: 500;
-font-size: 16px;
-line-height: 125%;
-letter-spacing: -0.03em;
-color: var(--text-strong);
-width: 100%;
-outline: none;
+  padding: 12px 36px 12px 12px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: var(--text-strong);
+  width: 100%;
+  outline: none;
 }
 
 .btnSearch {
   position: absolute;
-  right: 14px;
-  
+  right: 12px;
+
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
   border: none;
   padding: 0;
   cursor: pointer;
-   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .btnClear {
@@ -55,22 +49,48 @@ outline: none;
   border: none;
   cursor: pointer;
   top: 50%;
-transform: translateY(-50%);
- display: flex;
+  transform: translateY(-50%);
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .iconX {
-   stroke: var(--text-strong);
-    fill: none;
-    width: 13px;
-    height: 13px;
+  stroke: var(--text-strong);
+  fill: none;
+  width: 13px;
+  height: 13px;
 }
 
 .iconSearch {
-    stroke: var(--text-strong);
-    fill: none;
-    width: 18px;
-    height: 18px;
+  stroke: var(--text-strong);
+  fill: none;
+  width: 18px;
+  height: 18px;
+}
+
+@media only screen and (min-width: 375px) {
+}
+
+@media only screen and (min-width: 768px) {
+  .inputSearchField {
+    padding: 14px 36px 14px 14px;
+
+    font-size: 16px;
+    line-height: 125%;
+  }
+
+  .inputSearchFieldNoticesFilter {
+    padding: 14px 36px 14px 14px;
+
+    font-size: 16px;
+    line-height: 125%;
+  }
+
+  .btnSearch {
+    right: 14px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
 }
