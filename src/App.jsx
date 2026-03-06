@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from './redux/auth/authOperations';
 
 import { useFakeLoader } from './hooks/useFakeLoader';
-
+import { useMediaQuery } from 'react-responsive';
 import DefaultLayout from './components/Layout/DefaultLayout';
 import HomeLayout from './components/Layout/HomeLayout';
 import Loader from './components/Loader/Loader';
@@ -19,7 +19,8 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import NoticeModalManager from './components/NoticeModalManager/NoticeModalManager';
 import { selectToken, selectIsRefreshing } from './redux/auth/authSelector.js';
 import { fetchUserFull,logoutUser } from './redux/auth/authOperations';
-import ModalApproveAction from './components/ModalApproveAction/ModalApproveAction.jsx'
+import ModalApproveAction from './components/ModalApproveAction/ModalApproveAction.jsx';
+import ModalMenu from "./components/ModalMenu/ModalMenu.jsx";
 
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -45,6 +46,13 @@ function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
 
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  const openMenu = () => setIsMenuOpen(true);
+  const closeMenu = () => setIsMenuOpen(false);
+
+    const isDesktop = useMediaQuery({ minWidth: 1280 });
 
 
 useEffect(() => {
@@ -79,10 +87,10 @@ const handleLogout = () => {
     <>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route element={<HomeLayout />}>
+          <Route element={<HomeLayout openMenu={openMenu}/>}>
             <Route path="/" element={<HomePage />} />
           </Route>
-          <Route element={<DefaultLayout onLogoutClick={openLogoutModal}/>}>
+          <Route element={<DefaultLayout onLogoutClick={openLogoutModal} openMenu={openMenu}/>}>
             <Route path="/friends" element={<OurFriendsPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/notices" element={<NoticesPage />} />
@@ -122,6 +130,8 @@ const handleLogout = () => {
   onConfirm={handleLogout}
   onClose={closeLogoutModal}
 />
+{!isDesktop && <ModalMenu isMenuOpen={isMenuOpen} closeMenu={closeMenu}/>}
+
       {progress < 100 && (
         <HeroMain>
           {showLogo ? <LogoMain /> : <LoaderMain percent={progress} />}

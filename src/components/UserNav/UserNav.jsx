@@ -4,7 +4,9 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/authSelector';
 import LogOutBtn from '../LogOutBtn/LogOutBtn';
 
-const UserNav = ({onLogoutClick, isTablet, isMobile, isDesktop}) => {
+
+
+const UserNav = ({onLogoutClick, isTablet, isMobile, isDesktop, openMenu}) => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
@@ -13,7 +15,7 @@ const user = useSelector(selectUser);
 
 
   return (
-   
+   <>
       <div className={css.userNav}>
    
      {isDesktop && 
@@ -48,7 +50,7 @@ const user = useSelector(selectUser);
         </svg>)}
         </div>
       <Link className={isHomePage ? css.userNameHome : css.userName} to="/profile">{user.name || 'User'}</Link>
-        <div className={css.burgerWrapper}>
+        <button onClick={openMenu} className={css.burgerWrapper}>
         <svg
           width={32}
           height={32}
@@ -57,7 +59,7 @@ const user = useSelector(selectUser);
         >
           <use href={`/icons/sprite.svg#icon-burger`}></use>
         </svg>
-       </div>
+       </button>
 </div>
 }
 
@@ -65,7 +67,7 @@ const user = useSelector(selectUser);
 
     {isMobile && 
     
-      <div className={css.burgerWrapper}>
+      <button className={css.burgerWrapper} onClick={openMenu}>
         <svg
           width={32}
           height={32}
@@ -74,12 +76,14 @@ const user = useSelector(selectUser);
         >
           <use href={`/icons/sprite.svg#icon-burger`}></use>
         </svg>
-       </div>
+       </button>
 
     }
 
       </div>
  
+
+</>
   );
 };
 

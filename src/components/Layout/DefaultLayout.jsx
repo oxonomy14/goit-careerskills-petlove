@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 
 
 
-const DefaultLayout = ({onLogoutClick}) => {
+const DefaultLayout = ({onLogoutClick, openMenu}) => {
 //const loading = false;
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const location = useLocation();
@@ -37,6 +37,7 @@ const DefaultLayout = ({onLogoutClick}) => {
           isTablet={isTablet}
             isLoggedIn={isLoggedIn}
             onLogoutClick={onLogoutClick}
+            openMenu={openMenu}
         />
       </header>
 

@@ -7,7 +7,7 @@ import {selectIsLoggedIn} from '../../redux/auth/authSelector';
 import { useSelector } from 'react-redux';
 
 
-const HomeLayout = () => {
+const HomeLayout = ({openMenu}) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const location = useLocation();
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -30,6 +30,7 @@ const HomeLayout = () => {
           isDesktop={isDesktop}
           isTablet={isTablet}
           isLoggedIn={isLoggedIn}
+                openMenu={openMenu}
         />
       </header>
 

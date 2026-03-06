@@ -1,48 +1,131 @@
-.navList {
-display: flex;
-flex-direction: row;
-gap: 10px;
-
-margin-left: 313px;
-}
-
-.navListHome {
-    display: flex;
-flex-direction: row;
-gap: 10px;
-
-margin-left: 280px;
-}
-
-.navLinkHome {
-border: 1px solid rgba(255, 255, 255, 0.4);
-border-radius: 30px;
-padding: 15px 20px;
-width: 80px;
-height: 50px;
-
-font-weight: 500;
-font-size: 16px;
-line-height: 125%;
-letter-spacing: -0.03em;
-color: var(--bg-secondary-color);
-text-decoration: none;
+.navListMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .navLink {
-border: 1px solid rgba(38, 38, 38, 0.15);
-border-radius: 30px;
-padding: 15px 20px;
-height: 50px;    
-font-weight: 500;
-font-size: 16px;
-line-height: 125%;
-letter-spacing: -0.03em;
-color: var(--text-strong);
-white-space: nowrap;
-text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 30px;
+  padding: 15px 31px;
+  width: 119px;
+  height: 48px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: var(--bg-secondary-color);
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
 }
 
+.navLinkHome {
+  border: 1px solid rgba(38, 38, 38, 0.15);
+  border-radius: 30px;
+  padding: 15px 31px;
+  width: 119px;
+  height: 48px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: var(--text-strong);
+  white-space: nowrap;
+  text-decoration: none;
+  text-align: center;
+}
+
+.navLinkHome:hover {
+  border: 1px solid #f6b83d;
+}
+
+.navLink:hover {
+  border: 1px solid #fff;
+}
+
+.activeHome {
+  border: 1px solid #f6b83d;
+}
+
+.activeMenu {
+  border: 1px solid #fff;
+}
+
+
+
+
+
+@media only screen and (min-width: 768px) {
+  .navLinkHome {
+    padding: 15px 20px;
+    width: 120px;
+    height: 50px;
+    font-size: 16px;
+    line-height: 125%;
+  }
+
+  .navLink {
+    padding: 15px 20px;
+    width: 120px;
+    height: 50px;
+    font-size: 16px;
+    line-height: 125%;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .navList {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    margin-left: 313px;
+  }
+
+  .navListHome {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    margin-left: 280px;
+  }
+
+  .navLinkHome {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 30px;
+    padding: 15px 20px;
+   
+    height: 50px;
+    white-space: nowrap;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+    color: var(--bg-secondary-color);
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .navLink {
+    border: 1px solid rgba(38, 38, 38, 0.15);
+    border-radius: 30px;
+    padding: 15px 20px;
+    height: 50px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+    color: var(--text-strong);
+    white-space: nowrap;
+    text-decoration: none;
+    text-align: center;
+  }
+
 .active {
-border: 1px solid #f6b83d;
+  border: 1px solid #f6b83d;
+}
+
 }
