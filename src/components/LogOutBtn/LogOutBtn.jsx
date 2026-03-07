@@ -9,7 +9,7 @@ const LogOutBtn = ({onLogoutClick, variant = 'default'}) => {
   const isUserNav = variant === 'userNav';
 
     return (<>
-    {isHomePage ?  (<button className={ css.logOutBtnHome}>Log out</button>) : 
+    {isHomePage ?  (<button className={ css.logOutBtnHome} onClick={onLogoutClick}>Log out</button>) : 
        ( <button className={isUserNav ? css.logOutBtnUserNav : css.logOutBtn} onClick={onLogoutClick}>Log out</button>)
     }
     </>);

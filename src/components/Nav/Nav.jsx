@@ -18,7 +18,7 @@ const Nav = ({ isMenuOpen }) => {
     return clsx(css.navLinkHome, isActive && css.activeHome);
   };
 
-  console.log('isMenuOpen:', isMenuOpen);
+  
 
   return (
     <>

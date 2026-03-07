@@ -1,3 +1,49 @@
+
+.logOutBtnHome {
+border-radius: 30px;
+padding: 12px 60px;
+width: 178px;
+height: 42px;
+background-color: var(--secondary-color);
+font-weight: 700;
+font-size: 14px;
+line-height: 129%;
+letter-spacing: -0.03em;
+text-transform: uppercase;
+color: var(--primary-color);
+  -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
+}
+
+
+.logOutBtn {
+
+border-radius: 30px;
+padding: 12px 60px;
+width: 178px;
+height: 42px;
+background-color: var(--secondary-color);
+font-weight: 700;
+font-size: 14px;
+line-height: 129%;
+letter-spacing: -0.03em;
+text-transform: uppercase;
+color: var(--primary-color);
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+}
+
+
+
+
+@media only screen and (min-width: 768px) {
+
+
+}
+
+
+@media only screen and (min-width: 1280px) {
+
 .logOutBtnHome {
   display: none;
 }
@@ -15,6 +61,7 @@
   text-transform: uppercase;
   color: var(--bg-secondary-color);
   white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .logOutBtnUserNav:hover, .logOutBtnUserNav:focus {
@@ -36,9 +83,17 @@ line-height: 125%;
 letter-spacing: -0.03em;
 text-transform: uppercase;
 color: var(--primary-color);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .logOutBtn:hover, .logOutBtn:focus {
     background-color: var(--primary-color);
     color: var(--white-color);
 } 
+
+}
+
+
+
+
+

@@ -20,12 +20,15 @@
 .authNavItem {
   display: flex;
   gap: 8px;
+  margin-top: auto;
 }
 
 .authNavBurger {
   display: flex;
   align-items: center;
   margin-left: 8px;
+  background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 }
 
 }

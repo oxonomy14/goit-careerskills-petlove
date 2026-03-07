@@ -2,7 +2,7 @@ import css from './AuthNav.module.css';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const AuthNav = ({ isMobile, isTablet, isDesktop }) => {
+const AuthNav = ({ isMobile, isTablet, isDesktop, openMenu }) => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   return (
@@ -41,7 +41,7 @@ const AuthNav = ({ isMobile, isTablet, isDesktop }) => {
           >
             Registration
           </Link>
-            <div className={css.authNavBurger}>
+            <button className={css.authNavBurger} onClick={openMenu}>
           <svg
             width={32}
             height={32}
@@ -49,13 +49,13 @@ const AuthNav = ({ isMobile, isTablet, isDesktop }) => {
           >
             <use href={`/icons/sprite.svg#icon-burger`}></use>
           </svg>
-        </div>
+        </button>
         </div>
         
       )}
 
       {(isMobile) && (
-        <div className={css.authNavBurger}>
+        <button className={css.authNavBurger} onClick={openMenu}>
           <svg
             width={32}
             height={32}
@@ -63,7 +63,7 @@ const AuthNav = ({ isMobile, isTablet, isDesktop }) => {
           >
             <use href={`/icons/sprite.svg#icon-burger`}></use>
           </svg>
-        </div>
+        </button>
       )}
     </>
   );

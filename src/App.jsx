@@ -130,7 +130,7 @@ const handleLogout = () => {
   onConfirm={handleLogout}
   onClose={closeLogoutModal}
 />
-{!isDesktop && <ModalMenu isMenuOpen={isMenuOpen} closeMenu={closeMenu}/>}
+{!isDesktop && <ModalMenu isMenuOpen={isMenuOpen} closeMenu={closeMenu} onLogoutClick={openLogoutModal}/>}
 
       {progress < 100 && (
         <HeroMain>
