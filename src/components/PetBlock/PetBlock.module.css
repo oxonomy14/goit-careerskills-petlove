@@ -1,11 +1,19 @@
-.petBlock {
+
+.petInfo {
+display: none;
+
+}
+
+
+@media only screen and (min-width: 768px) {
+ .petBlock {
   position: relative;
 }
 
 .petImage img {
   border-radius: 60px;
-  width: 592px;
-  height: 654px;
+  width: 704px;
+  height: 364px;
 }
 
 .petInfo {
@@ -14,9 +22,9 @@
   height: 121px;
   background-color: #fff;
   position: absolute;
-  bottom: 97px;
-  left: 61px;
-  padding: 19px 16px 18px;
+  bottom: 32px;
+  left: 32px;
+  padding: 16px 16px 18px;
   display: flex;
   gap: 8px;
 }
@@ -44,16 +52,15 @@
   margin-bottom: 11px;
 }
 .petName {
-  font-family: var(--font-family);
+
   font-weight: 700;
   font-size: 16px;
   line-height: 125%;
   letter-spacing: -0.03em;
   color: var(--primary-color);
 }
-
 .petBirthdayDate {
-  font-family: var(--font-family);
+
   font-weight: 500;
   font-size: 12px;
   line-height: 117%;
@@ -62,7 +69,7 @@
 }
 
 .petBirthdayDate span {
-  font-family: var(--font-family);
+
   font-weight: 500;
   font-size: 12px;
   line-height: 117%;
@@ -71,10 +78,51 @@
 }
 
 .petAbout {
-  font-family: var(--font-family);
+
   font-weight: 500;
   font-size: 12px;
   line-height: 117%;
   letter-spacing: -0.02em;
   color: rgba(38, 38, 38, 0.8);
 }
+
+}
+
+
+@media only screen and (min-width: 1280px) {
+.petBlock {
+  position: relative;
+}
+
+.petImage img {
+ 
+  width: 592px;
+  height: 654px;
+}
+
+.petInfo {
+
+  bottom: 97px;
+  left: 61px;
+  padding: 19px 16px 18px;
+ 
+}
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+

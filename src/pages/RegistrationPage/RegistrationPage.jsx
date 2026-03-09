@@ -8,7 +8,7 @@ const RegistrationPage = () => {
       <div className={css.wrapper}>
         <div>
           <PetBlock
-            petImage="img/petImageReg-desk@x2.webp"
+            petImage="petImageReg"
             petAvatar="img/avatarCat.png"
             petName="Jack"
             petBirthdayDate="18.10.2021"
