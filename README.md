@@ -1,16 +1,83 @@
-# React + Vite
+# Petlove – Online Platform for Finding Pets
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Petlove** is a modern frontend web application designed to help users find and
+adopt pets. The platform provides an intuitive interface for browsing animals,
+viewing detailed pet profiles, and saving favorite pets.
 
-Currently, two official plugins are available:
+The application focuses on making the process of finding a pet simple,
+convenient, and accessible.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- Browse a list of pets available for adoption
+- Filter animals by different parameters
+- View detailed information about each pet
+- Add pets to favorites
+- Responsive design for mobile, tablet, and desktop devices
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+- [React + Vite] – project setup
+- [Redux Toolkit] – state management
+- [React Router] – routing
+- [CSS] – styling
+- [API] – backend for website petlove
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📡 API
+
+The backend is available at:  
+[API] – [backend for website petlove](https://petlove.b.goit.study/api-docs/)
+
+## ⚙️ Technical Specifications
+
+📄
+[View Document](https://docs.google.com/spreadsheets/d/1DmQUeGZy_oaXN6yn69ORLzou1ZQRyTMlrAqPSit_clw/edit?gid=1134921873#gid=1134921873)
+
+## 🎨 Project Layout
+
+🧩
+[View Figma Design](https://www.figma.com/file/puMNfZVg4YI8UZoJ1QiLLi/Petl%F0%9F%92%9Bve?type=design&node-id=55838-750&mode=design&t=Xg1IwIcKebTl5xGs-0)
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/oxonomy14/goit-careerskills-petlove.git
+cd goit-careerskills-petlove
+code .
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Start development server
+
+```bash
+npm run dev
+```
+
+### 4. Build for production
+
+```bash
+npm run build
+```
+
+---
+
+## 🌍 Deployment
+
+Deployed on **Vercel/Netlify**:  
+👉 [Live Demo](https://goit-careerskills-petlove.vercel.app)
+
+---
+
+## 👨‍💻 Author
+
+Developer: **[Andrii Semenenko]**  
+GitHub: [oxonomy14](https://github.com/oxonomy14)
