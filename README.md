@@ -23,8 +23,6 @@ convenient, and accessible.
 - [CSS] – styling
 - [API] – backend for website petlove
 
----
-
 ## 📡 API
 
 The backend is available at:  
@@ -68,14 +66,10 @@ npm run dev
 npm run build
 ```
 
----
-
 ## 🌍 Deployment
 
 Deployed on **Vercel/Netlify**:  
 👉 [Live Demo](https://goit-careerskills-petlove.vercel.app)
-
----
 
 ## 👨‍💻 Author
 
