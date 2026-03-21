@@ -1,8 +1,35 @@
 .sectionLoginPage {
-    padding: 32px;
+  padding: 26px 20px 20px;
 }
 
 .wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media only screen and (min-width: 375px) {
+}
+
+@media only screen and (min-width: 768px) {
+  .sectionLoginPage {
+    padding: 32px;
+  }
+
+  .wrapper {
+    display: flex;
+
+    gap: 16px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .sectionLoginPage {
+    padding: 32px;
+  }
+
+  .wrapper {
     display: flex;
     gap: 32px;
+  }
 }

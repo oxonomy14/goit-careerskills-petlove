@@ -1,13 +1,13 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import HomeHeader from '../Header/HomeHeader';
+import HomeContainer from '../Container/HomeContainer';
 //import Loader from '../Loader/Loader';
 import { useMediaQuery } from 'react-responsive';
-import {selectIsLoggedIn} from '../../redux/auth/authSelector';
+import { selectIsLoggedIn } from '../../redux/auth/authSelector';
 import { useSelector } from 'react-redux';
 
-
-const HomeLayout = ({openMenu}) => {
+const HomeLayout = ({ openMenu }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const location = useLocation();
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -20,7 +20,6 @@ const HomeLayout = ({openMenu}) => {
   }, [location.pathname]);
 
   console.log('isLoggedIn', isLoggedIn);
-  
 
   return (
     <>
@@ -30,12 +29,11 @@ const HomeLayout = ({openMenu}) => {
           isDesktop={isDesktop}
           isTablet={isTablet}
           isLoggedIn={isLoggedIn}
-                openMenu={openMenu}
+          openMenu={openMenu}
         />
       </header>
 
       <main>
-
         <Outlet />
       </main>
     </>

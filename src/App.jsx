@@ -18,10 +18,9 @@ import Viewed from './components/Viewed/Viewed';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import NoticeModalManager from './components/NoticeModalManager/NoticeModalManager';
 import { selectToken, selectIsRefreshing } from './redux/auth/authSelector.js';
-import { fetchUserFull,logoutUser } from './redux/auth/authOperations';
+import { fetchUserFull, logoutUser } from './redux/auth/authOperations';
 import ModalApproveAction from './components/ModalApproveAction/ModalApproveAction.jsx';
-import ModalMenu from "./components/ModalMenu/ModalMenu.jsx";
-
+import ModalMenu from './components/ModalMenu/ModalMenu.jsx';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
@@ -36,7 +35,7 @@ const OurFriendsPage = lazy(
   () => import('./pages/OurFriendsPage/OurFriendsPage'),
 );
 const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
-const AddPetPage = lazy(()=> import('./pages/AddPetPage/AddPetPage'));
+const AddPetPage = lazy(() => import('./pages/AddPetPage/AddPetPage'));
 
 function App() {
   const { progress, showLogo } = useFakeLoader();
@@ -48,49 +47,50 @@ function App() {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+
   const openMenu = () => setIsMenuOpen(true);
   const closeMenu = () => setIsMenuOpen(false);
 
-    const isDesktop = useMediaQuery({ minWidth: 1280 });
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
 
+  useEffect(() => {
+    if (!token) return;
 
-useEffect(() => {
-  if (!token) return;
-
-  dispatch(refreshUser())
-    .unwrap()
-    .then(() => {
-      dispatch(fetchUserFull());
-    })
-    .catch(() => {
-     
-    });
-}, [dispatch, token]);
-
+    dispatch(refreshUser())
+      .unwrap()
+      .then(() => {
+        dispatch(fetchUserFull());
+      })
+      .catch(() => {});
+  }, [dispatch, token]);
 
   if (isRefreshing) {
     return <Loader />;
   }
 
+  const openLogoutModal = () => setIsLogoutModalOpen(true);
+  const closeLogoutModal = () => setIsLogoutModalOpen(false);
 
-
-const openLogoutModal = () => setIsLogoutModalOpen(true);
-const closeLogoutModal = () => setIsLogoutModalOpen(false);
-
-const handleLogout = () => {
-  dispatch(logoutUser());
-  closeLogoutModal();
-};
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    closeLogoutModal();
+  };
 
   return (
     <>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route element={<HomeLayout openMenu={openMenu}/>}>
+          <Route element={<HomeLayout openMenu={openMenu} />}>
             <Route path="/" element={<HomePage />} />
           </Route>
-          <Route element={<DefaultLayout onLogoutClick={openLogoutModal} openMenu={openMenu}/>}>
+          <Route
+            element={
+              <DefaultLayout
+                onLogoutClick={openLogoutModal}
+                openMenu={openMenu}
+              />
+            }
+          >
             <Route path="/friends" element={<OurFriendsPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/notices" element={<NoticesPage />} />
@@ -100,8 +100,7 @@ const handleLogout = () => {
               path="/profile"
               element={
                 <PrivateRoute>
-                  <ProfilePage onLogoutClick={openLogoutModal}/>
-                 
+                  <ProfilePage onLogoutClick={openLogoutModal} />
                 </PrivateRoute>
               }
             >
@@ -109,12 +108,11 @@ const handleLogout = () => {
               <Route path="favorites" element={<Favorites />} />
               <Route path="viewed" element={<Viewed />} />
             </Route>
-             <Route
+            <Route
               path="/add-pet"
               element={
                 <PrivateRoute>
-             
-                  <AddPetPage/>
+                  <AddPetPage />
                 </PrivateRoute>
               }
             />
@@ -123,14 +121,20 @@ const handleLogout = () => {
           </Route>
         </Routes>
       </Suspense>
- <NoticeModalManager /> 
+      <NoticeModalManager />
 
- <ModalApproveAction
-  isOpen={isLogoutModalOpen}
-  onConfirm={handleLogout}
-  onClose={closeLogoutModal}
-/>
-{!isDesktop && <ModalMenu isMenuOpen={isMenuOpen} closeMenu={closeMenu} onLogoutClick={openLogoutModal}/>}
+      <ModalApproveAction
+        isOpen={isLogoutModalOpen}
+        onConfirm={handleLogout}
+        onClose={closeLogoutModal}
+      />
+      {!isDesktop && (
+        <ModalMenu
+          isMenuOpen={isMenuOpen}
+          closeMenu={closeMenu}
+          onLogoutClick={openLogoutModal}
+        />
+      )}
 
       {progress < 100 && (
         <HeroMain>

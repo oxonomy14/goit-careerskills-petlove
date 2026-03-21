@@ -2,7 +2,6 @@
   margin: 0 auto;
   min-width: 320px;
   max-width: 1280px;
- 
 }
 
 @media only screen and (min-width: 375px) {
@@ -20,6 +19,5 @@
 @media only screen and (min-width: 1280px) {
   .container {
     width: 1280px;
-  
   }
 }

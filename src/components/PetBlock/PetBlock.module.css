@@ -1,128 +1,109 @@
-
 .petInfo {
-display: none;
-
+  display: none;
 }
-
+.petImage img {
+  border-radius: 30px;
+  width: 100%;
+  height: 100%;
+}
+@media only screen and (min-width: 375px) {
+  .petImage img {
+    width: 335px;
+    height: 280px;
+  }
+}
 
 @media only screen and (min-width: 768px) {
- .petBlock {
-  position: relative;
+  .petBlock {
+    position: relative;
+  }
+
+  .petImage img {
+    border-radius: 60px;
+    width: 704px;
+    height: 302px;
+  }
+
+  .petInfo {
+    border-radius: 20px;
+    width: 294px;
+    height: 121px;
+    background-color: #fff;
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    padding: 16px 16px 18px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .avatar {
+    border-radius: 100%;
+    background-color: var(--secondary-color);
+    width: 60px;
+    height: 60px;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .avatar img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .petHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 11px;
+  }
+  .petName {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+    color: var(--primary-color);
+  }
+  .petBirthdayDate {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    letter-spacing: -0.02em;
+    color: var(--text-strong);
+  }
+
+  .petBirthdayDate span {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    letter-spacing: -0.02em;
+    color: rgba(38, 38, 38, 0.5);
+  }
+
+  .petAbout {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    letter-spacing: -0.02em;
+    color: rgba(38, 38, 38, 0.8);
+  }
 }
-
-.petImage img {
-  border-radius: 60px;
-  width: 704px;
-  height: 364px;
-}
-
-.petInfo {
-  border-radius: 20px;
-  width: 294px;
-  height: 121px;
-  background-color: #fff;
-  position: absolute;
-  bottom: 32px;
-  left: 32px;
-  padding: 16px 16px 18px;
-  display: flex;
-  gap: 8px;
-}
-
-.avatar {
-  border-radius: 100%;
-  background-color: var(--secondary-color);
-  width: 60px;
-  height: 60px;
-  flex: 0 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.avatar img {
-  width: 32px;
-  height: 32px;
-}
-
-.petHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 11px;
-}
-.petName {
-
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 125%;
-  letter-spacing: -0.03em;
-  color: var(--primary-color);
-}
-.petBirthdayDate {
-
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 117%;
-  letter-spacing: -0.02em;
-  color: var(--text-strong);
-}
-
-.petBirthdayDate span {
-
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 117%;
-  letter-spacing: -0.02em;
-  color: rgba(38, 38, 38, 0.5);
-}
-
-.petAbout {
-
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 117%;
-  letter-spacing: -0.02em;
-  color: rgba(38, 38, 38, 0.8);
-}
-
-}
-
 
 @media only screen and (min-width: 1280px) {
-.petBlock {
-  position: relative;
+  .petBlock {
+    position: relative;
+  }
+
+  .petImage img {
+    width: 592px;
+    height: 654px;
+  }
+
+  .petInfo {
+    bottom: 97px;
+    left: 61px;
+    padding: 19px 16px 18px;
+  }
 }
-
-.petImage img {
- 
-  width: 592px;
-  height: 654px;
-}
-
-.petInfo {
-
-  bottom: 97px;
-  left: 61px;
-  padding: 19px 16px 18px;
- 
-}
-
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-

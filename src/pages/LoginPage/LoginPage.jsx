@@ -8,7 +8,7 @@ const LoginPage = () => {
       <div className={css.wrapper}>
         <div>
           <PetBlock
-            petImage="img/petImageLog-desk@x2.webp"
+            petImage="petImageLog"
             petAvatar="img/avatarDog.png"
             petName="Rich"
             petBirthdayDate="21.09.2020"
