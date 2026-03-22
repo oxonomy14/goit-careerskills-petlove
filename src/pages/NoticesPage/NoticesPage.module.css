@@ -1,21 +1,70 @@
 .sectionNoticesPage {
+  padding-top: 54px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 84px;
+}
+
+.title {
+  padding-left: 20px;
+  margin-bottom: 40px;
+}
+
+.noticesFilters {
+  margin-bottom: 40px;
+}
+
+.noticesList {
+  margin-bottom: 48px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media only screen and (min-width: 375px) {
+}
+
+@media only screen and (min-width: 768px) {
+  .sectionNoticesPage {
+    padding-top: 85px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 88px;
+  }
+
+  .title {
+    padding-left: 32px;
+    margin-bottom: 44px;
+  }
+  .noticesFilters {
+    margin-bottom: 32px;
+  }
+  .noticesList {
+    margin-bottom: 60px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .sectionNoticesPage {
     padding-top: 96px;
     padding-left: 32px;
     padding-right: 32px;
     padding-bottom: 80px;
-}
+  }
 
-.title {
+  .title {
     padding-left: 32px;
     margin-bottom: 40px;
-}
+  }
 
-.noticesFilters {
-   margin-bottom: 40px; 
-}
+  .noticesFilters {
+    margin-bottom: 40px;
+  }
 
-.noticesList {
+  .noticesList {
     margin-bottom: 60px;
     padding-left: 32px;
-     padding-right: 32px;
+    padding-right: 32px;
+  }
 }

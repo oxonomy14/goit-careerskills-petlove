@@ -21,8 +21,6 @@ import {
   selectSelectedCategory,
   selectSelectedGender,
   selectSelectedSpecies,
-
-  
 } from '../../redux/notices/noticesSelectors';
 
 import { setPage, setKeyword } from '../../redux/notices/noticesSlice';
@@ -39,31 +37,30 @@ const NoticesPage = () => {
   const gender = useSelector(selectSelectedGender);
   const species = useSelector(selectSelectedSpecies);
   const sortBy = useSelector(state => state.noticesList.sortBy);
-const selectedLocation = useSelector(
-  state => state.noticesList.selectedLocation
-);
+  const selectedLocation = useSelector(
+    state => state.noticesList.selectedLocation,
+  );
 
   useEffect(() => {
     dispatch(fetchNotices());
-  }, [dispatch, page, keyword, selectedCategory, gender, species, sortBy, selectedLocation]);
-
- useEffect(() => {
-    console.log('notices', notices);
-  }, [notices]); 
+  }, [
+    dispatch,
+    page,
+    keyword,
+    selectedCategory,
+    gender,
+    species,
+    sortBy,
+    selectedLocation,
+  ]);
 
   useEffect(() => {
-  console.log('selectedLocation:', selectedLocation);
-}, [selectedLocation]);
+    console.log('notices', notices);
+  }, [notices]);
 
-/*   useEffect(() => {
-  console.log(
-    notices.map(n => ({
-      title: n.title,
-      popularity: n.popularity,
-      price: n.price,
-    }))
-  );
-}, [notices]); */
+  useEffect(() => {
+    console.log('selectedLocation:', selectedLocation);
+  }, [selectedLocation]);
 
   if (error) return <p>Error: {error}</p>;
 
