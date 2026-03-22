@@ -1,13 +1,13 @@
 .item {
-  width: calc((100% - 40px) / 3);
+  width: 100%;
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
   border-radius: 15px;
-  width: 371px;
-  height: 196px;
+  width: 100%;
+
   background-color: var(--bg-secondary-color);
   padding-top: 12px;
   padding-right: 12px;
@@ -23,13 +23,13 @@
 .time {
   border-radius: 30px;
   padding: 8px;
-  width: 100px;
-  height: 34px;
+  width: 88px;
+  height: 32px;
   background-color: var(--secondary-color);
   font-family: var(--font-family);
   font-weight: 500;
-  font-size: 14px;
-  line-height: 129%;
+  font-size: 12px;
+  line-height: 133%;
   letter-spacing: -0.02em;
   color: var(--primary-color);
   display: flex;
@@ -39,7 +39,7 @@
 
 .secondRow {
   display: flex;
-  gap: 20px;
+  gap: 14px;
 }
 
 .logo {
@@ -49,22 +49,24 @@
 
 .logo img {
   border-radius: 100%;
-  width: 90px;
+  width: 80px;
+  flex-shrink: 0;
 }
 
 .title {
   font-family: var(--font-family);
   font-weight: 700;
-  font-size: 20px;
-  line-height: 130%;
+  font-size: 16px;
+  line-height: 125%;
   letter-spacing: -0.04em;
   color: var(--text-strong);
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .details {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .details p {
@@ -91,16 +93,81 @@
   line-height: 129%;
   letter-spacing: -0.02em;
   color: var(--text-strong);
-
 }
 
 .link {
-      text-decoration: none;
+  text-decoration: none;
 }
 
 .link:hover {
-    text-decoration: none;
-   cursor: pointer;
+  text-decoration: none;
+  cursor: pointer;
 }
 
+@media only screen and (min-width: 375px) {
+  .wrapper {
+    width: 335px;
+    height: 184px;
+  }
 
+  .time {
+    width: 88px;
+    height: 32px;
+  }
+
+  .logo img {
+    width: 80px;
+    height: 80px;
+  }
+  .title {
+    font-size: 16px;
+    line-height: 125%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .item {
+    width: calc((100% - 20px) / 2);
+  }
+  .wrapper {
+    width: 342px;
+    height: 196px;
+  }
+
+  .time {
+    width: 100px;
+    height: 34px;
+    font-size: 14px;
+    line-height: 129%;
+  }
+
+  .secondRow {
+    gap: 16px;
+  }
+
+  .logo img {
+    width: 90px;
+    height: 90px;
+  }
+  .title {
+    font-size: 20px;
+    line-height: 130%;
+
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .item {
+    width: calc((100% - 40px) / 3);
+  }
+
+  .wrapper {
+    width: 371px;
+    height: 196px;
+  }
+
+  .secondRow {
+    gap: 20px;
+  }
+}

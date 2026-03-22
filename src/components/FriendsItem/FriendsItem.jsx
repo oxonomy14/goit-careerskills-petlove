@@ -23,23 +23,48 @@ const FriendsItem = ({ friend }) => {
           <div className={css.details}>
             <h3 className={css.title}>{friend.title}</h3>
             <p>
-              {' '}
               <span className={css.label}>Email:</span>
-              <Link to={friend.url} target="_blank" className={css.link}   rel="noopener noreferrer"> <span className={css.value}>
-               {friend.email || 'No email provided'}
-              </span></Link>
+              <Link
+                to={friend.url}
+                target="_blank"
+                className={css.link}
+                rel="noopener noreferrer"
+              >
+                {' '}
+                <span className={css.value}>
+                  {friend.email || 'No email provided'}
+                </span>
+              </Link>
             </p>
             <p>
               <span className={css.label}>Address:</span>
-             <Link to={friend.url} target="_blank" className={css.link}   rel="noopener noreferrer"> <span className={css.value}></span> <span className={css.value}>
-                {shortAddress || 'No address provided'}
-              </span></Link>
+              <Link
+                to={friend.url}
+                target="_blank"
+                className={css.link}
+                rel="noopener noreferrer"
+              >
+                {' '}
+                <span className={css.value}></span>{' '}
+                <span className={css.value}>
+                  {shortAddress || 'No address provided'}
+                </span>
+              </Link>
             </p>
             <p>
               <span className={css.label}>Phone:</span>
-              <Link to={friend.url} target="_blank" className={css.link}   rel="noopener noreferrer"> <span className={css.value}></span><span className={css.value}>
-                {friend.phone || 'No phone provided'}
-              </span></Link>
+              <Link
+                to={friend.url}
+                target="_blank"
+                className={css.link}
+                rel="noopener noreferrer"
+              >
+                {' '}
+                <span className={css.value}></span>
+                <span className={css.value}>
+                  {friend.phone || 'No phone provided'}
+                </span>
+              </Link>
             </p>
           </div>
         </div>

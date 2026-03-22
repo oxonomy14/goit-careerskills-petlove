@@ -1,12 +1,30 @@
 .sectionOurFriendsPage {
-    padding-top: 96px;
-    padding-left: 64px;
-    padding-right: 63px;
-    padding-bottom: 80px;
+  padding: 54px 20px 80px;
 }
 
 .title {
-    margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
-.content {}
+@media only screen and (min-width: 375px) {
+}
+
+@media only screen and (min-width: 768px) {
+  .sectionOurFriendsPage {
+    padding: 85px 32px 80px;
+  }
+
+  .title {
+    margin-bottom: 44px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .sectionOurFriendsPage {
+    padding: 96px 64px 80px;
+  }
+
+  .title {
+    margin-bottom: 60px;
+  }
+}
