@@ -1,21 +1,20 @@
 .formWrapper {
   display: flex;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .item {
   border-radius: 30px;
-  padding: 14px;
-
-  height: 48px;
+  padding: 12px;
+  height: 42px;
   background-color: var(--bg-secondary-color);
-
   font-weight: 500;
-  font-size: 16px;
-  line-height: 125%;
+  font-size: 14px;
+  line-height: 129%;
   letter-spacing: -0.03em;
   color: var(--text-strong);
-   position: relative;
+  position: relative;
   cursor: pointer;
 }
 
@@ -29,21 +28,45 @@
   padding-right: 40px;
 }
 
-
-
 .btnClear {
-position: absolute;
-  right: 18.5px;
+  position: absolute;
+  right: 16.5px;
   top: 50%;
   transform: translateY(-50%);
   border: none;
   background: transparent;
   cursor: pointer;
-    
 }
 
 .iconX {
-    stroke: var(--white-color);
-    width: 11px;
-    height: 11px;
+  stroke: var(--white-color);
+  width: 11px;
+  height: 11px;
+}
+
+@media only screen and (min-width: 375px) {
+}
+
+@media only screen and (min-width: 768px) {
+  .formWrapper {
+    gap: 8px;
+  }
+
+  .item {
+    padding: 14px;
+    height: 48px;
+    font-size: 16px;
+    line-height: 125%;
+  }
+
+  .btnClear {
+    right: 19.5px;
+  }
+
+  .active {
+    padding-right: 44px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
 }

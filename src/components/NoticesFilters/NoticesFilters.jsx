@@ -4,24 +4,23 @@ import ByGenderField from '../ByGenderField/ByGenderField';
 import ByTypeField from '../ByTypeField/ByTypeField';
 import LocationSelect from '../LocationSelect/LocationSelect';
 
-
 import SortbyNotices from '../SortbyNotices/SortbyNotices';
 import css from './NoticesFilters.module.css';
 import { useDispatch } from 'react-redux';
 
 import { useSelector } from 'react-redux';
 
-import { setSortBy, setLocation, setPage} from '../../redux/notices/noticesSlice';
-
+import {
+  setSortBy,
+  setLocation,
+  setPage,
+} from '../../redux/notices/noticesSlice';
 
 /* const NoticesFilters = ({ setPage, setKeyword }) => { */
 const NoticesFilters = ({ setKeyword }) => {
   const dispatch = useDispatch();
 
-const sortBy = useSelector(state => state.noticesList.sortBy);
-
-
-
+  const sortBy = useSelector(state => state.noticesList.sortBy);
 
   return (
     <>
@@ -37,33 +36,35 @@ const sortBy = useSelector(state => state.noticesList.sortBy);
                 dispatch(setPage(1));
                 dispatch(setKeyword(''));
               }}
-              variant = 'noticesFilter'
+              variant="noticesFilter"
             />
           </div>
 
           <div className={css.categoryFieldWrapper}>
             <CategoryField />
           </div>
-          <div>
+          <div className={css.genderFieldWrapper}>
             <ByGenderField />
           </div>
-          <div>
+          <div className={css.typeFieldWrapper}>
             <ByTypeField />
           </div>
-          <div>
-         <LocationSelect
-   onChange={(locationId) => {
-    dispatch(setLocation(locationId));
-  }}
-/>
+          <div className={css.locationFieldWrapper}>
+            <LocationSelect
+              onChange={locationId => {
+                dispatch(setLocation(locationId));
+              }}
+            />
           </div>
         </div>
         <div className={css.SortbyNoticesdWrapper}>
-          <SortbyNotices   value={sortBy}
-  onChange={value => {
-    dispatch(setSortBy(value));
-    dispatch(setPage(1));
-  }} />
+          <SortbyNotices
+            value={sortBy}
+            onChange={value => {
+              dispatch(setSortBy(value));
+              dispatch(setPage(1));
+            }}
+          />
         </div>
       </div>
     </>

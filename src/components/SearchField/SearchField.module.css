@@ -2,14 +2,23 @@
   border: 1px solid rgba(38, 38, 38, 0.15);
   border-radius: 30px;
   padding: 12px 36px 12px 12px;
-  font-family: var(--font-family);
+
   font-weight: 500;
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.03em;
   color: rgba(38, 38, 38, 0.5);
+
   width: 100%;
   outline: none;
+}
+
+.inputSearchField::placeholder {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: rgba(38, 38, 38, 0.5);
 }
 
 .inputSearchField:hover {
@@ -20,14 +29,23 @@
   border: none;
   border-radius: 30px;
   padding: 12px 36px 12px 12px;
-  font-family: var(--font-family);
+
   font-weight: 500;
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.03em;
   color: var(--text-strong);
+
   width: 100%;
   outline: none;
+}
+
+.inputSearchFieldNoticesFilter::placeholder {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: var(--text-strong);
 }
 
 .btnSearch {
@@ -80,9 +98,22 @@
     line-height: 125%;
   }
 
+  .inputSearchField::placeholder {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+    color: rgba(38, 38, 38, 0.5);
+  }
+
   .inputSearchFieldNoticesFilter {
     padding: 14px 36px 14px 14px;
 
+    font-size: 16px;
+    line-height: 125%;
+  }
+
+  .inputSearchFieldNoticesFilter::placeholder {
     font-size: 16px;
     line-height: 125%;
   }

@@ -2,6 +2,7 @@ import css from './LocationSelect.module.css';
 import Select, { components } from 'react-select';
 import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 
 import { fetchLocations } from '../../redux/notices/noticesOperations';
 import { selectLocations } from '../../redux/notices/noticesSelectors';
@@ -16,8 +17,8 @@ const CustomIndicators = props => {
         <svg
           width="13"
           height="13"
-           stroke="#262626"
-        fill="none"
+          stroke="#262626"
+          fill="none"
           style={{ cursor: 'pointer', marginRight: 8 }}
           onMouseDown={e => {
             e.preventDefault();
@@ -46,6 +47,7 @@ const CustomIndicators = props => {
 };
 
 const LocationSelect = ({ value, onChange }) => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   const dispatch = useDispatch();
   const locations = useSelector(selectLocations);
 
@@ -74,9 +76,9 @@ const LocationSelect = ({ value, onChange }) => {
       borderRadius: 30,
       border: state.isFocused ? '1px solid #F6B83D' : '1px solid transparent',
       boxShadow: 'none',
-       '&:hover': {
-    border: '1px solid transparent',
-  },
+      '&:hover': {
+        border: '1px solid transparent',
+      },
       paddingLeft: 14,
       backgroundColor: 'var(--bg-secondary-color)',
     }),
@@ -91,7 +93,9 @@ const LocationSelect = ({ value, onChange }) => {
 
     option: (base, state) => ({
       ...base,
-      backgroundColor: state.isFocused  ? 'var(--bg-secondary-color)' : 'transparent',
+      backgroundColor: state.isFocused
+        ? 'var(--bg-secondary-color)'
+        : 'transparent',
       color: 'var(--text-strong)',
       borderRadius: 12,
       padding: '10px 14px',
@@ -103,7 +107,17 @@ const LocationSelect = ({ value, onChange }) => {
     }),
     valueContainer: base => ({
       ...base,
-      padding: '14px',
+      padding: '0px',
+    }),
+    placeholder: base => ({
+      ...base,
+      color: 'var(--text-strong)',
+
+      fontWeight: 500,
+
+      letterSpacing: '-0.03em',
+      fontSize: isMobile ? 14 : 16,
+      lineHeight: isMobile ? '129%' : '125%',
     }),
 
     input: base => ({
@@ -115,7 +129,6 @@ const LocationSelect = ({ value, onChange }) => {
 
   return (
     <Select
-
       options={options}
       value={selectedOption || null}
       onChange={option => onChange(option?.value || null)}

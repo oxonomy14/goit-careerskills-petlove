@@ -1,17 +1,16 @@
 .item {
-  width: calc((100% - 64px) / 3);
+  width: 100%;
   display: flex;
   flex-direction: column;
   border-radius: 16px;
-  padding: 24px;
+  padding: 12px;
 
   background-color: var(--bg-secondary-color);
 }
 
 .tabItem {
-  /* width: calc((100% - 24px) / 2); */
- flex: 0 0 calc((100% - 24px) / 2); 
- 
+  flex: 0 0 calc((100% - 24px) / 2);
+
   display: flex;
   flex-direction: column;
   border-radius: 16px;
@@ -20,13 +19,12 @@
   padding-right: 14px;
   padding-bottom: 24px;
   background-color: var(--bg-secondary-color);
-
 }
 
 .image {
   border-radius: 16px;
+  width: 100%;
 
-  height: 178px;
   object-fit: cover;
 
   object-position: 5% 20%;
@@ -41,10 +39,9 @@
 }
 
 .title {
-  font-family: var(--font-family);
   font-weight: 700;
-  font-size: 18px;
-  line-height: 133%;
+  font-size: 16px;
+  line-height: 125%;
   color: var(--text-strong);
 }
 
@@ -60,16 +57,16 @@
 }
 
 .popularity {
-  font-family: var(--font-family);
   font-weight: 500;
   font-size: 14px;
-  line-height: 143%;
+  line-height: 129%;
   color: var(--text-strong);
 }
 
 .categoryList {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 14px;
   margin-bottom: 16px;
 }
 
@@ -80,7 +77,6 @@
 }
 
 .category {
-  font-family: var(--font-family);
   font-weight: 500;
   font-size: 10px;
   line-height: 140%;
@@ -112,8 +108,8 @@
 .price {
   font-family: var(--font-family);
   font-weight: 700;
-  font-size: 18px;
-  line-height: 133%;
+  font-size: 16px;
+  line-height: 125%;
   color: var(--text-strong);
   margin-bottom: 12px;
 }
@@ -126,18 +122,19 @@
 .btnLearnMore {
   font-family: var(--font-family);
   font-weight: 500;
-  font-size: 16px;
-  line-height: 125%;
+  font-size: 14px;
+  line-height: 129%;
   letter-spacing: -0.03em;
   color: var(--bg-secondary-color);
   border-radius: 30px;
-  padding: 14px 89px;
-  width: 257px;
-  height: 48px;
+  padding: 14px 56px;
+  width: 100%;
+  height: 46px;
   background-color: var(--primary-color);
   text-decoration: none;
   white-space: nowrap;
   outline: none;
+  text-align: center;
 }
 
 .tabBtnLearnMore {
@@ -159,8 +156,9 @@
 
 .btnfavorites {
   border-radius: 30px;
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
   background-color: var(--secondary-color);
   cursor: pointer;
   display: flex;
@@ -189,8 +187,140 @@
 
 .favoritesIcon {
   width: 18px;
-  height: 18px;
+  height: 16px;
   stroke: var(--primary-color);
   fill: none;
+}
 
+@media only screen and (min-width: 375px) {
+  .item {
+    width: 335px;
+    padding: 24px;
+  }
+  .image {
+    width: 287px;
+    height: 178px;
+
+    margin-bottom: 24px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .item {
+    width: calc((100% - 20px) / 2);
+  }
+  .image {
+    width: 294px;
+    height: 178px;
+  }
+  .title {
+    font-size: 18px;
+    line-height: 133%;
+  }
+
+  .popularity {
+    line-height: 143%;
+  }
+  .categoryList {
+    gap: 16px;
+  }
+  .price {
+    font-size: 18px;
+    line-height: 133%;
+  }
+  .btnLearnMore {
+    font-size: 16px;
+    line-height: 125%;
+
+    padding: 14px 78px;
+    width: 236px;
+    height: 48px;
+  }
+  .btnfavorites {
+    width: 48px;
+    height: 48px;
+  }
+  .favoritesIcon {
+    width: 18px;
+    height: 16px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .item {
+    width: calc((100% - 64px) / 3);
+  }
+
+  .image {
+    width: 315px;
+    height: 178px;
+  }
+
+  .tabItem {
+    flex: 0 0 calc((100% - 24px) / 2);
+
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    padding-top: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-bottom: 24px;
+    background-color: var(--bg-secondary-color);
+  }
+
+  .tabCategoryList {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+
+  .tabBtnLearnMore {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+    color: var(--bg-secondary-color);
+    border-radius: 30px;
+    padding: 12px 79px;
+    width: 238px;
+    height: 48px;
+    background-color: var(--primary-color);
+    text-decoration: none;
+    white-space: nowrap;
+    outline: none;
+  }
+
+  .title {
+    font-size: 18px;
+    line-height: 133%;
+  }
+
+  .popularity {
+    line-height: 143%;
+  }
+  .categoryList {
+    gap: 16px;
+  }
+  .price {
+    font-size: 18px;
+    line-height: 133%;
+  }
+  .btnLearnMore {
+    font-size: 16px;
+    line-height: 125%;
+
+    padding: 14px 89px;
+    width: 257px;
+    height: 48px;
+  }
+  .btnfavorites {
+    width: 48px;
+    height: 48px;
+  }
+  .favoritesIcon {
+    width: 18px;
+    height: 16px;
+  }
 }
