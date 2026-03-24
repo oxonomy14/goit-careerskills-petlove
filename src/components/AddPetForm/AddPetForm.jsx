@@ -8,9 +8,9 @@ import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import { Controller } from 'react-hook-form';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { forwardRef } from "react";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { forwardRef } from 'react';
 
 const AddPetForm = ({ onSuccess }) => {
   const dispatch = useDispatch();
@@ -34,21 +34,21 @@ const AddPetForm = ({ onSuccess }) => {
   });
 
   const CustomDateInput = forwardRef(({ value, onClick, placeholder }, ref) => {
-  return (
-    <div className={css.dateWrapper} onClick={onClick}>
-      <input
-        ref={ref}
-        value={value || ""}
-        placeholder={placeholder}
-        readOnly
-        className={css.inputBirthday}
-      />
-      <svg className={css.calendarIcon}>
-        <use href={`/icons/sprite.svg#icon-calendar`} />
-      </svg>
-    </div>
-  );
-});
+    return (
+      <div className={css.dateWrapper} onClick={onClick}>
+        <input
+          ref={ref}
+          value={value || ''}
+          placeholder={placeholder}
+          readOnly
+          className={css.inputBirthday}
+        />
+        <svg className={css.calendarIcon}>
+          <use href={`/icons/sprite.svg#icon-calendar`} />
+        </svg>
+      </div>
+    );
+  });
 
   const speciesOptions = [
     { value: 'dog', label: 'Dog' },
@@ -94,7 +94,7 @@ const AddPetForm = ({ onSuccess }) => {
                 {...register('sex')}
                 className={css.hiddenRadio}
               />
-              <div className={css.iconBoxFemale}>
+              <div className={css.iconBoxFemale} tabIndex={0}>
                 <svg className={css.femaleIcon}>
                   <use href={`/icons/sprite.svg#icon-female`} />
                 </svg>
@@ -143,7 +143,6 @@ const AddPetForm = ({ onSuccess }) => {
 
         <div className={css.urlphotoPetWraper}>
           <div>
-       
             <input
               {...register('imgURL')}
               placeholder="Enter photo URL"
@@ -180,22 +179,21 @@ const AddPetForm = ({ onSuccess }) => {
         {errors.name && <p className={css.error}>{errors.name.message}</p>}
 
         <div className={css.inputBirthdaySpecies}>
-            
           {/* Birthday */}
-  
-    <Controller
-  name="birthday"
-  control={control}
-  render={({ field }) => (
-    <DatePicker
-      selected={field.value}
-      onChange={(date) => field.onChange(date)}
-      dateFormat="dd.MM.yyyy"
-      placeholderText="00.00.0000"
-      customInput={<CustomDateInput />}
-    />
-  )}
-/>
+
+          <Controller
+            name="birthday"
+            control={control}
+            render={({ field }) => (
+              <DatePicker
+                selected={field.value}
+                onChange={date => field.onChange(date)}
+                dateFormat="dd.MM.yyyy"
+                placeholderText="00.00.0000"
+                customInput={<CustomDateInput />}
+              />
+            )}
+          />
           {errors.birthday && (
             <p className={css.error}>{errors.birthday.message}</p>
           )}
@@ -206,7 +204,7 @@ const AddPetForm = ({ onSuccess }) => {
             render={({ field }) => (
               <Select
                 className={css.select}
-                 components={{ IndicatorSeparator: () => null }}
+                components={{ IndicatorSeparator: () => null }}
                 {...field}
                 options={speciesOptions}
                 placeholder="Select species"
@@ -221,7 +219,7 @@ const AddPetForm = ({ onSuccess }) => {
                     borderColor: state.isFocused
                       ? 'var(--primary-color)'
                       : 'rgba(38, 38, 38, 0.15)',
-                         
+
                     boxShadow: 'transparent',
                     padding: '0 16px',
                     '&:hover': {
@@ -231,12 +229,11 @@ const AddPetForm = ({ onSuccess }) => {
                   valueContainer: base => ({
                     ...base,
                     padding: '0', // прибираємо внутрішній паддінг
-                     height: '52px',
+                    height: '52px',
                   }),
                   indicatorsContainer: base => ({
                     ...base,
                     height: '52px',
-                    
                   }),
 
                   input: base => ({
@@ -255,8 +252,8 @@ const AddPetForm = ({ onSuccess }) => {
                   placeholder: base => ({
                     ...base,
                     color: 'rgba(38, 38, 38, 0.6)', // колір плейсхолдера
-                     fontSize: '16px',
-                         margin: '0',
+                    fontSize: '16px',
+                    margin: '0',
                   }),
                   menu: base => ({
                     ...base,

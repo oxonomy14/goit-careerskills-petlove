@@ -5,25 +5,24 @@ import { useState } from 'react';
 import css from './AddPetPage.module.css';
 
 const AddPetPage = () => {
+  const [isModalCongratsOpen, setIsModalCongratsOpen] = useState(false);
+  const openModalCongrats = () => setIsModalCongratsOpen(true);
+  const closeModalCongrats = () => setIsModalCongratsOpen(false);
 
-const [isModalCongratsOpen, setIsModalCongratsOpen] = useState(false);
-const openModalCongrats = () => setIsModalCongratsOpen(true);
-const closeModalCongrats = () => setIsModalCongratsOpen(false);
-
-
-
-    return (<>
-    <section className={css.sectionAddPetPage}>
+  return (
+    <>
+      <section className={css.sectionAddPetPage}>
         <div className={css.AddPetPageWrapper}>
-            <PetBlock
-              petImage="img/petImageAddPage-desk@x2.webp"
-              />
-<AddPetForm onSuccess={openModalCongrats}/>
+          <PetBlock petImage="petImageAddPage" variant="addPet" />
+          <AddPetForm onSuccess={openModalCongrats} />
         </div>
-
-    </section>
-      <ModalCongrats   isOpen={isModalCongratsOpen} onClose={closeModalCongrats}/>
-    </>);
+      </section>
+      <ModalCongrats
+        isOpen={isModalCongratsOpen}
+        onClose={closeModalCongrats}
+      />
+    </>
+  );
 };
 
 export default AddPetPage;
