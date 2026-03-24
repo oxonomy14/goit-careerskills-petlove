@@ -1,8 +1,28 @@
 .sectionAddPetPage {
-    padding: 32px;
+  padding: 18px 20px 56px;
 }
 
 .AddPetPageWrapper {
-    display: flex;
-    gap:32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+@media only screen and (min-width: 375px) {
+}
+
+@media only screen and (min-width: 768px) {
+  .sectionAddPetPage {
+    padding: 32px 32px 60px;
+  }
+
+  .AddPetPageWrapper {
+    gap: 32px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .sectionAddPetPage {
+    padding: 32px;
+  }
 }

@@ -1,74 +1,142 @@
 .petItemWrapper {
-    border: 1px solid rgba(38, 38, 38, 0.1);
-border-radius: 20px;
-width: 440px;
-height: 130px;
-padding: 20px;
-display: flex;
-justify-content: space-between;
+  border: 1px solid rgba(38, 38, 38, 0.1);
+  border-radius: 20px;
+  width: 100%;
+
+  padding: 16px;
+  display: flex;
+
+  justify-content: space-between;
 }
 
-.petImage{
-border-radius: 100px;
-padding: 10px;
-width: 90px;
-height: 90px;
-object-fit: cover;
+.petImageWrapper {
+  display: flex;
+  margin-right: 14px;
+  flex-shrink: 0;
+}
+
+.petImage {
+  border-radius: 100px;
+
+  width: 66px;
+  height: 66px;
+  object-fit: cover;
 }
 
 .petDetails {
-    display: flex;
-flex-direction: column;
-justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .title {
-
-font-weight: 700;
-font-size: 14px;
-line-height: 129%;
-color: var(--text-strong);
-margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  color: var(--text-strong);
+  margin-bottom: 8px;
 }
 
 .petInfoList {
-    display: flex;
-    gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.petInfoItem {}
-
 .petInfoItemTitle {
-
-font-weight: 500;
-font-size: 10px;
-line-height: 140%;
-letter-spacing: -0.02em;
-color: rgba(38, 38, 38, 0.5);
-margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 140%;
+  letter-spacing: -0.02em;
+  color: rgba(38, 38, 38, 0.5);
+  margin-bottom: 4px;
 }
 
 .petInfoItemDesc {
-
-font-weight: 500;
-font-size: 12px;
-line-height: 117%;
-letter-spacing: -0.02em;
-color: var(--text-strong);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 117%;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
 }
 
 .btnTrash {
-border-radius: 30px;
-padding: 10px;
-width: 38px;
-height: 38px;
-background-color: var( --secondary-color);
-outline: none;
+  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: var(--secondary-color);
+  outline: none;
+  display: flex;
+  flex-shrink: 0;
 }
 
 .trashIcon {
+  width: 16px;
+  height: 16px;
+  stroke: var(--primary-color);
+  fill: none;
+}
+
+@media only screen and (min-width: 375px) {
+  .petItemWrapper {
+    width: 295px;
+    height: 132px;
+    padding: 16px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .petItemWrapper {
+    width: 305px;
+    height: 149px;
+    padding: 20px;
+  }
+  .petImageWrapper {
+    margin-right: 14px;
+  }
+
+  .petImage {
+    width: 75px;
+    height: 75px;
+  }
+  .title {
+    margin-bottom: 12px;
+  }
+  .petInfoList {
+    gap: 10px;
+  }
+  .btnTrash {
+    width: 32px;
+    height: 32px;
+    padding: 7px;
+  }
+  .trashIcon {
     width: 18px;
     height: 18px;
-stroke: var(--primary-color);
-fill: none;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .petItemWrapper {
+    width: 440px;
+    height: 130px;
+    padding: 22px 12px;
+  }
+
+  .petImage {
+    width: 90px;
+    height: 90px;
+  }
+
+  .petInfoList {
+    gap: 30px;
+  }
+
+  .btnTrash {
+    width: 38px;
+    height: 38px;
+    padding: 10px;
+  }
 }

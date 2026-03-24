@@ -1,5 +1,17 @@
 .petsList {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+@media only screen and (min-width: 375px) {
+}
+
+@media only screen and (min-width: 768px) {
+}
+
+@media only screen and (min-width: 1280px) {
+  .petsList {
     gap: 14px;
+  }
 }

@@ -1,14 +1,43 @@
 .userCard {
-  border-radius: 60px;
-  width: 520px;
-  
-  background-color: var(--white-color);
-  padding: 40px;
+  border-radius: 30px;
+  width: 100%;
 
+  background-color: var(--white-color);
+  padding: 18px 20px 40px;
 }
 
 .userBlockWrap {
   margin-bottom: 40px;
 }
 
-.petBlockWrap {margin-bottom: 40px;}
+.petBlockWrap {
+  margin-bottom: 40px;
+}
+
+@media only screen and (min-width: 375px) {
+  .userCard {
+    width: 335px;
+
+    padding: 18px 20px 40px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .userCard {
+    width: 704px;
+
+    padding: 40px;
+  }
+  .petBlockWrap {
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .userCard {
+    border-radius: 60px;
+    width: 520px;
+
+    padding: 40px;
+  }
+}

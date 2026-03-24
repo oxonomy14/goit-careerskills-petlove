@@ -1,29 +1,63 @@
 .addPetWrap {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .addPetTitle {
-    font-family: var(--font-family);
-font-weight: 700;
-font-size: 18px;
-line-height: 133%;
-color: var(--text-strong);
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--text-strong);
 }
 
 .addPetLink {
-    border-radius: 30px;
-padding: 10px 20px;
-width: 118px;
-height: 40px;
-background-color: var(--primary-color);
-font-family: var(--font-family);
-font-weight: 500;
-font-size: 16px;
-line-height: 125%;
-letter-spacing: -0.03em;
-color: var(--white-color);
-text-decoration: none;
-cursor: pointer;
+  border-radius: 30px;
+  padding: 10px 16px;
+  width: 103px;
+  height: 38px;
+  background-color: var(--primary-color);
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 129%;
+
+  letter-spacing: -0.03em;
+  color: var(--white-color);
+  text-decoration: none;
+  cursor: pointer;
 }
 
+@media only screen and (min-width: 375px) {
+}
+
+@media only screen and (min-width: 768px) {
+  .addPetTitle {
+    font-size: 18px;
+    line-height: 133%;
+  }
+
+  .addPetLink {
+    padding: 10px 20px;
+    width: 118px;
+    height: 40px;
+
+    font-size: 16px;
+    line-height: 125%;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .addPetTitle {
+    font-size: 18px;
+    line-height: 133%;
+  }
+
+  .addPetLink {
+    padding: 10px 20px;
+    width: 118px;
+    height: 40px;
+
+    font-size: 16px;
+    line-height: 125%;
+  }
+}

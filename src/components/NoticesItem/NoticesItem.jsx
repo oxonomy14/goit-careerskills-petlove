@@ -4,7 +4,7 @@ import {
   addToFavorites,
   removeFromFavorites,
 } from '../../redux/notices/noticesOperations';
-import {selectFavoriteIds} from '../../redux/auth/authSelector';
+import { selectFavoriteIds } from '../../redux/auth/authSelector';
 import { openAttentionModal } from '../../redux/modal/modalSlice';
 import { selectIsLoggedIn } from '../../redux/auth/authSelector';
 
@@ -12,51 +12,49 @@ import { openNoticeModal } from '../../redux/modal/modalSlice';
 
 import { addViewedToStorage } from '../../utils/viewedStorage';
 
-
 const NoticesItem = ({ notice, variant = 'default' }) => {
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-const favoriteIds = useSelector(selectFavoriteIds);
+  const favoriteIds = useSelector(selectFavoriteIds);
 
-
-const isFavorite = Array.isArray(favoriteIds) && favoriteIds.includes(notice._id);
-
-
+  const isFavorite =
+    Array.isArray(favoriteIds) && favoriteIds.includes(notice._id);
 
   const isFavoritesPage = variant === 'favorites';
-    const isViewedPage = variant === 'viewed';
+  const isViewedPage = variant === 'viewed';
 
+  const handleToggleFavorite = () => {
+    if (!isLoggedIn) {
+      dispatch(openAttentionModal());
+      return;
+    }
 
-const handleToggleFavorite = () => {
-
-  if (!isLoggedIn) {
-    dispatch(openAttentionModal());
-    return;
-  }
-
-  if (isFavorite) {
-    dispatch(removeFromFavorites(notice._id));
-  } else {
-    dispatch(addToFavorites(notice._id));
-  }
-};
+    if (isFavorite) {
+      dispatch(removeFromFavorites(notice._id));
+    } else {
+      dispatch(addToFavorites(notice._id));
+    }
+  };
 
   const handleLearnMore = () => {
-
     if (!isLoggedIn) {
-    dispatch(openAttentionModal());
-    return;
-  } else {
-     addViewedToStorage(notice._id);
-  dispatch(openNoticeModal(notice));
-  }
-};
+      dispatch(openAttentionModal());
+      return;
+    } else {
+      addViewedToStorage(notice._id);
+      dispatch(openNoticeModal(notice));
+    }
+  };
 
   return (
     <li className={isFavoritesPage || isViewedPage ? css.tabItem : css.item}>
-      <img className={css.image} src={notice.imgURL} alt={notice.title} />
+      <img
+        className={isFavoritesPage || isViewedPage ? css.tabImage : css.image}
+        src={notice.imgURL}
+        alt={notice.title}
+      />
       <div className={css.titleRow}>
         <h3> {notice.title}</h3>
 
@@ -69,7 +67,9 @@ const handleToggleFavorite = () => {
       </div>
       <ul
         className={
-          isFavoritesPage || isViewedPage ? css.tabCategoryList : css.categoryList
+          isFavoritesPage || isViewedPage
+            ? css.tabCategoryList
+            : css.categoryList
         }
       >
         <li>
@@ -103,10 +103,11 @@ const handleToggleFavorite = () => {
       <div className={css.btnWrapper}>
         <button
           className={
-            isFavoritesPage || isViewedPage ? css.tabBtnLearnMore : css.btnLearnMore
+            isFavoritesPage || isViewedPage
+              ? css.tabBtnLearnMore
+              : css.btnLearnMore
           }
-           onClick={handleLearnMore}
-          
+          onClick={handleLearnMore}
         >
           Learn more
         </button>

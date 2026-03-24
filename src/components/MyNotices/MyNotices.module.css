@@ -1,32 +1,25 @@
-.myNoticesWrap {
-    padding-top: 40px;
-    
-}
-
 .myNoticesBtn {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 32px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
-
-
 
 .btn {
   border-radius: 30px;
-  padding: 14px 32px;
-  height: 48px;
+  padding: 12px;
+  height: 42px;
   background-color: var(--white-color);
   font-family: var(--font-family);
   font-weight: 500;
-  font-size: 16px;
-  line-height: 125%;
+  font-size: 14px;
+  line-height: 129%;
   letter-spacing: -0.03em;
   color: var(--text-strong);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-    -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btnActive {
@@ -35,6 +28,79 @@
 }
 
 .btnWide {
-  padding: 14px 45px;
+  padding: 12px 38.5px;
 }
 
+@media only screen and (min-width: 375px) {
+}
+
+@media only screen and (min-width: 768px) {
+  .myNoticesBtn {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    border-radius: 30px;
+    padding: 14px;
+    height: 48px;
+    background-color: var(--white-color);
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+    color: var(--text-strong);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btnActive {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+  }
+
+  .btnWide {
+    padding: 14px 45px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .myNoticesBtn {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    margin-top: 40px;
+  }
+
+  .btn {
+    border-radius: 30px;
+    padding: 14px 32px;
+    height: 48px;
+    background-color: var(--white-color);
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+    color: var(--text-strong);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btnActive {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+  }
+
+  .btnWide {
+    padding: 14px 45px;
+  }
+}
