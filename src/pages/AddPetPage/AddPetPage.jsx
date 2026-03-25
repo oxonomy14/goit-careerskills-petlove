@@ -5,7 +5,7 @@ import { useState } from 'react';
 import css from './AddPetPage.module.css';
 
 const AddPetPage = () => {
-  const [isModalCongratsOpen, setIsModalCongratsOpen] = useState(false);
+  const [isModalCongratsOpen, setIsModalCongratsOpen] = useState(true);
   const openModalCongrats = () => setIsModalCongratsOpen(true);
   const closeModalCongrats = () => setIsModalCongratsOpen(false);
 

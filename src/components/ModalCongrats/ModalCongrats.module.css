@@ -1,7 +1,7 @@
 .backdrop {
   position: fixed;
   inset: 0;
-
+  padding: 0 20px;
   background: rgba(0, 0, 0, 0.45);
 
   display: flex;
@@ -18,7 +18,7 @@
   display: flex;
   flex-direction: column;
   border-radius: 30px;
-  width: 410px;
+  width: 100%;
 
   background: var(--bg-secondary-color);
 
@@ -37,7 +37,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  margin-bottom: 22px;
+  margin-bottom: 0px;
 }
 
 .xIcon {
@@ -48,15 +48,13 @@
 
 .content {
   width: 100%;
-  padding: 55px;
+  padding: 40px 25px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
   overflow-y: auto;
-
-
 }
 
 .imageIconWrap {
@@ -76,40 +74,109 @@
 }
 
 .title {
-
-font-weight: 700;
-font-size: 24px;
-line-height: 117%;
-letter-spacing: -0.03em;
-color: var(--primary-color);
-margin-bottom: 14px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: var(--primary-color);
+  margin-bottom: 20px;
 }
 
 .text {
-font-weight: 500;
-font-size: 14px;
-line-height: 129%;
-letter-spacing: -0.02em;
-text-align: center;
-color: var(--text-strong);
-margin-bottom: 28px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--text-strong);
+  margin-bottom: 24px;
 }
 
 .ModalCongratsBtn {
-border-radius: 30px;
-padding: 14px 80px;
-width: 250px;
-height: 48px;
-background-color: var(--primary-color);
-cursor: pointer;
-outline: none;
+  border-radius: 30px;
+  padding: 12px 103px;
+  width: 100%;
+  height: 42px;
+  background-color: var(--primary-color);
+  cursor: pointer;
+  outline: none;
 
-font-weight: 700;
-font-size: 16px;
-line-height: 125%;
-letter-spacing: -0.03em;
-color: var(--white-color);
-text-decoration: none;
-white-space: nowrap;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: var(--white-color);
+  text-decoration: none;
+  white-space: nowrap;
 }
 
+@media only screen and (min-width: 375px) {
+  .modal {
+    width: 410px;
+  }
+  .closeBtn {
+    margin-bottom: 0px;
+  }
+
+  .content {
+    width: 100%;
+    padding: 40px 25px;
+  }
+  .title {
+    font-size: 20px;
+    line-height: 100%;
+
+    margin-bottom: 20px;
+  }
+  .text {
+    margin-bottom: 24px;
+  }
+
+  .ModalCongratsBtn {
+    padding: 12px 103px;
+    width: 285px;
+    height: 42px;
+
+    font-size: 14px;
+    line-height: 129%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .modal {
+    width: 410px;
+  }
+
+  .closeBtn {
+    margin-bottom: 22px;
+  }
+
+  .content {
+    width: 100%;
+    padding: 55px;
+  }
+
+  .title {
+    font-size: 24px;
+    line-height: 117%;
+
+    margin-bottom: 14px;
+  }
+
+  .text {
+    margin-bottom: 28px;
+  }
+
+  .ModalCongratsBtn {
+    padding: 14px 80px;
+    width: 250px;
+    height: 48px;
+
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+}
