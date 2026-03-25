@@ -3,7 +3,7 @@
   inset: 0;
 
   background: rgba(0, 0, 0, 0.45);
-
+  padding: 0 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,8 +15,8 @@
 
 .modal {
   border-radius: 30px;
-  width: 466px;
-  height: 434px;
+  width: 100%;
+  height: 476px;
   background: var(--bg-secondary-color);
 
   position: relative;
@@ -34,7 +34,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  margin-bottom: 22px;
+  margin-bottom: 0px;
 }
 
 .xIcon {
@@ -46,10 +46,10 @@
 .content {
   width: 100%;
   position: absolute;
-  top: 60px;
-  padding-left: 60px;
-  padding-right: 60px;
-  padding-bottom: 60px;
+  top: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,7 +72,6 @@
 }
 
 .title {
-  font-family: var(--font-family);
   font-weight: 700;
   font-size: 24px;
   line-height: 117%;
@@ -82,7 +81,6 @@
 }
 
 .text {
-  font-family: var(--font-family);
   font-weight: 500;
   font-size: 14px;
   line-height: 129%;
@@ -94,13 +92,14 @@
 
 .btnWrapper {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
 .btnLogIn {
   border-radius: 30px;
   padding: 14px 48px;
-  width: 140px;
+  width: 100%;
   height: 48px;
   background-color: var(--primary-color);
   font-family: var(--font-family);
@@ -110,6 +109,7 @@
   letter-spacing: -0.03em;
   color: var(--bg-secondary-color);
   text-decoration: none;
+  text-align: center;
 }
 
 .btnLogIn:hover {
@@ -125,7 +125,7 @@
 .btnReg {
   border-radius: 30px;
   padding: 14px 24px;
-  width: 140px;
+  width: 100%;
   height: 48px;
   background-color: var(--secondary-color);
   font-family: var(--font-family);
@@ -135,6 +135,7 @@
   letter-spacing: -0.03em;
   color: var(--primary-color);
   text-decoration: none;
+  text-align: center;
 }
 
 .btnReg:hover {
@@ -163,4 +164,85 @@
     opacity: 1;
     transform: scale(1);
   }
+}
+@media only screen and (min-width: 375px) {
+  .backdrop {
+    padding: 0 20px;
+  }
+  .modal {
+    width: 335px;
+    height: 394px;
+  }
+  .content {
+    top: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 40px;
+  }
+  .title {
+    font-size: 20px;
+    line-height: 100%;
+  }
+  .text {
+    margin-bottom: 24px;
+  }
+  .btnLogIn {
+    padding: 12px 48px;
+    width: 135px;
+    height: 42px;
+
+    font-size: 14px;
+    line-height: 129%;
+  }
+  .btnReg {
+    padding: 12px 24px;
+    width: 129px;
+    height: 42px;
+
+    font-size: 14px;
+    line-height: 129%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .modal {
+    width: 466px;
+    height: 434px;
+  }
+
+  .closeBtn {
+    margin-bottom: 0px;
+  }
+  .content {
+    top: 60px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 60px;
+  }
+  .title {
+    font-size: 24px;
+    line-height: 117%;
+  }
+  .text {
+    margin-bottom: 28px;
+  }
+  .btnLogIn {
+    padding: 14px 48px;
+    width: 140px;
+    height: 48px;
+
+    font-size: 16px;
+    line-height: 125%;
+  }
+  .btnReg {
+    padding: 14px 24px;
+    width: 140px;
+    height: 48px;
+
+    font-size: 16px;
+    line-height: 125%;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
 }
