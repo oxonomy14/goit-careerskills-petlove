@@ -1,11 +1,11 @@
 .sectionNotFound {
-  padding: 32px;
+  padding: 26px 20px 20px;
 }
 
 .wrapper {
   border-radius: 60px;
   width: 100%;
-  height: 654px;
+  height: 100vh;
   background-color: var(--primary-color);
   display: flex;
   flex-direction: column;
@@ -16,10 +16,10 @@
 .error {
   font-family: var(--font-family);
   font-weight: 800;
-  font-size: 300px;
+  font-size: 120px;
   line-height: 100%;
   color: var(--bg-secondary-color);
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,8 +27,8 @@
 
 .imgWrapper {
   border-radius: 1000px;
-  width: 299px;
-  height: 300git px;
+  width: 116px;
+  height: 117px;
   background: rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: center;
@@ -36,17 +36,16 @@
 }
 
 .imgWrapper img {
-  width: 299px;
-  height: 300px;
+  width: 116px;
+  height: 117px;
   border-radius: 1000px;
   object-fit: cover;
 }
 
 .text {
-  font-family: var(--font-family);
   font-weight: 700;
-  font-size: 24px;
-  line-height: 117%;
+  font-size: 16px;
+  line-height: 125%;
   letter-spacing: -0.03em;
   color: var(--bg-secondary-color);
   margin-bottom: 20px;
@@ -54,11 +53,10 @@
 
 .link {
   border-radius: 30px;
-  padding: 14px 30px;
-  width: 162px;
-  height: 48px;
+  padding: 12px 30px;
+  width: 150px;
+  height: 42px;
   background-color: var(--secondary-color);
-  font-family: var(--font-family);
   font-weight: 700;
   font-size: 16px;
   line-height: 125%;
@@ -66,4 +64,93 @@
   color: var(--primary-color);
   white-space: nowrap;
   text-decoration: none;
+}
+
+@media only screen and (min-width: 375px) {
+  .sectionNotFound {
+    padding: 26px 20px 20px;
+  }
+
+  .wrapper {
+    width: 335px;
+  }
+
+  .error {
+    font-size: 120px;
+
+    margin-bottom: 20px;
+  }
+
+  .imgWrapper {
+    width: 116px;
+    height: 117px;
+  }
+
+  .imgWrapper img {
+    width: 116px;
+    height: 117px;
+  }
+
+  .text {
+    font-size: 16px;
+    line-height: 125%;
+  }
+
+  .link {
+    padding: 12px 30px;
+    width: 150px;
+    height: 42px;
+    font-size: 16px;
+    line-height: 125%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .sectionNotFound {
+    padding: 43px 32px 32px;
+  }
+
+  .wrapper {
+    width: 704px;
+  }
+
+  .error {
+    font-size: 300px;
+
+    margin-bottom: 40px;
+  }
+
+  .imgWrapper {
+    width: 299px;
+    height: 300px;
+  }
+
+  .imgWrapper img {
+    width: 299px;
+    height: 300px;
+  }
+
+  .text {
+    font-size: 24px;
+    line-height: 117%;
+  }
+
+  .link {
+    padding: 14px 30px;
+    width: 162px;
+    height: 48px;
+    font-size: 16px;
+    line-height: 125%;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .sectionNotFound {
+    padding: 32px;
+  }
+
+  .wrapper {
+    width: 100%;
+    height: auto;
+  }
 }
