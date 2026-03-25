@@ -54,14 +54,6 @@ const NoticesPage = () => {
     selectedLocation,
   ]);
 
-  useEffect(() => {
-    console.log('notices', notices);
-  }, [notices]);
-
-  useEffect(() => {
-    console.log('selectedLocation:', selectedLocation);
-  }, [selectedLocation]);
-
   if (error) return <p>Error: {error}</p>;
 
   return (

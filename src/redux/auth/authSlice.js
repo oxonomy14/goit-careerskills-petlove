@@ -101,13 +101,9 @@ const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(fetchUserFull.fulfilled, (state, action) => {
-        console.log('fetchUserFull fulfilled:', action.payload);
+        //       console.log('fetchUserFull fulfilled:', action.payload);
 
-        state.user = action.payload; 
-/*        state.user = {
-  name: action.payload.name,
-  email: action.payload.email,
-}; */
+        state.user = action.payload;
 
         state.favorites =
           action.payload.noticesFavorites?.map(item => item._id) || [];
@@ -128,37 +124,35 @@ const authSlice = createSlice({
       .addCase(updateUser.fulfilled, (state, action) => {
         state.user = action.payload;
       })
-       .addCase(updateUser.rejected, (state, action) => {
+      .addCase(updateUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
       .addCase(addPet.pending, state => {
-  state.isLoading = true;
-  state.error = null;
-})
-.addCase(addPet.fulfilled, (state, action) => {
-  state.isLoading = false;
-  state.pets.push(action.payload);
-})
-.addCase(addPet.rejected, (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
-})
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(addPet.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.pets.push(action.payload);
+      })
+      .addCase(addPet.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
 
-.addCase(removePet.pending, state => {
-  state.isLoading = true;
-  state.error = null;
-})
-.addCase(removePet.fulfilled, (state, action) => {
-  state.isLoading = false;
-  state.pets = state.pets.filter(
-    pet => pet._id !== action.payload
-  );
-})
-.addCase(removePet.rejected, (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
-})
+      .addCase(removePet.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(removePet.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.pets = state.pets.filter(pet => pet._id !== action.payload);
+      })
+      .addCase(removePet.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      }),
 });
 
 export const authReducer = authSlice.reducer;

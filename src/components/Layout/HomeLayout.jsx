@@ -19,8 +19,6 @@ const HomeLayout = ({ openMenu }) => {
       location.pathname === '/' ? '#fff' : '#f9f9f9';
   }, [location.pathname]);
 
-  console.log('isLoggedIn', isLoggedIn);
-
   return (
     <>
       <header>
