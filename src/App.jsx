@@ -21,7 +21,7 @@ import { selectToken, selectIsRefreshing } from './redux/auth/authSelector.js';
 import { fetchUserFull, logoutUser } from './redux/auth/authOperations';
 import ModalApproveAction from './components/ModalApproveAction/ModalApproveAction.jsx';
 import ModalMenu from './components/ModalMenu/ModalMenu.jsx';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
