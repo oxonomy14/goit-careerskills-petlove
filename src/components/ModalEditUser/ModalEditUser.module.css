@@ -1,7 +1,7 @@
 .backdrop {
   position: fixed;
   inset: 0;
-
+  padding: 0 20px;
   background: rgba(0, 0, 0, 0.45);
 
   display: flex;
@@ -14,11 +14,11 @@
 }
 
 .modal {
-   max-height: 90vh;
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
   border-radius: 30px;
-  width: 480px;
+  width: 100%;
 
   background: var(--bg-secondary-color);
 
@@ -37,7 +37,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  margin-bottom: 22px;
+  margin-bottom: 0px;
 }
 
 .xIcon {
@@ -48,36 +48,30 @@
 
 .content {
   width: 100%;
-  padding: 50px;
+  padding: 40px 10px;
 
   display: flex;
   flex-direction: column;
- 
-
- 
 }
 
 .title {
-
-font-weight: 700;
-font-size: 18px;
-line-height: 133%;
-color: var(--text-strong);
-margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  color: var(--text-strong);
+  margin-bottom: 20px;
 }
 
 .userImageEmpty {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
   margin-bottom: 12px;
-
-
 }
 
 .userImageWrap {
   border-radius: 100px;
-  width: 86px;
-  height: 86px;
+  width: 80px;
+  height: 80px;
   background-color: var(--secondary-color);
   display: flex;
   align-items: center;
@@ -86,8 +80,8 @@ margin-bottom: 20px;
 
 .userImageAvatar {
   border-radius: 100px;
-width: 86px;
-height: 86px;
+  width: 80px;
+  height: 80px;
 }
 
 .userImageIcon {
@@ -97,83 +91,186 @@ height: 86px;
 }
 
 .urlAvatarWraper {
-    display: flex;
-justify-content: space-between;
-    margin-bottom: 14px;
-    align-items: center;
-
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  align-items: center;
 }
 
 .editUserInputUrl {
-    border: 1px solid var(--primary-color);
-border-radius: 30px;
-padding: 16px 16px 16px 16px;
-width: 226px;
-height: 42px;
-outline: none;
-font-weight: 500;
-font-size: 16px;
-line-height: 125%;
-letter-spacing: -0.03em;
-color: var(--text-strong);
+  border: 1px solid var(--primary-color);
+  border-radius: 30px;
+  padding: 13px;
+  width: 100%;
+  height: 42px;
+  outline: none;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 133%;
+  letter-spacing: -0.03em;
+  color: var(--text-strong);
 }
 
 .uploadFileWraper {
-border-radius: 30px;
-padding: 12px 16px;
-width: 146px;
-height: 42px;
-background-color: var(--secondary-color);
-display: flex;
-gap: 8px;
+  border-radius: 30px;
+  padding: 12px;
+  width: 126px;
+  height: 42px;
+  background-color: var(--secondary-color);
+  display: flex;
+  gap: 8px;
 }
 
 .uploadFileWraper p {
-font-weight: 500;
-font-size: 14px;
-line-height: 129%;
-letter-spacing: -0.02em;
-color: var(--text-strong);
-white-space: nowrap;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 133%;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+  white-space: nowrap;
 }
 
 .uploadIcon {
-    width: 18px;
-    height: 18px;
-    stroke: var(--primary-color);
-    fill:none;
+  width: 18px;
+  height: 18px;
+  stroke: var(--primary-color);
+  fill: none;
 }
 
 .editUserInput {
-border: 1px solid var(--primary-color);
-border-radius: 30px;
-padding: 16px 16px 16px 16px;
-width: 100%;
-height: 52px;
-margin-bottom: 14px;
-outline: none;
+  border: 1px solid var(--primary-color);
+  border-radius: 30px;
+  padding: 12px;
+  width: 100%;
+  height: 42px;
+  margin-bottom: 10px;
+  outline: none;
 
-font-weight: 500;
-font-size: 16px;
-line-height: 125%;
-letter-spacing: -0.03em;
-color: var(--text-strong);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: var(--text-strong);
 }
 
 .editUserInput:last-of-type {
-    margin-bottom: 40px;
+  margin-bottom: 21px;
 }
 
 .editUserBtn {
-border-radius: 30px;
-padding: 16px 173px;
-width: 380px;
-height: 52px;
-background-color: var(--primary-color);
-font-family: var(--font-family);
-font-weight: 700;
-font-size: 16px;
-line-height: 125%;
-letter-spacing: -0.03em;
-color: var(--white-color);
+  border-radius: 30px;
+  padding: 12px 108px;
+  width: 100%;
+  height: 42px;
+  background-color: var(--primary-color);
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: var(--white-color);
+}
+@media only screen and (min-width: 375px) {
+  .modal {
+    width: 335px;
+  }
+  .content {
+    padding: 40px 20px;
+  }
+  .editUserInputUrl {
+    padding: 13px;
+    width: 161px;
+  }
+  .uploadFileWraper {
+    width: 126px;
+  }
+  .editUserBtn {
+    width: 295px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .modal {
+    width: 480px;
+  }
+
+  .closeBtn {
+    margin-bottom: 22px;
+  }
+
+  .content {
+    padding: 50px;
+  }
+
+  .title {
+    font-size: 18px;
+    line-height: 133%;
+  }
+
+  .userImageWrap {
+    width: 86px;
+    height: 86px;
+  }
+
+  .userImageAvatar {
+    width: 86px;
+    height: 86px;
+  }
+
+  .urlAvatarWraper {
+    margin-bottom: 14px;
+  }
+
+  .editUserInputUrl {
+    padding: 16px 16px 16px 16px;
+    width: 226px;
+
+    font-size: 16px;
+    line-height: 125%;
+  }
+
+  .uploadFileWraper {
+    padding: 12px 16px;
+    width: 146px;
+    height: 42px;
+  }
+
+  .uploadFileWraper p {
+    font-size: 14px;
+    line-height: 129%;
+  }
+
+  .editUserInput {
+    padding: 16px;
+
+    height: 52px;
+    margin-bottom: 14px;
+
+    font-size: 16px;
+    line-height: 125%;
+  }
+
+  .editUserInput:last-of-type {
+    margin-bottom: 40px;
+  }
+
+  .editUserBtn {
+    border-radius: 30px;
+    padding: 16px 173px;
+    width: 380px;
+    height: 52px;
+    background-color: var(--primary-color);
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+    color: var(--white-color);
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .modal {
+    width: 480px;
+  }
 }
