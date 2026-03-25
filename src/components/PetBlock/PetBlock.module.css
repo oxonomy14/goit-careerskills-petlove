@@ -2,8 +2,9 @@
   display: none;
 }
 .petImage img {
-  border-radius: 30px;
+  border-radius: 15px;
   width: 100%;
+  height: auto;
 }
 @media only screen and (min-width: 375px) {
   .petImage img {

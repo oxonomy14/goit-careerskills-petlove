@@ -11,9 +11,29 @@ import { Controller } from 'react-hook-form';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { forwardRef } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { useState } from 'react';
+import { components } from 'react-select';
 
 const AddPetForm = ({ onSuccess }) => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   const dispatch = useDispatch();
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const CustomDropdownIndicator = props => {
+    return (
+      <components.DropdownIndicator {...props}>
+        <svg className={css.iconchevron}>
+          <use
+            href={`/icons/sprite.svg#${
+              menuOpen ? 'icon-selectUp' : 'icon-selectDown'
+            }`}
+          />
+        </svg>
+      </components.DropdownIndicator>
+    );
+  };
 
   const {
     register,
@@ -204,14 +224,19 @@ const AddPetForm = ({ onSuccess }) => {
             render={({ field }) => (
               <Select
                 className={css.select}
-                components={{ IndicatorSeparator: () => null }}
+                components={{
+                  IndicatorSeparator: () => null,
+                  DropdownIndicator: CustomDropdownIndicator,
+                }}
                 {...field}
                 options={speciesOptions}
-                placeholder="Select species"
+                placeholder="Type of pet"
                 onChange={option => field.onChange(option.value)}
                 value={speciesOptions.find(
                   option => option.value === field.value,
                 )}
+                onMenuOpen={() => setMenuOpen(true)}
+                onMenuClose={() => setMenuOpen(false)}
                 styles={{
                   control: (base, state) => ({
                     ...base,
@@ -221,19 +246,27 @@ const AddPetForm = ({ onSuccess }) => {
                       : 'rgba(38, 38, 38, 0.15)',
 
                     boxShadow: 'transparent',
-                    padding: '0 16px',
+
+                    padding: isMobile ? '0 12px' : '0 16px',
                     '&:hover': {
                       borderColor: 'transparent',
                     },
                   }),
+                  dropdownIndicator: base => ({
+                    ...base,
+                    padding: '0 2px', // ← прибрали паддінг
+                    margin: 0, // ← на всяк
+                  }),
                   valueContainer: base => ({
                     ...base,
-                    padding: '0', // прибираємо внутрішній паддінг
-                    height: '52px',
+                    padding: 0,
+                    height: isMobile ? '42px' : '52px',
                   }),
                   indicatorsContainer: base => ({
                     ...base,
-                    height: '52px',
+                    height: isMobile ? '42px' : '52px',
+                    width: 'auto',
+                    padding: 0,
                   }),
 
                   input: base => ({
@@ -245,19 +278,19 @@ const AddPetForm = ({ onSuccess }) => {
                   singleValue: base => ({
                     ...base,
                     color: 'rgba(38, 38, 38, 0.6)', // колір вибраного тексту
-                    fontSize: '16px',
+                    fontSize: isMobile ? '14px' : '16px',
                     margin: '0',
                   }),
 
                   placeholder: base => ({
                     ...base,
                     color: 'rgba(38, 38, 38, 0.6)', // колір плейсхолдера
-                    fontSize: '16px',
+                    fontSize: isMobile ? '14px' : '16px',
                     margin: '0',
                   }),
                   menu: base => ({
                     ...base,
-                    borderRadius: '12px',
+                    borderRadius: '15px',
                     overflow: 'hidden',
                   }),
                   option: (base, state) => ({
