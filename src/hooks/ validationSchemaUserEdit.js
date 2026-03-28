@@ -11,15 +11,20 @@ export const editUserSchema = Yup.object().shape({
     )
     .required('Email is required'),
 
-  avatar: Yup.string()
-    .test(
-      'avatar-format',
-      'Avatar must be a valid image URL or uploaded image',
-      value =>
-        /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)(\?.*)?$/i.test(
-          value || '',
-        ) || /^data:image\/[a-zA-Z]+;base64,/.test(value || ''),
-    )
+  avatar: Yup.mixed()
+    .test('avatar-format', 'Avatar must be a valid image', value => {
+      if (value instanceof File) {
+        return value.type.startsWith('image/');
+      }
+
+      if (typeof value === 'string') {
+        return /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)(\?.*)?$/i.test(
+          value,
+        );
+      }
+
+      return false;
+    })
     .required('Avatar photo is required'),
 
   phone: Yup.string()

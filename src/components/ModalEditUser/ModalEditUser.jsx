@@ -67,7 +67,9 @@ const ModalEditUser = ({
   const avatarValue = watch('avatar');
 
   useEffect(() => {
-    setAvatarPreview(avatarValue || user.avatar || '');
+    if (typeof avatarValue === 'string') {
+      setAvatarPreview(avatarValue || user.avatar || '');
+    }
   }, [avatarValue, user.avatar]);
 
   const handleImageUpload = event => {
@@ -75,17 +77,12 @@ const ModalEditUser = ({
 
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const base64Image = reader.result;
-      setValue('avatar', base64Image, {
-        shouldValidate: true,
-        shouldDirty: true,
-      });
-      setAvatarPreview(base64Image);
-    };
-
-    reader.readAsDataURL(file);
+    const previewUrl = URL.createObjectURL(file);
+    setValue('avatar', file, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+    setAvatarPreview(previewUrl);
   };
 
   const onSubmit = async data => {

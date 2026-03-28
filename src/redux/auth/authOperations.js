@@ -22,7 +22,7 @@ export const register = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
-  }
+  },
 );
 
 // REFRESH USER
@@ -37,13 +37,13 @@ export const refreshUser = createAsyncThunk(
     }
 
     try {
-     setAuthHeader(token);
+      setAuthHeader(token);
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
-  }
+  },
 );
 
 // LOGIN
@@ -52,12 +52,12 @@ export const login = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.post('/users/signin', credentials);
-       setAuthHeader(data.token);
+      setAuthHeader(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
-  }
+  },
 );
 
 // LOGOUT
@@ -70,7 +70,7 @@ export const logoutUser = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
-  }
+  },
 );
 
 export const fetchUserFull = createAsyncThunk(
@@ -82,21 +82,40 @@ export const fetchUserFull = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const updateUser = createAsyncThunk(
   'auth/updateUser',
   async (data, thunkAPI) => {
     try {
-      const response = await axios.patch('/users/current/edit', data);
+      const hasFileAvatar = data?.avatar instanceof File;
+
+      const payload = hasFileAvatar
+        ? (() => {
+            const formData = new FormData();
+            formData.append('name', data.name);
+            formData.append('email', data.email);
+            formData.append('phone', data.phone);
+            formData.append('avatar', data.avatar);
+            return formData;
+          })()
+        : data;
+
+      const response = await axios.patch('/users/current/edit', payload, {
+        headers: hasFileAvatar
+          ? {
+              'Content-Type': 'multipart/form-data',
+            }
+          : undefined,
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message || 'Update failed'
+        error.response?.data?.message || 'Update failed',
       );
     }
-  }
+  },
 );
 
 // Додати тварину
@@ -104,17 +123,12 @@ export const addPet = createAsyncThunk(
   'auth/addPet',
   async (petData, thunkAPI) => {
     try {
-      const { data } = await axios.post(
-        'users/current/pets/add',
-        petData
-      );
+      const { data } = await axios.post('users/current/pets/add', petData);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error.response?.data || error.message
-      );
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
-  }
+  },
 );
 
 // Видалити тварину
@@ -125,9 +139,7 @@ export const removePet = createAsyncThunk(
       await axios.delete(`users/current/pets/remove/${id}`);
       return id;
     } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error.response?.data || error.message
-      );
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
-  }
+  },
 );
