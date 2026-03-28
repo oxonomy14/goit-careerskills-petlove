@@ -7,11 +7,8 @@ export const petSchema = Yup.object().shape({
   title: Yup.string().required('Title is required'),
 
   imgURL: Yup.string()
-    .matches(
-      /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
-      'Image must be a valid URL'
-    )
-    .required('Image URL is required'),
+    .matches(/^data:image\/[a-zA-Z]+;base64,/, 'Please upload pet image')
+    .required('Pet image is required'),
 
   species: Yup.string().required('Species is required'),
 

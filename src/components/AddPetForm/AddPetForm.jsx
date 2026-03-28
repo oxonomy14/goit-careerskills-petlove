@@ -13,17 +13,18 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { forwardRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useState } from 'react';
-import { components } from 'react-select';
+import { components as SelectComponents } from 'react-select';
 
 const AddPetForm = ({ onSuccess }) => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const dispatch = useDispatch();
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState('');
 
   const CustomDropdownIndicator = props => {
     return (
-      <components.DropdownIndicator {...props}>
+      <SelectComponents.DropdownIndicator {...props}>
         <svg className={css.iconchevron}>
           <use
             href={`/icons/sprite.svg#${
@@ -31,7 +32,7 @@ const AddPetForm = ({ onSuccess }) => {
             }`}
           />
         </svg>
-      </components.DropdownIndicator>
+      </SelectComponents.DropdownIndicator>
     );
   };
 
@@ -41,6 +42,7 @@ const AddPetForm = ({ onSuccess }) => {
     control,
     formState: { errors, isSubmitting },
     reset,
+    setValue,
   } = useForm({
     resolver: yupResolver(petSchema),
     defaultValues: {
@@ -87,11 +89,30 @@ const AddPetForm = ({ onSuccess }) => {
     { value: 'scorpion', label: 'Scorpion' },
   ];
 
+  const handleImageUpload = event => {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64Image = reader.result;
+      setValue('imgURL', base64Image, {
+        shouldValidate: true,
+        shouldDirty: true,
+      });
+      setPreviewImage(base64Image);
+    };
+
+    reader.readAsDataURL(file);
+  };
+
   const onSubmit = async values => {
     try {
       await dispatch(addPet(values)).unwrap();
       toast.success('Pet added successfully');
       reset();
+      setPreviewImage('');
       onSuccess?.();
     } catch (error) {
       toast.error(error || 'Something went wrong');
@@ -155,9 +176,13 @@ const AddPetForm = ({ onSuccess }) => {
 
         <div className={css.petImageEmpty}>
           <div className={css.petImageWrap}>
-            <svg className={css.footImageIcon}>
-              <use href={`/icons/sprite.svg?v=${Date.now()}#icon-foot`} />
-            </svg>
+            {previewImage ? (
+              <img src={previewImage} alt="Pet preview" className={css.petPreviewImage} />
+            ) : (
+              <svg className={css.footImageIcon}>
+                <use href={`/icons/sprite.svg?v=${Date.now()}#icon-foot`} />
+              </svg>
+            )}
           </div>
         </div>
 
@@ -165,21 +190,28 @@ const AddPetForm = ({ onSuccess }) => {
           <div>
             <input
               {...register('imgURL')}
-              placeholder="Enter photo URL"
+              type="hidden"
+            />
+            <input
+              type="text"
+              placeholder="Choose photo from device"
               className={css.photoPetInputUrl}
+              value={previewImage ? 'Photo selected' : ''}
+              readOnly
             />
             {errors.imgURL && (
               <p className={css.error}>{errors.imgURL.message}</p>
             )}
           </div>
-          <div className={css.uploadFileWraper}>
+          <label className={css.uploadFileWraper}>
+            <input type="file" accept="image/*" hidden onChange={handleImageUpload} />
             <p>Upload photo</p>
             <svg className={css.uploadIcon}>
               <use
                 href={`/icons/sprite.svg?v=${Date.now()}#icon-upload-cloud`}
               />
             </svg>
-          </div>
+          </label>
         </div>
 
         {/* Title */}
