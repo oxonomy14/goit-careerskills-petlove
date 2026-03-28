@@ -1,7 +1,7 @@
 import css from './ModalEditUser.module.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import {selectUser, selectIsLoading} from '../../redux/auth/authSelector';
+import { selectUser, selectIsLoading } from '../../redux/auth/authSelector';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -18,8 +18,8 @@ const ModalEditUser = ({
   closeOnBackdrop = true,
   closeOnEsc = true,
 }) => {
-
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const [avatarPreview, setAvatarPreview] = useState('');
 
   useEffect(() => {
     const handleEsc = e => {
@@ -48,9 +48,11 @@ const ModalEditUser = ({
   const user = useSelector(selectUser);
   const isLoading = useSelector(selectIsLoading);
 
-    const {
+  const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(editUserSchema),
@@ -62,12 +64,36 @@ const ModalEditUser = ({
     },
   });
 
+  const avatarValue = watch('avatar');
+
+  useEffect(() => {
+    setAvatarPreview(avatarValue || user.avatar || '');
+  }, [avatarValue, user.avatar]);
+
+  const handleImageUpload = event => {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64Image = reader.result;
+      setValue('avatar', base64Image, {
+        shouldValidate: true,
+        shouldDirty: true,
+      });
+      setAvatarPreview(base64Image);
+    };
+
+    reader.readAsDataURL(file);
+  };
+
   const onSubmit = async data => {
     try {
       await dispatch(updateUser(data)).unwrap();
       onClose(); // ✅ закриваємо тільки якщо success
     } catch (error) {
-      toast.error(error.message || 'Something went wrong'); // ✅ показуємо notification
+      toast.error(error || 'Something went wrong'); // ✅ показуємо notification
     }
   };
 
@@ -83,75 +109,83 @@ const ModalEditUser = ({
         )}
 
         <div className={css.content}>
-<h2 className={css.title}>Edit information</h2>
-     <div className={css.userImageEmpty}>
+          <h2 className={css.title}>Edit information</h2>
+          <div className={css.userImageEmpty}>
             <div className={css.userImageWrap}>
-
-                {user.avatar ? (<img className={css.userImageAvatar} src={user.avatar} alt={user.name} />) :
-         (<svg className={css.userImageIcon}>
-          <use href={`/icons/sprite.svg?v=${Date.now()}#icon-user`} />
-        </svg>)}
-        </div>
-      
+              {avatarPreview ? (
+                <img
+                  className={css.userImageAvatar}
+                  src={avatarPreview}
+                  alt={user.name}
+                />
+              ) : (
+                <svg className={css.userImageIcon}>
+                  <use href={`/icons/sprite.svg?v=${Date.now()}#icon-user`} />
+                </svg>
+              )}
             </div>
-  <form onSubmit={handleSubmit(onSubmit)}>
-<div className={css.urlAvatarWraper}>
-    <div>        <input
-          {...register('avatar')}
-          placeholder="Avatar URL"
-          className={css.editUserInputUrl}
-        />
-        {errors.avatar && <p className={css.error}>{errors.avatar.message}</p>}</div>
-        <div className={css.uploadFileWraper}>
-            <p>Upload  photo</p>
- <svg className={css.uploadIcon}>
-              <use href={`/icons/sprite.svg?v=${Date.now()}#icon-upload-cloud`} />
-            </svg>
-        </div>
-</div>
+          </div>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className={css.urlAvatarWraper}>
+              <div>
+                <input
+                  {...register('avatar')}
+                  placeholder="Avatar URL"
+                  className={css.editUserInputUrl}
+                />
+                {errors.avatar && (
+                  <p className={css.error}>{errors.avatar.message}</p>
+                )}
+              </div>
+              <label className={css.uploadFileWraper}>
+                <input
+                  type="file"
+                  accept="image/*"
+                  hidden
+                  onChange={handleImageUpload}
+                />
+                <p>Upload photo</p>
+                <svg className={css.uploadIcon}>
+                  <use
+                    href={`/icons/sprite.svg?v=${Date.now()}#icon-upload-cloud`}
+                  />
+                </svg>
+              </label>
+            </div>
 
+            <input
+              {...register('name')}
+              placeholder="Name"
+              className={css.editUserInput}
+            />
+            {errors.name && <p className={css.error}>{errors.name.message}</p>}
 
-        <input
-          {...register('name')}
-          placeholder="Name"
-          className={css.editUserInput}
-        />
-        {errors.name && <p className={css.error}>{errors.name.message}</p>}
+            <input
+              {...register('email')}
+              placeholder="Email"
+              className={css.editUserInput}
+            />
+            {errors.email && (
+              <p className={css.error}>{errors.email.message}</p>
+            )}
 
-        <input
-          {...register('email')}
-          placeholder="Email"
-          className={css.editUserInput}
-        />
-        {errors.email && <p className={css.error}>{errors.email.message}</p>}
+            <input
+              {...register('phone')}
+              placeholder="+380XXXXXXXXX"
+              className={css.editUserInput}
+            />
+            {errors.phone && (
+              <p className={css.error}>{errors.phone.message}</p>
+            )}
 
-        <input
-          {...register('phone')}
-          placeholder="+380XXXXXXXXX"
-          className={css.editUserInput}
-        />
-        {errors.phone && <p className={css.error}>{errors.phone.message}</p>}
-
-        <button type="submit" disabled={isSubmitting} className={css.editUserBtn}>
-         {isLoading ? (<span>...</span>) : ("Save")} 
-        </button>
-
-      </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={css.editUserBtn}
+            >
+              {isLoading ? <span>...</span> : 'Save'}
+            </button>
+          </form>
         </div>
       </div>
     </div>,

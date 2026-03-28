@@ -119,6 +119,9 @@
   background-color: var(--secondary-color);
   display: flex;
   gap: 8px;
+  align-items: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .uploadFileWraper p {
