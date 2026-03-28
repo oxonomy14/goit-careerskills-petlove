@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { selectUser, selectIsLoading } from '../../redux/auth/authSelector';
 import { useDispatch, useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editUserSchema } from '../../hooks/ validationSchemaUserEdit';
 import toast from 'react-hot-toast';
@@ -50,6 +50,7 @@ const ModalEditUser = ({
 
   const {
     register,
+    control,
     handleSubmit,
     setValue,
     watch,
@@ -67,9 +68,16 @@ const ModalEditUser = ({
   const avatarValue = watch('avatar');
 
   useEffect(() => {
-    if (typeof avatarValue === 'string') {
-      setAvatarPreview(avatarValue || user.avatar || '');
+    if (avatarValue instanceof File) {
+      const previewUrl = URL.createObjectURL(avatarValue);
+      setAvatarPreview(previewUrl);
+
+      return () => {
+        URL.revokeObjectURL(previewUrl);
+      };
     }
+
+    setAvatarPreview(avatarValue || user.avatar || '');
   }, [avatarValue, user.avatar]);
 
   const handleImageUpload = event => {
@@ -77,12 +85,10 @@ const ModalEditUser = ({
 
     if (!file) return;
 
-    const previewUrl = URL.createObjectURL(file);
     setValue('avatar', file, {
       shouldValidate: true,
       shouldDirty: true,
     });
-    setAvatarPreview(previewUrl);
   };
 
   const onSubmit = async data => {
@@ -125,10 +131,19 @@ const ModalEditUser = ({
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className={css.urlAvatarWraper}>
               <div>
-                <input
-                  {...register('avatar')}
-                  placeholder="Avatar URL"
-                  className={css.editUserInputUrl}
+                <Controller
+                  name="avatar"
+                  control={control}
+                  render={({ field }) => (
+                    <input
+                      value={typeof field.value === 'string' ? field.value : ''}
+                      onChange={event => field.onChange(event.target.value)}
+                      onBlur={field.onBlur}
+                      ref={field.ref}
+                      placeholder="Avatar URL"
+                      className={css.editUserInputUrl}
+                    />
+                  )}
                 />
                 {errors.avatar && (
                   <p className={css.error}>{errors.avatar.message}</p>
