@@ -2,17 +2,15 @@ import css from './AddPetForm.module.css';
 import { useDispatch } from 'react-redux';
 import { addPet } from '../../redux/auth/authOperations';
 import { petSchema } from './PetSchema';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
-import { Controller } from 'react-hook-form';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { useState } from 'react';
 import { components as SelectComponents } from 'react-select';
 
 const AddPetForm = ({ onSuccess }) => {
@@ -43,6 +41,7 @@ const AddPetForm = ({ onSuccess }) => {
     formState: { errors, isSubmitting },
     reset,
     setValue,
+    watch,
   } = useForm({
     resolver: yupResolver(petSchema),
     defaultValues: {
@@ -55,12 +54,21 @@ const AddPetForm = ({ onSuccess }) => {
     },
   });
 
+  const imgURLValue = watch('imgURL');
+
   const CustomDateInput = forwardRef(({ value, onClick, placeholder }, ref) => {
+    const formatDisplayDate = val => {
+      if (!val) return '';
+      const [year, month, day] = val.split('-');
+      if (!year || !month || !day) return val;
+      return `${day}.${month}.${year}`;
+    };
+
     return (
       <div className={css.dateWrapper} onClick={onClick}>
         <input
           ref={ref}
-          value={value || ''}
+          value={formatDisplayDate(value)}
           placeholder={placeholder}
           readOnly
           className={css.inputBirthday}
@@ -91,20 +99,33 @@ const AddPetForm = ({ onSuccess }) => {
 
   const handleImageUpload = event => {
     const file = event.target.files?.[0];
-
     if (!file) return;
 
     const reader = new FileReader();
+
     reader.onloadend = () => {
       const base64Image = reader.result;
+
       setValue('imgURL', base64Image, {
         shouldValidate: true,
         shouldDirty: true,
       });
+
       setPreviewImage(base64Image);
     };
 
     reader.readAsDataURL(file);
+  };
+
+  const handleImgUrlChange = e => {
+    const value = e.target.value;
+
+    setValue('imgURL', value, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+
+    setPreviewImage(value);
   };
 
   const onSubmit = async values => {
@@ -177,10 +198,15 @@ const AddPetForm = ({ onSuccess }) => {
         <div className={css.petImageEmpty}>
           <div className={css.petImageWrap}>
             {previewImage ? (
-              <img src={previewImage} alt="Pet preview" className={css.petPreviewImage} />
+              <img
+                src={previewImage}
+                alt="Pet preview"
+                className={css.petPreviewImage}
+                onError={() => setPreviewImage('')}
+              />
             ) : (
               <svg className={css.footImageIcon}>
-                <use href={`/icons/sprite.svg?v=${Date.now()}#icon-foot`} />
+                <use href={`/icons/sprite.svg#icon-foot`} />
               </svg>
             )}
           </div>
@@ -189,32 +215,31 @@ const AddPetForm = ({ onSuccess }) => {
         <div className={css.urlphotoPetWraper}>
           <div>
             <input
-              {...register('imgURL')}
-              type="hidden"
-            />
-            <input
               type="text"
-              placeholder="Choose photo from device"
+              placeholder="Enter photo URL"
               className={css.photoPetInputUrl}
-              value={previewImage ? 'Photo selected' : ''}
-              readOnly
+              value={imgURLValue || ''}
+              onChange={handleImgUrlChange}
             />
             {errors.imgURL && (
               <p className={css.error}>{errors.imgURL.message}</p>
             )}
           </div>
+
           <label className={css.uploadFileWraper}>
-            <input type="file" accept="image/*" hidden onChange={handleImageUpload} />
+            <input
+              type="file"
+              accept="image/*"
+              hidden
+              onChange={handleImageUpload}
+            />
             <p>Upload photo</p>
             <svg className={css.uploadIcon}>
-              <use
-                href={`/icons/sprite.svg?v=${Date.now()}#icon-upload-cloud`}
-              />
+              <use href={`/icons/sprite.svg#icon-upload-cloud`} />
             </svg>
           </label>
         </div>
 
-        {/* Title */}
         <input
           {...register('title')}
           placeholder="Title"
@@ -222,7 +247,6 @@ const AddPetForm = ({ onSuccess }) => {
         />
         {errors.title && <p className={css.error}>{errors.title.message}</p>}
 
-        {/* Name */}
         <input
           {...register('name')}
           placeholder="Pet's Name"
@@ -231,21 +255,41 @@ const AddPetForm = ({ onSuccess }) => {
         {errors.name && <p className={css.error}>{errors.name.message}</p>}
 
         <div className={css.inputBirthdaySpecies}>
-          {/* Birthday */}
-
           <Controller
             name="birthday"
             control={control}
             render={({ field }) => (
               <DatePicker
-                selected={field.value}
-                onChange={date => field.onChange(date)}
+                selected={
+                  field.value
+                    ? (() => {
+                        const [year, month, day] = field.value.split('-');
+                        return new Date(year, month - 1, day);
+                      })()
+                    : null
+                }
+                onChange={date => {
+                  if (!date) {
+                    field.onChange('');
+                    return;
+                  }
+
+                  const formatted = `${date.getFullYear()}-${String(
+                    date.getMonth() + 1,
+                  ).padStart(2, '0')}-${String(date.getDate()).padStart(
+                    2,
+                    '0',
+                  )}`;
+
+                  field.onChange(formatted);
+                }}
                 dateFormat="dd.MM.yyyy"
                 placeholderText="00.00.0000"
                 customInput={<CustomDateInput />}
               />
             )}
           />
+
           {errors.birthday && (
             <p className={css.error}>{errors.birthday.message}</p>
           )}
@@ -276,9 +320,7 @@ const AddPetForm = ({ onSuccess }) => {
                     borderColor: state.isFocused
                       ? 'var(--primary-color)'
                       : 'rgba(38, 38, 38, 0.15)',
-
                     boxShadow: 'transparent',
-
                     padding: isMobile ? '0 12px' : '0 16px',
                     '&:hover': {
                       borderColor: 'transparent',
@@ -286,8 +328,8 @@ const AddPetForm = ({ onSuccess }) => {
                   }),
                   dropdownIndicator: base => ({
                     ...base,
-                    padding: '0 2px', // ← прибрали паддінг
-                    margin: 0, // ← на всяк
+                    padding: '0 2px',
+                    margin: 0,
                   }),
                   valueContainer: base => ({
                     ...base,
@@ -300,23 +342,20 @@ const AddPetForm = ({ onSuccess }) => {
                     width: 'auto',
                     padding: 0,
                   }),
-
                   input: base => ({
                     ...base,
                     margin: '0',
                     padding: '0',
                   }),
-
                   singleValue: base => ({
                     ...base,
-                    color: 'rgba(38, 38, 38, 0.6)', // колір вибраного тексту
+                    color: 'rgba(38, 38, 38, 0.6)',
                     fontSize: isMobile ? '14px' : '16px',
                     margin: '0',
                   }),
-
                   placeholder: base => ({
                     ...base,
-                    color: 'rgba(38, 38, 38, 0.6)', // колір плейсхолдера
+                    color: 'rgba(38, 38, 38, 0.6)',
                     fontSize: isMobile ? '14px' : '16px',
                     margin: '0',
                   }),
@@ -327,15 +366,12 @@ const AddPetForm = ({ onSuccess }) => {
                   }),
                   option: (base, state) => ({
                     ...base,
-
                     backgroundColor: state.isSelected
                       ? 'var(--primary-color)'
                       : state.isFocused
                         ? 'var(--primary-color)'
                         : 'transparent',
-                    color: state.isSelected
-                      ? 'rgba(38, 38, 38, 0.6)'
-                      : 'rgba(38, 38, 38, 0.6)',
+                    color: 'rgba(38, 38, 38, 0.6)',
                     cursor: 'pointer',
                   }),
                 }}

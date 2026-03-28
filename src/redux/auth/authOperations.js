@@ -89,26 +89,28 @@ export const updateUser = createAsyncThunk(
   'auth/updateUser',
   async (data, thunkAPI) => {
     try {
-      const hasFileAvatar = data?.avatar instanceof File;
+      const hasFile = Object.values(data).some(value => value instanceof File);
 
-      const payload = hasFileAvatar
-        ? (() => {
-            const formData = new FormData();
-            formData.append('name', data.name);
-            formData.append('email', data.email);
-            formData.append('phone', data.phone);
-            formData.append('avatar', data.avatar);
-            return formData;
-          })()
-        : data;
+      let payload = data;
+
+      if (hasFile) {
+        const formData = new FormData();
+
+        Object.entries(data).forEach(([key, value]) => {
+          if (value !== undefined && value !== null) {
+            formData.append(key, value);
+          }
+        });
+
+        payload = formData;
+      }
 
       const response = await axios.patch('/users/current/edit', payload, {
-        headers: hasFileAvatar
-          ? {
-              'Content-Type': 'multipart/form-data',
-            }
+        headers: hasFile
+          ? { 'Content-Type': 'multipart/form-data' }
           : undefined,
       });
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -118,15 +120,16 @@ export const updateUser = createAsyncThunk(
   },
 );
 
-// Додати тварину
 export const addPet = createAsyncThunk(
   'auth/addPet',
   async (petData, thunkAPI) => {
     try {
-      const { data } = await axios.post('users/current/pets/add', petData);
+      const { data } = await axios.post('/users/current/pets/add', petData);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message,
+      );
     }
   },
 );
