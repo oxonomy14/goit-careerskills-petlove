@@ -1,10 +1,7 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from './redux/auth/authOperations';
-
 import { useFakeLoader } from './hooks/useFakeLoader';
 import { useMediaQuery } from 'react-responsive';
 import DefaultLayout from './components/Layout/DefaultLayout';
@@ -17,11 +14,12 @@ import Favorites from './components/Favorites/Favorites';
 import Viewed from './components/Viewed/Viewed';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import NoticeModalManager from './components/NoticeModalManager/NoticeModalManager';
-import { selectToken, selectIsRefreshing } from './redux/auth/authSelector.js';
+import { selectToken, selectIsRefreshing } from './redux/auth/authSelector';
 import { fetchUserFull, logoutUser } from './redux/auth/authOperations';
-import ModalApproveAction from './components/ModalApproveAction/ModalApproveAction.jsx';
+import ModalApproveAction from './components/ModalApproveAction/ModalApproveAction';
 import ModalMenu from './components/ModalMenu/ModalMenu.jsx';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import toast from 'react-hot-toast';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
@@ -62,7 +60,10 @@ function App() {
       .then(() => {
         dispatch(fetchUserFull());
       })
-      .catch(() => {});
+      .catch(error => {
+        console.error('Failed to refresh user:', error);
+        toast.error("Can't update session. Log in again");
+      });
   }, [dispatch, token]);
 
   if (isRefreshing) {
