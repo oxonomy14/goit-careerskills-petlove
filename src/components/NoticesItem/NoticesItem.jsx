@@ -11,6 +11,7 @@ import { selectIsLoggedIn } from '../../redux/auth/authSelector';
 import { openNoticeModal } from '../../redux/modal/modalSlice';
 
 import { addViewedToStorage } from '../../utils/viewedStorage';
+import { refreshViewed } from '../../redux/viewedSlice';
 
 const NoticesItem = ({ notice, variant = 'default' }) => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const NoticesItem = ({ notice, variant = 'default' }) => {
       return;
     } else {
       addViewedToStorage(notice._id);
+      dispatch(refreshViewed());
       dispatch(openNoticeModal(notice));
     }
   };
