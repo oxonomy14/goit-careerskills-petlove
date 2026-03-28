@@ -44,6 +44,7 @@ const ModalMenu = ({ isMenuOpen, closeMenu, onLogoutClick }) => {
                     ? clsx(css.authNavBtn, css.logInBtnHome)
                     : clsx(css.authNavBtn, css.logInBtn)
                 }
+                onClick={closeMenu}
               >
                 Log In
               </Link>
@@ -55,6 +56,7 @@ const ModalMenu = ({ isMenuOpen, closeMenu, onLogoutClick }) => {
                     ? clsx(css.authNavBtn, css.regBtnHome)
                     : clsx(css.authNavBtn, css.regBtn)
                 }
+                onClick={closeMenu}
               >
                 Registration
               </Link>

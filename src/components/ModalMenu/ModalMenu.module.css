@@ -92,6 +92,7 @@
   white-space: nowrap;
   text-decoration: none;
   text-align: center;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .logInBtnHome {
