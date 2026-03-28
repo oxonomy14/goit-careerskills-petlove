@@ -12,20 +12,24 @@ export const editUserSchema = Yup.object().shape({
     .required('Email is required'),
 
   avatar: Yup.mixed()
-    .test('avatar-format', 'Avatar must be a valid image', value => {
-      if (value instanceof File) {
-        return value.type.startsWith('image/');
-      }
+    .required('Avatar is required')
+    .test(
+      'avatar-validation',
+      'Enter valid image URL or upload photo',
+      value => {
+        if (!value) return false;
 
-      if (typeof value === 'string') {
-        return /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)(\?.*)?$/i.test(
-          value,
-        );
-      }
+        if (value instanceof File) {
+          return value.type.startsWith('image/');
+        }
 
-      return false;
-    })
-    .required('Avatar photo is required'),
+        if (typeof value === 'string') {
+          return /^https?:\/\/.+/i.test(value);
+        }
+
+        return false;
+      },
+    ),
 
   phone: Yup.string()
     .matches(/^\+38\d{10}$/, 'Phone must match +38XXXXXXXXXX')

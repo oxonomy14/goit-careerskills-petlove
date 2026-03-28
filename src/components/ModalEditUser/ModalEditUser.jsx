@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { selectUser, selectIsLoading } from '../../redux/auth/authSelector';
 import { useDispatch, useSelector } from 'react-redux';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { editUserSchema } from '../../hooks/ validationSchemaUserEdit';
+import { editUserSchema } from '../../hooks/validationSchemaUserEdit';
 import toast from 'react-hot-toast';
 import { updateUser } from '../../redux/auth/authOperations';
 
@@ -13,12 +13,14 @@ const modalRoot = document.body;
 
 const ModalEditUser = ({
   onClose,
-
   showCloseBtn = true,
   closeOnBackdrop = true,
   closeOnEsc = true,
 }) => {
   const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const isLoading = useSelector(selectIsLoading);
+
   const [avatarPreview, setAvatarPreview] = useState('');
 
   useEffect(() => {
@@ -29,8 +31,6 @@ const ModalEditUser = ({
     };
 
     document.addEventListener('keydown', handleEsc);
-
-    // блокування скролу
     document.body.style.overflow = 'hidden';
 
     return () => {
@@ -45,12 +45,8 @@ const ModalEditUser = ({
     }
   };
 
-  const user = useSelector(selectUser);
-  const isLoading = useSelector(selectIsLoading);
-
   const {
     register,
-    control,
     handleSubmit,
     setValue,
     watch,
@@ -77,12 +73,13 @@ const ModalEditUser = ({
       };
     }
 
-    setAvatarPreview(avatarValue || user.avatar || '');
+    setAvatarPreview(
+      typeof avatarValue === 'string' ? avatarValue : user.avatar || '',
+    );
   }, [avatarValue, user.avatar]);
 
   const handleImageUpload = event => {
     const file = event.target.files?.[0];
-
     if (!file) return;
 
     setValue('avatar', file, {
@@ -91,12 +88,21 @@ const ModalEditUser = ({
     });
   };
 
+  const handleAvatarUrlChange = event => {
+    const value = event.target.value;
+
+    setValue('avatar', value, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+  };
+
   const onSubmit = async data => {
     try {
       await dispatch(updateUser(data)).unwrap();
-      onClose(); // ✅ закриваємо тільки якщо success
+      onClose();
     } catch (error) {
-      toast.error(error || 'Something went wrong'); // ✅ показуємо notification
+      toast.error(error || 'Something went wrong');
     }
   };
 
@@ -104,15 +110,16 @@ const ModalEditUser = ({
     <div className={css.backdrop} onClick={handleBackdropClick}>
       <div className={css.modal}>
         {showCloseBtn && (
-          <button className={css.closeBtn} onClick={onClose}>
+          <button type="button" className={css.closeBtn} onClick={onClose}>
             <svg className={css.xIcon}>
-              <use href={`/icons/sprite.svg?v=${Date.now()}#icon-x`} />
+              <use href={`/icons/sprite.svg#icon-x`} />
             </svg>
           </button>
         )}
 
         <div className={css.content}>
           <h2 className={css.title}>Edit information</h2>
+
           <div className={css.userImageEmpty}>
             <div className={css.userImageWrap}>
               {avatarPreview ? (
@@ -120,35 +127,31 @@ const ModalEditUser = ({
                   className={css.userImageAvatar}
                   src={avatarPreview}
                   alt={user.name}
+                  onError={() => setAvatarPreview('')}
                 />
               ) : (
                 <svg className={css.userImageIcon}>
-                  <use href={`/icons/sprite.svg?v=${Date.now()}#icon-user`} />
+                  <use href={`/icons/sprite.svg#icon-user`} />
                 </svg>
               )}
             </div>
           </div>
+
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className={css.urlAvatarWraper}>
               <div>
-                <Controller
-                  name="avatar"
-                  control={control}
-                  render={({ field }) => (
-                    <input
-                      value={typeof field.value === 'string' ? field.value : ''}
-                      onChange={event => field.onChange(event.target.value)}
-                      onBlur={field.onBlur}
-                      ref={field.ref}
-                      placeholder="Avatar URL"
-                      className={css.editUserInputUrl}
-                    />
-                  )}
+                <input
+                  type="text"
+                  value={typeof avatarValue === 'string' ? avatarValue : ''}
+                  onChange={handleAvatarUrlChange}
+                  placeholder="Avatar URL"
+                  className={css.editUserInputUrl}
                 />
                 {errors.avatar && (
                   <p className={css.error}>{errors.avatar.message}</p>
                 )}
               </div>
+
               <label className={css.uploadFileWraper}>
                 <input
                   type="file"
@@ -158,9 +161,7 @@ const ModalEditUser = ({
                 />
                 <p>Upload photo</p>
                 <svg className={css.uploadIcon}>
-                  <use
-                    href={`/icons/sprite.svg?v=${Date.now()}#icon-upload-cloud`}
-                  />
+                  <use href={`/icons/sprite.svg#icon-upload-cloud`} />
                 </svg>
               </label>
             </div>
