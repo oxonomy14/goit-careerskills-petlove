@@ -18,7 +18,7 @@ import { selectToken, selectIsRefreshing } from './redux/auth/authSelector';
 import { fetchUserFull, logoutUser } from './redux/auth/authOperations';
 import ModalApproveAction from './components/ModalApproveAction/ModalApproveAction';
 import ModalMenu from './components/ModalMenu/ModalMenu.jsx';
-import { SpeedInsights } from '@vercel/speed-insights/react';
+
 import toast from 'react-hot-toast';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -143,7 +143,6 @@ function App() {
           {showLogo ? <LogoMain /> : <LoaderMain percent={progress} />}
         </HeroMain>
       )}
-      <SpeedInsights />
     </>
   );
 }
