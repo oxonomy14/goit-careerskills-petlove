@@ -5,7 +5,7 @@ import { selectUser, selectIsLoading } from '../../redux/auth/authSelector';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { editUserSchema } from '../../hooks/validationSchemaUserEdit';
+import { editUserSchema } from '../../hooks/ validationSchemaUserEdit';
 import toast from 'react-hot-toast';
 import { updateUser } from '../../redux/auth/authOperations';
 
